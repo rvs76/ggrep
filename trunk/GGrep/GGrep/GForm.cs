@@ -1,0 +1,802 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Threading;
+using BrightIdeasSoftware;
+using System.Diagnostics;
+
+namespace GGrep
+{
+    public partial class GForm : Form
+    {
+        public const char SEPERATOR = '	';
+
+        SearchOptions option = null;
+        bool isRunning = false;
+        long seq = 0;
+
+        public GForm()
+        {
+            InitializeComponent();
+            splitContainer1.Panel1Collapsed = Properties.Settings.Default.Panel1Collapsed;
+            SetSearchOptions();
+            btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
+        }
+
+        #region Methods
+        private void CheckFile(string filePath)
+        {
+            if (!isRunning)
+                return;
+
+            if (Directory.Exists(filePath))
+            {
+                // sub directory
+                if (option.IncludeSubFolders)
+                {
+                    foreach (string f_path in option.GetMatchedFolders(filePath))
+                        CheckFile(f_path);
+                }
+
+                // files
+                foreach (string f_path in option.GetMatchedFiles(filePath))
+                    CheckFile(f_path);
+            }
+            else if (File.Exists(filePath))
+            {
+
+            }
+        }
+
+        private bool CheckSearchOptions()
+        {
+            #region check
+            // string
+            if (string.IsNullOrEmpty(cbbSearchText.Text))
+            {
+                ShowMessage(0, Properties.Resources.MSG_ERROR_01);
+                return false;
+            }
+
+            // folder
+            if (string.IsNullOrEmpty(cbbSearchFolder.Text) || !Directory.Exists(cbbSearchFolder.Text))
+            {
+                ShowMessage(0, Properties.Resources.MSG_ERROR_02);
+                return false;
+            }
+
+            // encoding
+            try
+            {
+                if (!IsAutoEncoding)
+                {
+                    Encoding e = Encoding.GetEncoding(cbbEncoding.Text);
+                }
+            }
+            catch
+            {
+                ShowMessage(0, Properties.Resources.MSG_ERROR_03);
+                return false;
+            }
+
+            // regex text
+            if (cbRegex.Checked)
+            {
+                try
+                {
+                    Regex.IsMatch("", cbbSearchText.Text);
+                }
+                catch
+                {
+                    ShowMessage(0, Properties.Resources.MSG_ERROR_04);
+                    return false;
+                }
+            }
+
+            #endregion
+
+            #region save
+            option = new SearchOptions();
+
+            option.SearchString = cbbSearchText.Text;
+            ManagerCombox(cbbSearchText, option.SearchString);
+
+            option.SearchFolder = cbbSearchFolder.Text;
+            ManagerCombox(cbbSearchFolder, option.SearchFolder);
+
+            option.IsRegex = cbRegex.Checked;
+            option.IsCaseSensitive = cbCaseSensitive.Checked;
+            option.IsSearchOnWords = cbSearchOnWords.Checked;
+            option.IncludeSubFolders = cbIncludeSubFolders.Checked;
+            option.IncludeHiddenFolders = cbIncludeHiddenFolder.Checked;
+            option.Multiline = cbMultiline.Checked;
+
+            option.Encoding = cbbEncoding.Text;
+            ManagerCombox(cbbEncoding, option.Encoding);
+
+            option.MatchFiles = cbbFileMatch.Text;
+            ManagerCombox(cbbFileMatch, option.MatchFiles);
+
+            option.NotMatchFiles = cbbFileNotMatch.Text;
+            ManagerCombox(cbbFileNotMatch, option.NotMatchFiles);
+
+            option.MatchFolders = cbbFolderMatch.Text;
+            ManagerCombox(cbbFolderMatch, option.MatchFolders);
+
+            option.NotMatchFolders = cbbFolderNotMatch.Text;
+            ManagerCombox(cbbFolderNotMatch, option.NotMatchFolders);
+
+            #endregion
+
+
+            return true;
+        }
+
+        private void ManagerCombox(ComboBox cb, string value)
+        {
+            if (cb.Items.Contains(value))
+            {
+                cb.Items.Remove(value);
+            }
+            cb.Items.Insert(0, value);
+            cb.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// generate string like 'xxx|xxx|xxx|xxx'
+        /// </summary>
+        /// <param name="cb">select box</param>
+        private string AppendSearchOptions(ComboBox cb)
+        {
+            if (cb.Items.Count <= 0)
+                return "";
+            string s = "";
+
+            for (int i = 0; i < cb.Items.Count; i++)
+            {
+                s += SEPERATOR + cb.Items[i].ToString();
+            }
+            return s.Substring(1);
+        }
+
+        private bool IsAutoEncoding { get { return GetControlText(cbbEncoding).Trim().ToLower() == "auto"; } }
+
+        private void SaveSearchOptions()
+        {
+            Properties.Settings.Default.SearchString = AppendSearchOptions(cbbSearchText);
+            Properties.Settings.Default.SearchFolder = AppendSearchOptions(cbbSearchFolder);
+            Properties.Settings.Default.Regex = option.IsRegex;
+            Properties.Settings.Default.CaseSensitive = option.IsCaseSensitive;
+            Properties.Settings.Default.SearchOnWords = option.IsSearchOnWords;
+            Properties.Settings.Default.IncludeSubFolders = option.IncludeSubFolders;
+            Properties.Settings.Default.IncludeHiddenFolders = option.IncludeHiddenFolders;
+            Properties.Settings.Default.Multiline = option.Multiline;
+            Properties.Settings.Default.Encoding = AppendSearchOptions(cbbEncoding);
+            Properties.Settings.Default.FileMatch = AppendSearchOptions(cbbFileMatch);
+            Properties.Settings.Default.FileNotMatch = AppendSearchOptions(cbbFileNotMatch);
+            Properties.Settings.Default.FolderMatch = AppendSearchOptions(cbbFolderMatch);
+            Properties.Settings.Default.FolderNotMatch = AppendSearchOptions(cbbFolderNotMatch);
+            Properties.Settings.Default.Save();
+        }
+
+        private void SetSearchOptions()
+        {
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.SearchString))
+            {
+                cbbSearchText.Items.Clear();
+                foreach (string s in Properties.Settings.Default.SearchString.Split(SEPERATOR))
+                {
+                    cbbSearchText.Items.Add(s);
+                }
+                cbbSearchText.SelectedIndex = 0;
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.SearchFolder))
+            {
+                cbbSearchFolder.Items.Clear();
+                foreach (string s in Properties.Settings.Default.SearchFolder.Split(SEPERATOR))
+                {
+                    cbbSearchFolder.Items.Add(s);
+                }
+                cbbSearchFolder.SelectedIndex = 0;
+            }
+            cbRegex.Checked = Properties.Settings.Default.Regex;
+            cbCaseSensitive.Checked = Properties.Settings.Default.CaseSensitive;
+            cbSearchOnWords.Checked = Properties.Settings.Default.SearchOnWords;
+
+            cbIncludeSubFolders.Checked = Properties.Settings.Default.IncludeSubFolders;
+            cbIncludeHiddenFolder.Checked = Properties.Settings.Default.IncludeHiddenFolders;
+            cbMultiline.Checked = Properties.Settings.Default.Multiline;
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Encoding))
+            {
+                cbbEncoding.Items.Clear();
+                foreach (string s in Properties.Settings.Default.Encoding.Split(SEPERATOR))
+                {
+                    cbbEncoding.Items.Add(s);
+                }
+                cbbEncoding.SelectedIndex = 0;
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.FileMatch))
+            {
+                cbbFileMatch.Items.Clear();
+                foreach (string s in Properties.Settings.Default.FileMatch.Split(SEPERATOR))
+                {
+                    cbbFileMatch.Items.Add(s);
+                }
+                cbbFileMatch.SelectedIndex = 0;
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.FileNotMatch))
+            {
+                cbbFileNotMatch.Items.Clear();
+                foreach (string s in Properties.Settings.Default.FileNotMatch.Split(SEPERATOR))
+                {
+                    cbbFileNotMatch.Items.Add(s);
+                }
+                cbbFileNotMatch.SelectedIndex = 0;
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.FolderMatch))
+            {
+                cbbFolderMatch.Items.Clear();
+                foreach (string s in Properties.Settings.Default.FolderMatch.Split(SEPERATOR))
+                {
+                    cbbFolderMatch.Items.Add(s);
+                }
+                cbbFolderMatch.SelectedIndex = 0;
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.FolderNotMatch))
+            {
+                cbbFolderNotMatch.Items.Clear();
+                foreach (string s in Properties.Settings.Default.FolderNotMatch.Split(SEPERATOR))
+                {
+                    cbbFolderNotMatch.Items.Add(s);
+                }
+                cbbFolderNotMatch.SelectedIndex = 0;
+            }
+
+        }
+
+        private DialogResult ShowMessage(int pattern, string message)
+        {
+            switch (pattern)
+            {
+                case 0:
+                    // failure
+                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                case 2:
+                    // warning
+                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_03, MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                case 1:
+                default:
+                    // success
+                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_02, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        #region CallBack
+        delegate void SetControlTextCallback(Control ctl, string text);
+        private void SetControlText(Control ctl, string text)
+        {
+            if (ctl.InvokeRequired)
+            {
+                SetControlTextCallback d = new SetControlTextCallback(SetControlText);
+                this.Invoke(d, new object[] { ctl, text });
+            }
+            else
+            {
+                ctl.Text = text;
+            }
+        }
+
+        delegate void SetControlActiveCallback(Control ctl, bool enable);
+        private void SetControlActive(Control ctl, bool enable)
+        {
+            if (ctl.InvokeRequired)
+            {
+                SetControlActiveCallback d = new SetControlActiveCallback(SetControlActive);
+                this.Invoke(d, new object[] { ctl, enable });
+            }
+            else
+            {
+                ctl.Enabled = enable;
+            }
+        }
+
+        delegate string GetControlTextCallback(Control ctl);
+        private string GetControlText(Control ctl)
+        {
+            if (ctl.InvokeRequired)
+            {
+                GetControlTextCallback d = new GetControlTextCallback(GetControlText);
+                return (string)this.Invoke(d, new object[] { ctl });
+            }
+            else
+            {
+                return ctl.Text;
+            }
+        }
+
+        delegate void AddRowsCallback(ObjectListView list, ArrayList dataList);
+        private void AddRows(ObjectListView list, ArrayList dataList)
+        {
+            if (list.InvokeRequired)
+            {
+                AddRowsCallback d = new AddRowsCallback(AddRows);
+                this.Invoke(d, new object[] { list, dataList });
+            }
+            else
+            {
+                list.AddObjects(dataList);
+                SetToolStripLabel(statusLabel, string.Format(Properties.Resources.MSG_STATUS_RUNNING, seq));
+            }
+        }
+
+        delegate void SetToolStripLabelCallback(ToolStripStatusLabel ctl, string text);
+        private void SetToolStripLabel(ToolStripStatusLabel ctl, string text)
+        {
+            if (InvokeRequired)
+            {
+                SetToolStripLabelCallback d = new SetToolStripLabelCallback(SetToolStripLabel);
+                this.Invoke(d, new object[] { ctl, text });
+            }
+            else
+            {
+                ctl.Text = text;
+            }
+        }
+        #endregion
+
+        private void DoGrep()
+        {
+            isRunning = true;
+            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_CANCEL);
+            folvResult.ClearObjects();
+            SetControlActive(cbbSearchText, false);
+            SetControlActive(cbbSearchFolder, false);
+            SetControlActive(panel1, false);
+            SetControlActive(splitContainer1.Panel1, false);
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            seq = 0;
+            AnalyzeDirectory(option.SearchFolder);
+            sw.Stop();
+            SetToolStripLabel(statusLabel, string.Format(Properties.Resources.MSG_STATUS_FINISHED, seq, sw.ElapsedMilliseconds));
+            SetControlActive(cbbSearchText, true);
+            SetControlActive(cbbSearchFolder, true);
+            SetControlActive(panel1, true);
+            SetControlActive(splitContainer1.Panel1, true);
+            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_SEARCH);
+            isRunning = false;
+        }
+
+        private void AnalyzeDirectory(string path)
+        {
+            if (isRunning)
+            {
+                if (Directory.Exists(path))
+                {
+                    // sub directory
+                    foreach (string f_path in option.GetMatchedFolders(path))
+                    {
+                        AnalyzeDirectory(f_path);
+                    }
+
+                    // file
+                    foreach (string f_path in option.GetMatchedFiles(path))
+                    {
+                        AnalyzeDirectory(f_path);
+                    }
+                }
+                else if (File.Exists(path))
+                {
+                    ArrayList list = new ArrayList();
+                    StreamReader sr;
+                    long rowNo = 0;
+                    string line;
+
+                    if (IsAutoEncoding)
+                    {
+                        sr = new StreamReader(path);
+                    }
+                    else
+                    {
+                        sr = new StreamReader(path, Encoding.GetEncoding(option.Encoding));
+                    }
+
+                    while (!sr.EndOfStream && isRunning)
+                    {
+                        line = sr.ReadLine();
+                        rowNo++;
+                        RegexOptions ro = RegexOptions.Singleline;
+                        string input = option.SearchString;
+
+                        if (!option.IsCaseSensitive)
+                        {
+                            ro = ro | RegexOptions.IgnoreCase;
+                        }
+
+                        if (option.IsRegex)
+                        {
+                            if (option.Multiline)
+                            {
+                                ro = ro | RegexOptions.Multiline;
+                            }
+                        }
+                        else
+                        {
+                            input = option.SearchStringRegexEscaped;
+                            if (option.IsSearchOnWords)
+                            {
+                                input = @"\b" + input + @"\b";
+                            }
+                        }
+                        Regex re = new Regex(input, ro);
+
+                        foreach (Match m in re.Matches(line))
+                        {
+                            ResultData data = new ResultData();
+                            data.No = (++seq);
+                            data.FileName = path;
+                            data.RowNo = rowNo;
+                            data.ColNo = m.Index;
+                            data.Line = line;
+                            data.MatchedString = m.Value;
+                            list.Add(data);
+                        }
+                    }
+
+                    sr.Close();
+                    if (list.Count > 0)
+                        AddRows(folvResult, list);
+
+                }
+            }
+        }
+#endregion
+
+        #region Events
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            switch (fbd.ShowDialog(this))
+            {
+                case DialogResult.OK:
+                    cbbSearchFolder.Text = fbd.SelectedPath;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (!isRunning)
+            {
+                // start
+                if (!CheckSearchOptions())
+                    return;
+
+                SaveSearchOptions();
+
+                //DoGrep();
+                Thread th = new Thread(new ThreadStart(DoGrep));
+                th.Start();
+            }
+            else
+            {
+                if (ShowMessage(2, Properties.Resources.MSG_WARN_01) == DialogResult.OK)
+                {
+                    // stop
+                    isRunning = false;
+                }
+            }
+
+        }
+
+        private void cbRegex_CheckedChanged(object sender, EventArgs e)
+        {
+            cbMultiline.Enabled = cbRegex.Checked;
+            cbSearchOnWords.Enabled = cbRegex.Checked;
+        }
+
+        private void llOption_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
+            Properties.Settings.Default.Panel1Collapsed = splitContainer1.Panel1Collapsed;
+            Properties.Settings.Default.Save();
+        }
+
+        private void GForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isRunning)
+            {
+                if (ShowMessage(2, Properties.Resources.MSG_WARN_01) == DialogResult.OK)
+                {
+                    // stop
+                    isRunning = false;
+                }
+            }
+        }
+        #endregion
+    }
+
+    internal class ResultData
+    {
+        private long no;
+
+        public long No
+        {
+            get { return no; }
+            set { no = value; }
+        }
+
+        private string fileName;
+
+        public string FileName
+        {
+            get { return fileName; }
+            set { fileName = value; }
+        }
+        private long rowNo;
+
+        public long RowNo
+        {
+            get { return rowNo; }
+            set { rowNo = value; }
+        }
+        private long colNo;
+
+        public long ColNo
+        {
+            get { return colNo; }
+            set { colNo = value; }
+        }
+
+        private string line;
+
+        public string Line
+        {
+            get { return line; }
+            set { line = value; }
+        }
+        private string matchedString;
+
+        public string MatchedString
+        {
+            get { return matchedString; }
+            set { matchedString = value; }
+        }
+
+    }
+
+    internal class SearchOptions
+    {
+        #region Properties
+        private string searchString;
+
+        public string SearchString
+        {
+            get { return searchString; }
+            set { searchString = value; }
+        }
+        public string SearchStringRegexEscaped
+        {
+            get
+            {
+                string s = searchString;
+                s = s.Replace("\\", "\\\\");
+                s = s.Replace(".", "\\.");
+                s = s.Replace("*", "\\*");
+                s = s.Replace("+", "\\+");
+                s = s.Replace("?", "\\?");
+                s = s.Replace("{", "\\{");
+                s = s.Replace("}", "\\}");
+                s = s.Replace("[", "\\[");
+                s = s.Replace("]", "\\]");
+                s = s.Replace("(", "\\(");
+                s = s.Replace(")", "\\)");
+                s = s.Replace("^", "\\^");
+                s = s.Replace("$", "\\$");
+                s = s.Replace("-", "\\-");
+                s = s.Replace("|", "\\|");
+                s = s.Replace("/", "\\/");
+                return s;
+            }
+        }
+
+        private string searchFolder;
+
+        public string SearchFolder
+        {
+            get { return searchFolder; }
+            set { searchFolder = value; }
+        }
+        
+        private bool isRegex;
+
+        public bool IsRegex
+        {
+            get { return isRegex; }
+            set { isRegex = value; }
+        }
+
+        private bool isCaseSensitive;
+
+        public bool IsCaseSensitive
+        {
+            get { return isCaseSensitive; }
+            set { isCaseSensitive = value; }
+        }
+        private bool isSearchOnWords;
+
+        public bool IsSearchOnWords
+        {
+            get { return isSearchOnWords; }
+            set { isSearchOnWords = value; }
+        }
+
+        private bool includeSubFolders;
+
+        public bool IncludeSubFolders
+        {
+            get { return includeSubFolders; }
+            set { includeSubFolders = value; }
+        }
+
+        private bool includeHiddenFolders;
+
+        public bool IncludeHiddenFolders
+        {
+            get { return includeHiddenFolders; }
+            set { includeHiddenFolders = value; }
+        }
+
+        private bool multiline;
+
+        public bool Multiline
+        {
+            get { return multiline; }
+            set { multiline = value; }
+        }
+	
+        private string encoding;
+
+        public string Encoding
+        {
+            get { return encoding; }
+            set { encoding = value; }
+        }
+
+        private string matchFiles;
+
+        public string MatchFiles
+        {
+            get { return matchFiles; }
+            set { matchFiles = value; }
+        }
+        private string notMatchFiles;
+
+        public string NotMatchFiles
+        {
+            get { return notMatchFiles; }
+            set { notMatchFiles = value; }
+        }
+
+        private string matchFolders;
+
+        public string MatchFolders
+        {
+            get { return matchFolders; }
+            set { matchFolders = value; }
+        }
+
+        private string notMatchFolders;
+
+        public string NotMatchFolders
+        {
+            get { return notMatchFolders; }
+            set { notMatchFolders = value; }
+        }
+        #endregion
+
+        #region Methods
+        public string[] GetMatchedFolders(string dir)
+        {
+            ArrayList list = new ArrayList();
+            if (!string.IsNullOrEmpty(matchFolders))
+            {
+                foreach (string p in matchFolders.Split(','))
+                {
+                    foreach (string f in Directory.GetDirectories(dir, p))
+                    {
+                        // not matched folders check
+                        if (!string.IsNullOrEmpty(notMatchFolders))
+                        {
+                            if (!Regex.IsMatch(f, notMatchFolders.Replace(",", "|")))
+                                continue;
+                        }
+
+                        DirectoryInfo di = new DirectoryInfo(f);
+                        if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
+                            continue;
+
+                        list.Add(f);
+                    }
+                }
+            }
+            else
+            {
+                foreach (string f in Directory.GetDirectories(dir))
+                {
+                    // not matched folders check
+                    if (!string.IsNullOrEmpty(notMatchFolders))
+                    {
+                        if (!Regex.IsMatch(f, notMatchFolders.Replace(",", "|")))
+                            continue;
+                    }
+
+                    DirectoryInfo di = new DirectoryInfo(f);
+                    if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
+                        continue;
+
+                    list.Add(f);
+                }
+            }
+
+            return (string[])list.ToArray(typeof(string));
+        }
+
+        public string[] GetMatchedFiles(string dir)
+        {
+            ArrayList list = new ArrayList();
+            if (!string.IsNullOrEmpty(matchFiles))
+            {
+                foreach (string p in matchFiles.Split(','))
+                {
+                    foreach (string f in Directory.GetFiles(dir, p))
+                    {
+                        // not matched files check
+                        if (!string.IsNullOrEmpty(notMatchFiles))
+                        {
+                            if (!Regex.IsMatch(f, notMatchFiles.Replace(",", "|")))
+                                continue;
+                        }
+
+                        FileInfo di = new FileInfo(f);
+                        if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
+                            continue;
+
+                        list.Add(f);
+                    }
+                }
+            }
+            else
+            {
+                foreach (string f in Directory.GetFiles(dir))
+                {
+                    // not matched files check
+                    if (!string.IsNullOrEmpty(notMatchFiles))
+                    {
+                        if (!Regex.IsMatch(f, notMatchFiles.Replace(",", "|")))
+                            continue;
+                    }
+
+                    FileInfo di = new FileInfo(f);
+                    if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
+                        continue;
+
+                    list.Add(f);
+                }
+            }
+
+            return (string[])list.ToArray(typeof(string));
+        }
+        #endregion
+    }
+}

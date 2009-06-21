@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("GGrep")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Powerful Grep Tool")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Raymond")]
 [assembly: AssemblyProduct("GGrep")]
-[assembly: AssemblyCopyright("Copyright (C) Raymond 2009")]
+[assembly: AssemblyCopyright("Copyright ©  2009 Raymond")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.8.*")]
+[assembly: AssemblyFileVersion("0.8")]

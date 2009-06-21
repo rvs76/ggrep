@@ -16,12 +16,15 @@ namespace GGrep
 {
     public partial class GForm : Form
     {
+        #region Members
         public const char SEPERATOR = '	';
 
         SearchOptions option = null;
         bool isRunning = false;
         long seq = 0;
+        #endregion
 
+        #region Constructor
         public GForm()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace GGrep
             SetSearchOptions();
             btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
         }
+        #endregion
 
         #region Methods
         private void CheckFile(string filePath)
@@ -528,6 +532,7 @@ namespace GGrep
 
     internal class ResultData
     {
+        #region Properties
         private long no;
 
         public long No
@@ -572,7 +577,7 @@ namespace GGrep
             get { return matchedString; }
             set { matchedString = value; }
         }
-
+        #endregion
     }
 
     internal class SearchOptions
@@ -685,7 +690,13 @@ namespace GGrep
         public string NotMatchFiles
         {
             get { return notMatchFiles; }
-            set { notMatchFiles = value; }
+            set 
+            { 
+                notMatchFiles = value;
+                // ? -> .+?.+
+                // * -> \w
+                notMatchFileRegex = notMatchFiles.Replace(",", "|").Replace(".", "\\.").Replace("?", ".+?.+").Replace("*", "\\w");
+            }
         }
 
         private string matchFolders;
@@ -701,8 +712,17 @@ namespace GGrep
         public string NotMatchFolders
         {
             get { return notMatchFolders; }
-            set { notMatchFolders = value; }
+            set 
+            { 
+                notMatchFolders = value;
+                // ? -> .+?.+
+                // * -> \w
+                notMatchFolderRegex = notMatchFolders.Replace(",", "|").Replace(".", "\\.").Replace("?", ".+?.+").Replace("*", "\\w");
+            }
         }
+
+        private string notMatchFileRegex;
+        private string notMatchFolderRegex;
         #endregion
 
         #region Methods
@@ -716,9 +736,9 @@ namespace GGrep
                     foreach (string f in Directory.GetDirectories(dir, p))
                     {
                         // not matched folders check
-                        if (!string.IsNullOrEmpty(notMatchFolders))
+                        if (!string.IsNullOrEmpty(notMatchFolderRegex))
                         {
-                            if (!Regex.IsMatch(f, notMatchFolders.Replace(",", "|")))
+                            if (!Regex.IsMatch(f, notMatchFolderRegex))
                                 continue;
                         }
 
@@ -735,9 +755,9 @@ namespace GGrep
                 foreach (string f in Directory.GetDirectories(dir))
                 {
                     // not matched folders check
-                    if (!string.IsNullOrEmpty(notMatchFolders))
+                    if (!string.IsNullOrEmpty(notMatchFolderRegex))
                     {
-                        if (!Regex.IsMatch(f, notMatchFolders.Replace(",", "|")))
+                        if (!Regex.IsMatch(f, notMatchFolderRegex))
                             continue;
                     }
 
@@ -762,9 +782,9 @@ namespace GGrep
                     foreach (string f in Directory.GetFiles(dir, p))
                     {
                         // not matched files check
-                        if (!string.IsNullOrEmpty(notMatchFiles))
+                        if (!string.IsNullOrEmpty(notMatchFileRegex))
                         {
-                            if (!Regex.IsMatch(f, notMatchFiles.Replace(",", "|")))
+                            if (Regex.IsMatch(f, notMatchFileRegex))
                                 continue;
                         }
 
@@ -781,9 +801,9 @@ namespace GGrep
                 foreach (string f in Directory.GetFiles(dir))
                 {
                     // not matched files check
-                    if (!string.IsNullOrEmpty(notMatchFiles))
+                    if (!string.IsNullOrEmpty(notMatchFileRegex))
                     {
-                        if (!Regex.IsMatch(f, notMatchFiles.Replace(",", "|")))
+                        if (Regex.IsMatch(f, notMatchFileRegex))
                             continue;
                     }
 

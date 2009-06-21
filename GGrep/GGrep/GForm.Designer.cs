@@ -385,7 +385,6 @@
             this.folvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.folvResult.EmptyListMsg = "Nothing Founded!!!";
             this.folvResult.FullRowSelect = true;
-            this.folvResult.GridLines = true;
             this.folvResult.Location = new System.Drawing.Point(3, 18);
             this.folvResult.Name = "folvResult";
             this.folvResult.ShowGroups = false;
@@ -393,7 +392,6 @@
             this.folvResult.TabIndex = 9;
             this.folvResult.UseAlternatingBackColors = true;
             this.folvResult.UseCompatibleStateImageBehavior = false;
-            this.folvResult.UseCustomSelectionColors = true;
             this.folvResult.View = System.Windows.Forms.View.Details;
             this.folvResult.VirtualMode = true;
             // 

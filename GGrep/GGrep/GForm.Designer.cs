@@ -56,26 +56,34 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.llOption = new System.Windows.Forms.LinkLabel();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.gbResult = new System.Windows.Forms.GroupBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuStripMain = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folvResult = new BrightIdeasSoftware.FastObjectListView();
             this.colNo = new BrightIdeasSoftware.OLVColumn();
             this.colFileName = new BrightIdeasSoftware.OLVColumn();
             this.colRowNo = new BrightIdeasSoftware.OLVColumn();
             this.colColNo = new BrightIdeasSoftware.OLVColumn();
             this.colLine = new BrightIdeasSoftware.OLVColumn();
-            this.gbResult = new System.Windows.Forms.GroupBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
             this.gbResult.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.menuStripMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBrowse
@@ -332,6 +340,8 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.llOption);
             this.panel1.Controls.Add(this.label1);
@@ -340,8 +350,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnBrowse);
             this.panel1.Controls.Add(this.cbbSearchText);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Location = new System.Drawing.Point(6, 34);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(480, 90);
             this.panel1.TabIndex = 7;
@@ -364,9 +373,115 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 8;
-            this.btnSearch.Text = "&Search";
+            this.btnSearch.Text = "S&earch";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // gbResult
+            // 
+            this.gbResult.Controls.Add(this.folvResult);
+            this.gbResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbResult.Location = new System.Drawing.Point(0, 0);
+            this.gbResult.Name = "gbResult";
+            this.gbResult.Size = new System.Drawing.Size(480, 123);
+            this.gbResult.TabIndex = 10;
+            this.gbResult.TabStop = false;
+            this.gbResult.Text = "Result";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(6, 126);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.gbFilter);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.gbResult);
+            this.splitContainer1.Size = new System.Drawing.Size(480, 309);
+            this.splitContainer1.SplitterDistance = 182;
+            this.splitContainer1.TabIndex = 11;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(6, 438);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(480, 22);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(115, 17);
+            this.statusLabel.Text = "Click &Search to Start.";
+            // 
+            // menuStripMain
+            // 
+            this.menuStripMain.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem});
+            this.menuStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStripMain.Location = new System.Drawing.Point(6, 6);
+            this.menuStripMain.Name = "menuStripMain";
+            this.menuStripMain.Size = new System.Drawing.Size(480, 24);
+            this.menuStripMain.TabIndex = 13;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveAsCsvToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // saveAsCsvToolStripMenuItem
+            // 
+            this.saveAsCsvToolStripMenuItem.Enabled = false;
+            this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
+            this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.saveAsCsvToolStripMenuItem.Text = "&Save as Csv";
+            this.saveAsCsvToolStripMenuItem.Click += new System.EventHandler(this.saveAsCsvToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filterToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // filterToolStripMenuItem
+            // 
+            this.filterToolStripMenuItem.CheckOnClick = true;
+            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.filterToolStripMenuItem.Text = "Fil&ter";
+            this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
             // folvResult
             // 
@@ -387,8 +502,9 @@
             this.folvResult.FullRowSelect = true;
             this.folvResult.Location = new System.Drawing.Point(3, 18);
             this.folvResult.Name = "folvResult";
+            this.folvResult.OwnerDraw = true;
             this.folvResult.ShowGroups = false;
-            this.folvResult.Size = new System.Drawing.Size(474, 132);
+            this.folvResult.Size = new System.Drawing.Size(474, 102);
             this.folvResult.TabIndex = 9;
             this.folvResult.UseAlternatingBackColors = true;
             this.folvResult.UseCompatibleStateImageBehavior = false;
@@ -432,54 +548,6 @@
             this.colLine.Text = "Result";
             this.colLine.Width = 240;
             // 
-            // gbResult
-            // 
-            this.gbResult.Controls.Add(this.folvResult);
-            this.gbResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbResult.Location = new System.Drawing.Point(0, 0);
-            this.gbResult.Name = "gbResult";
-            this.gbResult.Size = new System.Drawing.Size(480, 153);
-            this.gbResult.TabIndex = 10;
-            this.gbResult.TabStop = false;
-            this.gbResult.Text = "Result";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(6, 96);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.gbFilter);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.gbResult);
-            this.splitContainer1.Size = new System.Drawing.Size(480, 339);
-            this.splitContainer1.SplitterDistance = 182;
-            this.splitContainer1.TabIndex = 11;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(6, 438);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(480, 22);
-            this.statusStrip1.TabIndex = 12;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(115, 17);
-            this.statusLabel.Text = "Click &Search to Start.";
-            // 
             // GForm
             // 
             this.AcceptButton = this.btnSearch;
@@ -487,10 +555,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 466);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStripMain);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStripMain;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "GForm";
@@ -505,7 +575,6 @@
             this.flowLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
             this.gbResult.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -513,6 +582,9 @@
             this.splitContainer1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -557,6 +629,13 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private BrightIdeasSoftware.OLVColumn colNo;
+        private System.Windows.Forms.MenuStrip menuStripMain;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsCsvToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
     }
 }
 

@@ -11,9 +11,13 @@ using System.Collections;
 using System.Threading;
 using BrightIdeasSoftware;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
 
 namespace GGrep
 {
+    /// <summary>
+    /// Main Grep Form
+    /// </summary>
     public partial class GForm : Form
     {
         #region Members
@@ -24,6 +28,10 @@ namespace GGrep
         long seq = 0;
         #endregion
 
+        #region Properties
+        private bool IsAutoEncoding { get { return GetControlText(cbbEncoding).Trim().ToLower() == "auto"; } }
+        #endregion
+
         #region Constructor
         public GForm()
         {
@@ -31,35 +39,73 @@ namespace GGrep
             splitContainer1.Panel1Collapsed = Properties.Settings.Default.Panel1Collapsed;
             SetSearchOptions();
             btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
+            filterToolStripMenuItem.Checked = !Properties.Settings.Default.Panel1Collapsed;
+
+            #region highlight matched string
+            colLine.RendererDelegate = delegate(DrawListViewSubItemEventArgs e, Graphics g, Rectangle itemBounds, Object rowObject)
+            {
+                // if selected, draw by default
+                if (e.Item.Selected)
+                    return false;
+
+                ResultData data = (ResultData)rowObject;
+
+                string strLeft = data.Line.Substring(0, (int)data.ColNo);
+                string strRight = data.Line.Substring((int)(data.ColNo + data.MatchedString.Length));
+
+                SizeF leftSize = g.MeasureString(strLeft, Font);
+                SizeF matchedSize = g.MeasureString(data.MatchedString, Font);
+                SizeF rightSize = g.MeasureString(strRight, Font);
+
+                PointF leftP = new PointF(itemBounds.X, itemBounds.Y);
+                PointF matchedP = new PointF(itemBounds.X + leftSize.Width, itemBounds.Y);
+                PointF rightP = new PointF(itemBounds.X + leftSize.Width + matchedSize.Width, itemBounds.Y);
+
+                RectangleF leftRect = new RectangleF(leftP, leftSize);
+                RectangleF matchedRect = new RectangleF(matchedP, matchedSize);
+                RectangleF rightRect = new RectangleF(rightP.X, rightP.Y, itemBounds.Width - leftSize.Width - matchedSize.Width, itemBounds.Height);
+
+                // highlight brush
+                SolidBrush sbhf = new SolidBrush(Color.Blue);
+                SolidBrush sbhb = new SolidBrush(Color.Yellow);
+
+                // normal brush
+                SolidBrush sbf = new SolidBrush(folvResult.ForeColor);
+                SolidBrush sbb;
+                if (e.ItemIndex % 2 != 0)
+                    sbb = new SolidBrush(folvResult.AlternateRowBackColorOrDefault);
+                else
+                    sbb = new SolidBrush(folvResult.BackColor);
+
+                // draw background
+                g.FillRectangle(sbb, leftRect);
+                g.FillRectangle(sbhb, matchedRect);
+                g.FillRectangle(sbb, rightRect);
+
+                // draw string
+                g.DrawString(strLeft, Font, sbf, leftP);
+                g.DrawString(data.MatchedString, Font, sbhf, matchedP);
+                g.DrawString(strRight, Font, sbf, rightP);
+
+                // Finally render the buffered graphics
+                sbb.Dispose();
+                sbf.Dispose();
+                sbhb.Dispose();
+                sbhf.Dispose();
+
+                // Return true to say that we've handled the drawing
+                return true;
+            };
+            #endregion
         }
         #endregion
 
         #region Methods
-        private void CheckFile(string filePath)
-        {
-            if (!isRunning)
-                return;
-
-            if (Directory.Exists(filePath))
-            {
-                // sub directory
-                if (option.IncludeSubFolders)
-                {
-                    foreach (string f_path in option.GetMatchedFolders(filePath))
-                        CheckFile(f_path);
-                }
-
-                // files
-                foreach (string f_path in option.GetMatchedFiles(filePath))
-                    CheckFile(f_path);
-            }
-            else if (File.Exists(filePath))
-            {
-
-            }
-        }
-
-        private bool CheckSearchOptions()
+        /// <summary>
+        /// Check & Save Search Options
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckAndSaveSearchOptions()
         {
             #region check
             // string
@@ -139,10 +185,14 @@ namespace GGrep
 
             #endregion
 
-
             return true;
         }
 
+        /// <summary>
+        /// Manager ComboBox
+        /// </summary>
+        /// <param name="cb">ComboBox</param>
+        /// <param name="value">Selected Value</param>
         private void ManagerCombox(ComboBox cb, string value)
         {
             if (cb.Items.Contains(value))
@@ -170,8 +220,9 @@ namespace GGrep
             return s.Substring(1);
         }
 
-        private bool IsAutoEncoding { get { return GetControlText(cbbEncoding).Trim().ToLower() == "auto"; } }
-
+        /// <summary>
+        /// Save Search Options
+        /// </summary>
         private void SaveSearchOptions()
         {
             Properties.Settings.Default.SearchString = AppendSearchOptions(cbbSearchText);
@@ -190,6 +241,9 @@ namespace GGrep
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// Set Search Options
+        /// </summary>
         private void SetSearchOptions()
         {
             if (!string.IsNullOrEmpty(Properties.Settings.Default.SearchString))
@@ -266,6 +320,12 @@ namespace GGrep
 
         }
 
+        /// <summary>
+        /// Show Message
+        /// </summary>
+        /// <param name="pattern">0:failure/1:success/2:warning</param>
+        /// <param name="message">Message Contents</param>
+        /// <returns></returns>
         private DialogResult ShowMessage(int pattern, string message)
         {
             switch (pattern)
@@ -275,12 +335,20 @@ namespace GGrep
                     return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 case 2:
                     // warning
-                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_03, MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_03, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 case 1:
                 default:
                     // success
-                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_02, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_02, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
+        }
+
+        private void ChangeFilterVisible()
+        {
+            splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
+            Properties.Settings.Default.Panel1Collapsed = splitContainer1.Panel1Collapsed;
+            Properties.Settings.Default.Save();
+            filterToolStripMenuItem.Checked = !splitContainer1.Panel1Collapsed; 
         }
 
         #region CallBack
@@ -304,6 +372,20 @@ namespace GGrep
             if (ctl.InvokeRequired)
             {
                 SetControlActiveCallback d = new SetControlActiveCallback(SetControlActive);
+                this.Invoke(d, new object[] { ctl, enable });
+            }
+            else
+            {
+                ctl.Enabled = enable;
+            }
+        }
+
+        delegate void SetToolStripMenuItemActiveCallback(ToolStripMenuItem ctl, bool enable);
+        private void SetToolStripMenuItemActive(ToolStripMenuItem ctl, bool enable)
+        {
+            if (this.InvokeRequired)
+            {
+                SetToolStripMenuItemActiveCallback d = new SetToolStripMenuItemActiveCallback(SetToolStripMenuItemActive);
                 this.Invoke(d, new object[] { ctl, enable });
             }
             else
@@ -356,25 +438,31 @@ namespace GGrep
         }
         #endregion
 
+        #region Grep
         private void DoGrep()
         {
             isRunning = true;
             SetControlText(btnSearch, Properties.Resources.BTN_TEXT_CANCEL);
             folvResult.ClearObjects();
+            SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, false);
             SetControlActive(cbbSearchText, false);
             SetControlActive(cbbSearchFolder, false);
             SetControlActive(panel1, false);
             SetControlActive(splitContainer1.Panel1, false);
+            SetControlActive(menuStripMain, false);
             Stopwatch sw = new Stopwatch();
             sw.Start();
             seq = 0;
             AnalyzeDirectory(option.SearchFolder);
             sw.Stop();
             SetToolStripLabel(statusLabel, string.Format(Properties.Resources.MSG_STATUS_FINISHED, seq, sw.ElapsedMilliseconds));
+            SetControlActive(menuStripMain, true);
             SetControlActive(cbbSearchText, true);
             SetControlActive(cbbSearchFolder, true);
             SetControlActive(panel1, true);
             SetControlActive(splitContainer1.Panel1, true);
+            if (seq > 0)
+                SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, true);
             SetControlText(btnSearch, Properties.Resources.BTN_TEXT_SEARCH);
             isRunning = false;
         }
@@ -385,10 +473,13 @@ namespace GGrep
             {
                 if (Directory.Exists(path))
                 {
-                    // sub directory
-                    foreach (string f_path in option.GetMatchedFolders(path))
+                    if (option.IncludeSubFolders)
                     {
-                        AnalyzeDirectory(f_path);
+                        // sub directory
+                        foreach (string f_path in option.GetMatchedFolders(path))
+                        {
+                            AnalyzeDirectory(f_path);
+                        }
                     }
 
                     // file
@@ -415,7 +506,8 @@ namespace GGrep
 
                     while (!sr.EndOfStream && isRunning)
                     {
-                        line = sr.ReadLine();
+                        // ★★★★★★ need trim ??
+                        line = sr.ReadLine().Trim();
                         rowNo++;
                         RegexOptions ro = RegexOptions.Singleline;
                         string input = option.SearchString;
@@ -458,11 +550,66 @@ namespace GGrep
                     sr.Close();
                     if (list.Count > 0)
                         AddRows(folvResult, list);
-
                 }
             }
         }
-#endregion
+        #endregion
+
+        #region Output Csv
+        private bool SaveCsvFile()
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = Properties.Resources.FILE_FILTER;
+                sfd.FileName = Properties.Resources.FILE_NEM_NAME;
+                sfd.RestoreDirectory = true;
+                if (sfd.ShowDialog(this) == DialogResult.OK)
+                {
+                    // save
+                    using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.GetEncoding("SJIS")))
+                    {
+                        int index = 1;
+                        foreach (ResultData data in folvResult.Objects)
+                        {
+                            sw.WriteLine(ToCsvLine(data));
+                            if (index++ % 1000 == 0)
+                                sw.Flush();
+                        }
+                        sw.Close();
+                    }
+                    ShowMessage(1, Properties.Resources.MSG_SAVED);
+                }
+
+            }
+            catch (Exception e)
+            {
+                ShowMessage(0, e.ToString());
+                return false;
+            }
+            return true;
+        }
+
+        private string ToCsvLine(ResultData data)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(data.No);
+            sb.Append(",");
+            sb.Append(data.FileName);
+            sb.Append(",");
+            sb.Append(data.RowNo);
+            sb.Append(",");
+            sb.Append(data.ColNo);
+            sb.Append(",");
+            sb.Append("\"");
+            sb.Append(data.Line.Replace("\"", "\"\""));
+            sb.Append("\"");
+
+            return sb.ToString();
+        }
+        #endregion
+
+        #endregion
 
         #region Events
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -483,7 +630,7 @@ namespace GGrep
             if (!isRunning)
             {
                 // start
-                if (!CheckSearchOptions())
+                if (!CheckAndSaveSearchOptions())
                     return;
 
                 SaveSearchOptions();
@@ -511,9 +658,7 @@ namespace GGrep
 
         private void llOption_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
-            Properties.Settings.Default.Panel1Collapsed = splitContainer1.Panel1Collapsed;
-            Properties.Settings.Default.Save();
+            ChangeFilterVisible();
         }
 
         private void GForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -527,9 +672,35 @@ namespace GGrep
                 }
             }
         }
+
+        #region menu
+        private void saveAsCsvToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folvResult.Items.Count <= 0)
+            {
+                ShowMessage(0, Properties.Resources.MSG_ERROR_05);
+                return;
+            }
+
+            SaveCsvFile();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void filterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeFilterVisible();
+        }
+        #endregion
         #endregion
     }
 
+    /// <summary>
+    /// Result Data Class
+    /// </summary>
     internal class ResultData
     {
         #region Properties
@@ -580,6 +751,9 @@ namespace GGrep
         #endregion
     }
 
+    /// <summary>
+    /// Search Option Class
+    /// </summary>
     internal class SearchOptions
     {
         #region Properties

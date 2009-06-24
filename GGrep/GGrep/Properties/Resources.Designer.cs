@@ -70,11 +70,29 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Search.
+        ///   Looks up a localized string similar to S&amp;earch.
         /// </summary>
         internal static string BTN_TEXT_SEARCH {
             get {
                 return ResourceManager.GetString("BTN_TEXT_SEARCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Csv File(*.csv)|*.csv|All File(*.*)|*.*.
+        /// </summary>
+        internal static string FILE_FILTER {
+            get {
+                return ResourceManager.GetString("FILE_FILTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to new.csv.
+        /// </summary>
+        internal static string FILE_NEM_NAME {
+            get {
+                return ResourceManager.GetString("FILE_NEM_NAME", resourceCulture);
             }
         }
         
@@ -115,6 +133,24 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nothing to Save..
+        /// </summary>
+        internal static string MSG_ERROR_05 {
+            get {
+                return ResourceManager.GetString("MSG_ERROR_05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Csv File Saved..
+        /// </summary>
+        internal static string MSG_SAVED {
+            get {
+                return ResourceManager.GetString("MSG_SAVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done. Found {0} Places in {1} ms..
         /// </summary>
         internal static string MSG_STATUS_FINISHED {
@@ -133,7 +169,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string MSG_TITLE_01 {
             get {
@@ -142,7 +178,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SUCCESS.
+        ///   Looks up a localized string similar to Success.
         /// </summary>
         internal static string MSG_TITLE_02 {
             get {
@@ -151,7 +187,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WARNING.
+        ///   Looks up a localized string similar to Warning.
         /// </summary>
         internal static string MSG_TITLE_03 {
             get {

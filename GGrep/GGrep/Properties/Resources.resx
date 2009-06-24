@@ -121,7 +121,13 @@
     <value>&amp;Cancel</value>
   </data>
   <data name="BTN_TEXT_SEARCH" xml:space="preserve">
-    <value>&amp;Search</value>
+    <value>S&amp;earch</value>
+  </data>
+  <data name="FILE_FILTER" xml:space="preserve">
+    <value>Csv File(*.csv)|*.csv|All File(*.*)|*.*</value>
+  </data>
+  <data name="FILE_NEM_NAME" xml:space="preserve">
+    <value>new.csv</value>
   </data>
   <data name="MSG_ERROR_01" xml:space="preserve">
     <value>Please input the keyword.</value>
@@ -135,6 +141,12 @@
   <data name="MSG_ERROR_04" xml:space="preserve">
     <value>Invalid Regex String.</value>
   </data>
+  <data name="MSG_ERROR_05" xml:space="preserve">
+    <value>Nothing to Save.</value>
+  </data>
+  <data name="MSG_SAVED" xml:space="preserve">
+    <value>Csv File Saved.</value>
+  </data>
   <data name="MSG_STATUS_FINISHED" xml:space="preserve">
     <value>Done. Found {0} Places in {1} ms.</value>
   </data>
@@ -142,13 +154,13 @@
     <value>Searching...    Now {0} hits</value>
   </data>
   <data name="MSG_TITLE_01" xml:space="preserve">
-    <value>ERROR</value>
+    <value>Error</value>
   </data>
   <data name="MSG_TITLE_02" xml:space="preserve">
-    <value>SUCCESS</value>
+    <value>Success</value>
   </data>
   <data name="MSG_TITLE_03" xml:space="preserve">
-    <value>WARNING</value>
+    <value>Warning</value>
   </data>
   <data name="MSG_WARN_01" xml:space="preserve">
     <value>Do you like to cancel it ?</value>

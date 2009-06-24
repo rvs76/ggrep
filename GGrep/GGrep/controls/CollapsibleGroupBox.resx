@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,59 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BTN_TEXT_CANCEL" xml:space="preserve">
-    <value>&amp;Cancel</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_TrashIcon.NormalImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJdJREFUOE+VkgEK
+        wDAIA9ef92n9WYdlEbVR2aB0OM3O6Hj4s0l4JLkuLIV7rXUdiX8n1XFFpkDjlYj785xzyxES+25FGQYQ
+        uxaYP0ePoaqofBeaygdNgInAx90ZeQhCn/8IIIAbyPHO5ugmAU9IcWriZaTtvTMQVOqD3YEwgZ7A4ict
+        pOOkG2nw45Son+Uou3WOipXYyX0Bl4EdsYyOw8oAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="BTN_TEXT_SEARCH" xml:space="preserve">
-    <value>S&amp;earch</value>
-  </data>
-  <data name="FILE_FILTER" xml:space="preserve">
-    <value>Csv File(*.csv)|*.csv|All File(*.*)|*.*</value>
-  </data>
-  <data name="FILE_NEM_NAME" xml:space="preserve">
-    <value>new.csv</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MSG_ERROR_01" xml:space="preserve">
-    <value>Please input the keyword.</value>
-  </data>
-  <data name="MSG_ERROR_02" xml:space="preserve">
-    <value>Please specify an existing folder.</value>
-  </data>
-  <data name="MSG_ERROR_03" xml:space="preserve">
-    <value>Please specify an existing encoding.</value>
-  </data>
-  <data name="MSG_ERROR_04" xml:space="preserve">
-    <value>Invalid Regex String.</value>
-  </data>
-  <data name="MSG_ERROR_05" xml:space="preserve">
-    <value>Nothing to Save.</value>
-  </data>
-  <data name="MSG_SAVED" xml:space="preserve">
-    <value>Csv File Saved.</value>
-  </data>
-  <data name="MSG_STATUS_FINISHED" xml:space="preserve">
-    <value>Done. Found {0} Places in {1} ms.</value>
-  </data>
-  <data name="MSG_STATUS_RUNNING" xml:space="preserve">
-    <value>Searching...    Now {0} hits</value>
-  </data>
-  <data name="MSG_TITLE_01" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="MSG_TITLE_02" xml:space="preserve">
-    <value>Success</value>
-  </data>
-  <data name="MSG_TITLE_03" xml:space="preserve">
-    <value>Warning</value>
-  </data>
-  <data name="MSG_WARN_01" xml:space="preserve">
-    <value>Do you like to cancel it ?</value>
-  </data>
-  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="m_TrashIcon.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJhJREFUOE+VkgEK
+        wDAIA9dP9gn9/w86LIuojcoGpcNpdkbHw59NwiPJdWEp3Gut60j8O6mOKzIFGq9E3J/nnFuOkNh3K8ow
+        gNi1wPw5egxVReW70FQ+aAJMBD7uzshDEPr8RwAB3ECOdzZHNwl4QopTEy8jbe+dgaBSH+wOhAn0BBY/
+        aSEdJ91Igx+nRP0sR9mtc1SsxE7uC3D26NQxC7BSAAAAAElFTkSuQmCC
+</value>
   </data>
 </root>

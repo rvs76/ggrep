@@ -36,10 +36,10 @@ namespace GGrep
         public GForm()
         {
             InitializeComponent();
-            splitContainer1.Panel1Collapsed = Properties.Settings.Default.Panel1Collapsed;
+            gbFilter.IsCollapsed = Properties.Settings.Default.FilterIsCollapsed;
             SetSearchOptions();
             btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
-            filterToolStripMenuItem.Checked = !Properties.Settings.Default.Panel1Collapsed;
+            filterToolStripMenuItem.Checked = !Properties.Settings.Default.FilterIsCollapsed;
 
             #region highlight matched string
             colLine.RendererDelegate = delegate(DrawListViewSubItemEventArgs e, Graphics g, Rectangle itemBounds, Object rowObject)
@@ -343,12 +343,10 @@ namespace GGrep
             }
         }
 
-        private void ChangeFilterVisible()
+        private void SaveFilterCollapsible()
         {
-            splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
-            Properties.Settings.Default.Panel1Collapsed = splitContainer1.Panel1Collapsed;
+            Properties.Settings.Default.FilterIsCollapsed = gbFilter.IsCollapsed;
             Properties.Settings.Default.Save();
-            filterToolStripMenuItem.Checked = !splitContainer1.Panel1Collapsed; 
         }
 
         #region CallBack
@@ -447,8 +445,8 @@ namespace GGrep
             SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, false);
             SetControlActive(cbbSearchText, false);
             SetControlActive(cbbSearchFolder, false);
-            SetControlActive(panel1, false);
-            SetControlActive(splitContainer1.Panel1, false);
+            SetControlActive(btnBrowse, false);
+            SetControlActive(gbFilter, false);
             SetControlActive(menuStripMain, false);
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -459,8 +457,8 @@ namespace GGrep
             SetControlActive(menuStripMain, true);
             SetControlActive(cbbSearchText, true);
             SetControlActive(cbbSearchFolder, true);
-            SetControlActive(panel1, true);
-            SetControlActive(splitContainer1.Panel1, true);
+            SetControlActive(btnBrowse, true);
+            SetControlActive(gbFilter, true);
             if (seq > 0)
                 SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, true);
             SetControlText(btnSearch, Properties.Resources.BTN_TEXT_SEARCH);
@@ -506,8 +504,7 @@ namespace GGrep
 
                     while (!sr.EndOfStream && isRunning)
                     {
-                        // ★★★★★★ need trim ??
-                        line = sr.ReadLine().Trim();
+                        line = sr.ReadLine();
                         rowNo++;
                         RegexOptions ro = RegexOptions.Singleline;
                         string input = option.SearchString;
@@ -656,21 +653,18 @@ namespace GGrep
             cbSearchOnWords.Enabled = cbRegex.Checked;
         }
 
-        private void llOption_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ChangeFilterVisible();
-        }
-
         private void GForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (isRunning)
             {
-                if (ShowMessage(2, Properties.Resources.MSG_WARN_01) == DialogResult.OK)
+                if (ShowMessage(2, Properties.Resources.MSG_WARN_01) != DialogResult.OK)
                 {
-                    // stop
-                    isRunning = false;
+                    return;
                 }
+                // stop
+                isRunning = false;
             }
+            SaveFilterCollapsible();
         }
 
         #region menu
@@ -692,9 +686,15 @@ namespace GGrep
 
         private void filterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChangeFilterVisible();
+            filterToolStripMenuItem.Checked = !gbFilter.IsCollapsed;
+            gbFilter.IsCollapsed = !gbFilter.IsCollapsed;
         }
         #endregion
+
+        private void gbFilter_CollapseBoxClickedEvent(object sender)
+        {
+
+        }
         #endregion
     }
 

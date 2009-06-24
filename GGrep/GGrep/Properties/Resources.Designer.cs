@@ -96,6 +96,13 @@ namespace GGrep.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap minus {
+            get {
+                object obj = ResourceManager.GetObject("minus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Please input the keyword..
         /// </summary>
@@ -201,6 +208,13 @@ namespace GGrep.Properties {
         internal static string MSG_WARN_01 {
             get {
                 return ResourceManager.GetString("MSG_WARN_01", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap plus {
+            get {
+                object obj = ResourceManager.GetObject("plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

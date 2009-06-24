@@ -34,7 +34,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbbSearchText = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.gbFilter = new System.Windows.Forms.GroupBox();
+            this.gbSearch = new System.Windows.Forms.GroupBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.gbResult = new System.Windows.Forms.GroupBox();
+            this.folvResult = new BrightIdeasSoftware.FastObjectListView();
+            this.colNo = new BrightIdeasSoftware.OLVColumn();
+            this.colFileName = new BrightIdeasSoftware.OLVColumn();
+            this.colRowNo = new BrightIdeasSoftware.OLVColumn();
+            this.colColNo = new BrightIdeasSoftware.OLVColumn();
+            this.colLine = new BrightIdeasSoftware.OLVColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuStripMain = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbFilter = new GGrep.CollapsibleGroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbbFolderNotMatch = new System.Windows.Forms.ComboBox();
             this.cbbFolderMatch = new System.Windows.Forms.ComboBox();
@@ -53,43 +71,24 @@
             this.cbMultiline = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbbEncoding = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.llOption = new System.Windows.Forms.LinkLabel();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.gbResult = new System.Windows.Forms.GroupBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStripMain = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.folvResult = new BrightIdeasSoftware.FastObjectListView();
-            this.colNo = new BrightIdeasSoftware.OLVColumn();
-            this.colFileName = new BrightIdeasSoftware.OLVColumn();
-            this.colRowNo = new BrightIdeasSoftware.OLVColumn();
-            this.colColNo = new BrightIdeasSoftware.OLVColumn();
-            this.colLine = new BrightIdeasSoftware.OLVColumn();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbSearch.SuspendLayout();
+            this.gbResult.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            this.menuStripMain.SuspendLayout();
             this.gbFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.gbResult.SuspendLayout();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.menuStripMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(438, 35);
+            this.btnBrowse.Location = new System.Drawing.Point(441, 45);
             this.btnBrowse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(30, 23);
@@ -103,16 +102,16 @@
             this.cbbSearchFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbSearchFolder.FormattingEnabled = true;
-            this.cbbSearchFolder.Location = new System.Drawing.Point(65, 35);
+            this.cbbSearchFolder.Location = new System.Drawing.Point(63, 46);
             this.cbbSearchFolder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbbSearchFolder.Name = "cbbSearchFolder";
-            this.cbbSearchFolder.Size = new System.Drawing.Size(365, 22);
+            this.cbbSearchFolder.Size = new System.Drawing.Size(372, 22);
             this.cbbSearchFolder.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 8);
+            this.label1.Location = new System.Drawing.Point(9, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 14);
             this.label1.TabIndex = 3;
@@ -123,32 +122,216 @@
             this.cbbSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbSearchText.FormattingEnabled = true;
-            this.cbbSearchText.Location = new System.Drawing.Point(65, 5);
+            this.cbbSearchText.Location = new System.Drawing.Point(63, 16);
             this.cbbSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbbSearchText.Name = "cbbSearchText";
-            this.cbbSearchText.Size = new System.Drawing.Size(401, 22);
+            this.cbbSearchText.Size = new System.Drawing.Size(408, 22);
             this.cbbSearchText.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 38);
+            this.label2.Location = new System.Drawing.Point(13, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 14);
             this.label2.TabIndex = 5;
             this.label2.Text = "Folder:";
             // 
+            // gbSearch
+            // 
+            this.gbSearch.Controls.Add(this.label1);
+            this.gbSearch.Controls.Add(this.btnSearch);
+            this.gbSearch.Controls.Add(this.cbbSearchFolder);
+            this.gbSearch.Controls.Add(this.label2);
+            this.gbSearch.Controls.Add(this.btnBrowse);
+            this.gbSearch.Controls.Add(this.cbbSearchText);
+            this.gbSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbSearch.Location = new System.Drawing.Point(6, 30);
+            this.gbSearch.Name = "gbSearch";
+            this.gbSearch.Size = new System.Drawing.Size(480, 107);
+            this.gbSearch.TabIndex = 7;
+            this.gbSearch.TabStop = false;
+            this.gbSearch.Text = "Search";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Location = new System.Drawing.Point(396, 75);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 8;
+            this.btnSearch.Text = "S&earch";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // gbResult
+            // 
+            this.gbResult.Controls.Add(this.folvResult);
+            this.gbResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbResult.Location = new System.Drawing.Point(6, 319);
+            this.gbResult.Name = "gbResult";
+            this.gbResult.Size = new System.Drawing.Size(480, 119);
+            this.gbResult.TabIndex = 10;
+            this.gbResult.TabStop = false;
+            this.gbResult.Text = "Result";
+            // 
+            // folvResult
+            // 
+            this.folvResult.AllColumns.Add(this.colNo);
+            this.folvResult.AllColumns.Add(this.colFileName);
+            this.folvResult.AllColumns.Add(this.colRowNo);
+            this.folvResult.AllColumns.Add(this.colColNo);
+            this.folvResult.AllColumns.Add(this.colLine);
+            this.folvResult.AlternateRowBackColor = System.Drawing.Color.Honeydew;
+            this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colNo,
+            this.colFileName,
+            this.colRowNo,
+            this.colColNo,
+            this.colLine});
+            this.folvResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.folvResult.EmptyListMsg = "Nothing Founded!!!";
+            this.folvResult.FullRowSelect = true;
+            this.folvResult.GridLines = true;
+            this.folvResult.Location = new System.Drawing.Point(3, 18);
+            this.folvResult.Name = "folvResult";
+            this.folvResult.OwnerDraw = true;
+            this.folvResult.ShowGroups = false;
+            this.folvResult.Size = new System.Drawing.Size(474, 98);
+            this.folvResult.TabIndex = 9;
+            this.folvResult.UseAlternatingBackColors = true;
+            this.folvResult.UseCompatibleStateImageBehavior = false;
+            this.folvResult.View = System.Windows.Forms.View.Details;
+            this.folvResult.VirtualMode = true;
+            // 
+            // colNo
+            // 
+            this.colNo.AspectName = "No";
+            this.colNo.IsEditable = false;
+            this.colNo.Text = "#";
+            this.colNo.Width = 30;
+            // 
+            // colFileName
+            // 
+            this.colFileName.AspectName = "FileName";
+            this.colFileName.FillsFreeSpace = true;
+            this.colFileName.IsEditable = false;
+            this.colFileName.Text = "File";
+            this.colFileName.Width = 100;
+            // 
+            // colRowNo
+            // 
+            this.colRowNo.AspectName = "RowNo";
+            this.colRowNo.AspectToStringFormat = "";
+            this.colRowNo.IsEditable = false;
+            this.colRowNo.Text = "Line";
+            this.colRowNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colRowNo.Width = 40;
+            // 
+            // colColNo
+            // 
+            this.colColNo.AspectName = "ColNo";
+            this.colColNo.AspectToStringFormat = "";
+            this.colColNo.IsEditable = false;
+            this.colColNo.Text = "Column";
+            this.colColNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colColNo.Width = 40;
+            // 
+            // colLine
+            // 
+            this.colLine.AspectName = "Line";
+            this.colLine.FillsFreeSpace = true;
+            this.colLine.IsEditable = false;
+            this.colLine.Text = "Result";
+            this.colLine.Width = 240;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(6, 438);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(480, 22);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(115, 17);
+            this.statusLabel.Text = "Click &Search to Start.";
+            // 
+            // menuStripMain
+            // 
+            this.menuStripMain.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
+            this.toolsToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStripMain.Location = new System.Drawing.Point(6, 6);
+            this.menuStripMain.Name = "menuStripMain";
+            this.menuStripMain.Size = new System.Drawing.Size(480, 24);
+            this.menuStripMain.TabIndex = 13;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveAsCsvToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(36, 24);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // saveAsCsvToolStripMenuItem
+            // 
+            this.saveAsCsvToolStripMenuItem.Enabled = false;
+            this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
+            this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.saveAsCsvToolStripMenuItem.Text = "&Save as Csv";
+            this.saveAsCsvToolStripMenuItem.Click += new System.EventHandler(this.saveAsCsvToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filterToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // filterToolStripMenuItem
+            // 
+            this.filterToolStripMenuItem.CheckOnClick = true;
+            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.filterToolStripMenuItem.Text = "Fil&ter";
+            this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
+            // 
             // gbFilter
             // 
-            this.gbFilter.AutoSize = true;
             this.gbFilter.Controls.Add(this.panel2);
             this.gbFilter.Controls.Add(this.flowLayoutPanel1);
-            this.gbFilter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbFilter.Location = new System.Drawing.Point(0, 0);
+            this.gbFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbFilter.Location = new System.Drawing.Point(6, 137);
             this.gbFilter.Name = "gbFilter";
             this.gbFilter.Size = new System.Drawing.Size(480, 182);
             this.gbFilter.TabIndex = 6;
             this.gbFilter.TabStop = false;
+            this.gbFilter.Text = "Filter";
             // 
             // panel2
             // 
@@ -172,9 +355,9 @@
             this.cbbFolderNotMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbFolderNotMatch.FormattingEnabled = true;
-            this.cbbFolderNotMatch.Location = new System.Drawing.Point(114, 79);
+            this.cbbFolderNotMatch.Location = new System.Drawing.Point(118, 79);
             this.cbbFolderNotMatch.Name = "cbbFolderNotMatch";
-            this.cbbFolderNotMatch.Size = new System.Drawing.Size(351, 22);
+            this.cbbFolderNotMatch.Size = new System.Drawing.Size(349, 22);
             this.cbbFolderNotMatch.TabIndex = 19;
             // 
             // cbbFolderMatch
@@ -182,15 +365,15 @@
             this.cbbFolderMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbFolderMatch.FormattingEnabled = true;
-            this.cbbFolderMatch.Location = new System.Drawing.Point(114, 54);
+            this.cbbFolderMatch.Location = new System.Drawing.Point(118, 54);
             this.cbbFolderMatch.Name = "cbbFolderMatch";
-            this.cbbFolderMatch.Size = new System.Drawing.Size(351, 22);
+            this.cbbFolderMatch.Size = new System.Drawing.Size(349, 22);
             this.cbbFolderMatch.TabIndex = 18;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 82);
+            this.label3.Location = new System.Drawing.Point(7, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 14);
             this.label3.TabIndex = 17;
@@ -199,7 +382,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 57);
+            this.label7.Location = new System.Drawing.Point(30, 57);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 14);
             this.label7.TabIndex = 16;
@@ -210,9 +393,9 @@
             this.cbbFileNotMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbFileNotMatch.FormattingEnabled = true;
-            this.cbbFileNotMatch.Location = new System.Drawing.Point(114, 29);
+            this.cbbFileNotMatch.Location = new System.Drawing.Point(118, 29);
             this.cbbFileNotMatch.Name = "cbbFileNotMatch";
-            this.cbbFileNotMatch.Size = new System.Drawing.Size(351, 22);
+            this.cbbFileNotMatch.Size = new System.Drawing.Size(349, 22);
             this.cbbFileNotMatch.TabIndex = 15;
             // 
             // cbbFileMatch
@@ -220,15 +403,15 @@
             this.cbbFileMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbFileMatch.FormattingEnabled = true;
-            this.cbbFileMatch.Location = new System.Drawing.Point(114, 4);
+            this.cbbFileMatch.Location = new System.Drawing.Point(118, 4);
             this.cbbFileMatch.Name = "cbbFileMatch";
-            this.cbbFileMatch.Size = new System.Drawing.Size(351, 22);
+            this.cbbFileMatch.Size = new System.Drawing.Size(349, 22);
             this.cbbFileMatch.TabIndex = 14;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 32);
+            this.label5.Location = new System.Drawing.Point(23, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 14);
             this.label5.TabIndex = 13;
@@ -237,7 +420,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 7);
+            this.label4.Location = new System.Drawing.Point(46, 7);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 14);
             this.label4.TabIndex = 12;
@@ -338,215 +521,33 @@
             this.cbbEncoding.Size = new System.Drawing.Size(121, 22);
             this.cbbEncoding.TabIndex = 11;
             // 
-            // panel1
+            // toolsToolStripMenuItem
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.llOption);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.cbbSearchFolder);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.btnBrowse);
-            this.panel1.Controls.Add(this.cbbSearchText);
-            this.panel1.Location = new System.Drawing.Point(6, 34);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(480, 90);
-            this.panel1.TabIndex = 7;
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
+            this.toolsToolStripMenuItem.Text = "&Tools";
             // 
-            // llOption
+            // optionsToolStripMenuItem
             // 
-            this.llOption.AutoSize = true;
-            this.llOption.Location = new System.Drawing.Point(11, 68);
-            this.llOption.Name = "llOption";
-            this.llOption.Size = new System.Drawing.Size(33, 14);
-            this.llOption.TabIndex = 9;
-            this.llOption.TabStop = true;
-            this.llOption.Text = "Filter";
-            this.llOption.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llOption_LinkClicked);
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Text = "&Options";
             // 
-            // btnSearch
+            // helpToolStripMenuItem
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(393, 64);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 8;
-            this.btnSearch.Text = "S&earch";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(43, 24);
+            this.helpToolStripMenuItem.Text = "&Help";
             // 
-            // gbResult
+            // aboutToolStripMenuItem
             // 
-            this.gbResult.Controls.Add(this.folvResult);
-            this.gbResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbResult.Location = new System.Drawing.Point(0, 0);
-            this.gbResult.Name = "gbResult";
-            this.gbResult.Size = new System.Drawing.Size(480, 123);
-            this.gbResult.TabIndex = 10;
-            this.gbResult.TabStop = false;
-            this.gbResult.Text = "Result";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(6, 126);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.gbFilter);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.gbResult);
-            this.splitContainer1.Size = new System.Drawing.Size(480, 309);
-            this.splitContainer1.SplitterDistance = 182;
-            this.splitContainer1.TabIndex = 11;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(6, 438);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(480, 22);
-            this.statusStrip1.TabIndex = 12;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(115, 17);
-            this.statusLabel.Text = "Click &Search to Start.";
-            // 
-            // menuStripMain
-            // 
-            this.menuStripMain.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.viewToolStripMenuItem});
-            this.menuStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStripMain.Location = new System.Drawing.Point(6, 6);
-            this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(480, 24);
-            this.menuStripMain.TabIndex = 13;
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveAsCsvToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
-            this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // saveAsCsvToolStripMenuItem
-            // 
-            this.saveAsCsvToolStripMenuItem.Enabled = false;
-            this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
-            this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.saveAsCsvToolStripMenuItem.Text = "&Save as Csv";
-            this.saveAsCsvToolStripMenuItem.Click += new System.EventHandler(this.saveAsCsvToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filterToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.viewToolStripMenuItem.Text = "&View";
-            // 
-            // filterToolStripMenuItem
-            // 
-            this.filterToolStripMenuItem.CheckOnClick = true;
-            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.filterToolStripMenuItem.Text = "Fil&ter";
-            this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
-            // 
-            // folvResult
-            // 
-            this.folvResult.AllColumns.Add(this.colNo);
-            this.folvResult.AllColumns.Add(this.colFileName);
-            this.folvResult.AllColumns.Add(this.colRowNo);
-            this.folvResult.AllColumns.Add(this.colColNo);
-            this.folvResult.AllColumns.Add(this.colLine);
-            this.folvResult.AlternateRowBackColor = System.Drawing.Color.Honeydew;
-            this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colNo,
-            this.colFileName,
-            this.colRowNo,
-            this.colColNo,
-            this.colLine});
-            this.folvResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.folvResult.EmptyListMsg = "Nothing Founded!!!";
-            this.folvResult.FullRowSelect = true;
-            this.folvResult.Location = new System.Drawing.Point(3, 18);
-            this.folvResult.Name = "folvResult";
-            this.folvResult.OwnerDraw = true;
-            this.folvResult.ShowGroups = false;
-            this.folvResult.Size = new System.Drawing.Size(474, 102);
-            this.folvResult.TabIndex = 9;
-            this.folvResult.UseAlternatingBackColors = true;
-            this.folvResult.UseCompatibleStateImageBehavior = false;
-            this.folvResult.View = System.Windows.Forms.View.Details;
-            this.folvResult.VirtualMode = true;
-            // 
-            // colNo
-            // 
-            this.colNo.AspectName = "No";
-            this.colNo.IsEditable = false;
-            this.colNo.Text = "#";
-            this.colNo.Width = 30;
-            // 
-            // colFileName
-            // 
-            this.colFileName.AspectName = "FileName";
-            this.colFileName.FillsFreeSpace = true;
-            this.colFileName.IsEditable = false;
-            this.colFileName.Text = "File";
-            this.colFileName.Width = 100;
-            // 
-            // colRowNo
-            // 
-            this.colRowNo.AspectName = "RowNo";
-            this.colRowNo.IsEditable = false;
-            this.colRowNo.Text = "Line";
-            this.colRowNo.Width = 40;
-            // 
-            // colColNo
-            // 
-            this.colColNo.AspectName = "ColNo";
-            this.colColNo.IsEditable = false;
-            this.colColNo.Text = "Column";
-            this.colColNo.Width = 40;
-            // 
-            // colLine
-            // 
-            this.colLine.AspectName = "Line";
-            this.colLine.FillsFreeSpace = true;
-            this.colLine.IsEditable = false;
-            this.colLine.Text = "Result";
-            this.colLine.Width = 240;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "&About";
             // 
             // GForm
             // 
@@ -554,10 +555,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 466);
+            this.Controls.Add(this.gbResult);
+            this.Controls.Add(this.gbFilter);
+            this.Controls.Add(this.gbSearch);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStripMain);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
@@ -567,24 +569,20 @@
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Text = "GGrep";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GForm_FormClosing);
+            this.gbSearch.ResumeLayout(false);
+            this.gbSearch.PerformLayout();
+            this.gbResult.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.gbResult.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.menuStripMain.ResumeLayout(false);
-            this.menuStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -597,8 +595,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbbSearchText;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox gbFilter;
-        private System.Windows.Forms.Panel panel1;
+        private GGrep.CollapsibleGroupBox gbFilter;
+        private System.Windows.Forms.GroupBox gbSearch;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.CheckBox cbSearchOnWords;
         private System.Windows.Forms.CheckBox cbIncludeSubFolders;
@@ -620,8 +618,6 @@
         private System.Windows.Forms.CheckBox cbMultiline;
         private BrightIdeasSoftware.FastObjectListView folvResult;
         private System.Windows.Forms.GroupBox gbResult;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.LinkLabel llOption;
         private BrightIdeasSoftware.OLVColumn colFileName;
         private BrightIdeasSoftware.OLVColumn colRowNo;
         private BrightIdeasSoftware.OLVColumn colColNo;
@@ -636,6 +632,10 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

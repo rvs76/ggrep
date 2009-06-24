@@ -182,12 +182,12 @@ namespace GGrep.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Panel1Collapsed {
+        public bool FilterIsCollapsed {
             get {
-                return ((bool)(this["Panel1Collapsed"]));
+                return ((bool)(this["FilterIsCollapsed"]));
             }
             set {
-                this["Panel1Collapsed"] = value;
+                this["FilterIsCollapsed"] = value;
             }
         }
     }

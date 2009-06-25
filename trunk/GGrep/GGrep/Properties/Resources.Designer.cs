@@ -226,5 +226,12 @@ namespace GGrep.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap Search_files_128 {
+            get {
+                object obj = ResourceManager.GetObject("Search_files_128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -469,6 +469,7 @@ namespace GGrep
             Stopwatch sw = new Stopwatch();
             sw.Start();
             seq = 0;
+            SetToolStripLabel(statusLabel, Properties.Resources.MSG_STATUS_STARTED);
             AnalyzeDirectory(option.SearchFolder);
             sw.Stop();
             SetToolStripLabel(statusLabel, string.Format(Properties.Resources.MSG_STATUS_FINISHED, seq, sw.ElapsedMilliseconds));

@@ -176,6 +176,15 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Searching....
+        /// </summary>
+        internal static string MSG_STATUS_STARTED {
+            get {
+                return ResourceManager.GetString("MSG_STATUS_STARTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string MSG_TITLE_01 {

@@ -190,5 +190,41 @@ namespace GGrep.Properties {
                 this["FilterIsCollapsed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseCustomEditor {
+            get {
+                return ((bool)(this["UseCustomEditor"]));
+            }
+            set {
+                this["UseCustomEditor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CustomEditorPath {
+            get {
+                return ((string)(this["CustomEditorPath"]));
+            }
+            set {
+                this["CustomEditorPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CustomEditorArguments {
+            get {
+                return ((string)(this["CustomEditorArguments"]));
+            }
+            set {
+                this["CustomEditorArguments"] = value;
+            }
+        }
     }
 }

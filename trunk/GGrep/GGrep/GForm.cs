@@ -349,6 +349,24 @@ namespace GGrep
             Properties.Settings.Default.Save();
         }
 
+        private void OpenWithEditor(ResultData data)
+        {
+            System.Diagnostics.Process p = new System.Diagnostics.Process();
+            if (!Properties.Settings.Default.UseCustomEditor)
+            {
+                p.StartInfo.FileName = string.Format("\"{0}\"", data.FileName);
+            }
+            else
+            {
+                // col, row, filename
+                p.StartInfo.FileName = string.Format("\"{0}\"", Properties.Settings.Default.CustomEditorPath);
+                p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", string.Format("\"{0}\"", data.FileName)).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
+            }
+            p.Start();
+            if (p.HasExited)
+                p.Kill();
+        }
+
         #region CallBack
         delegate void SetControlTextCallback(Control ctl, string text);
         private void SetControlText(Control ctl, string text)
@@ -667,6 +685,15 @@ namespace GGrep
             SaveFilterCollapsible();
         }
 
+        private void folvResult_DoubleClick(object sender, EventArgs e)
+        {
+            if (((FastObjectListView)sender).SelectedObject != null)
+            {
+                OpenWithEditor((ResultData)((FastObjectListView)sender).SelectedObject);
+            }
+        }
+        #endregion
+
         #region menu
         private void saveAsCsvToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -686,14 +713,20 @@ namespace GGrep
 
         private void filterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            filterToolStripMenuItem.Checked = !gbFilter.IsCollapsed;
             gbFilter.IsCollapsed = !gbFilter.IsCollapsed;
+            filterToolStripMenuItem.Checked = !gbFilter.IsCollapsed;
         }
-        #endregion
 
-        private void gbFilter_CollapseBoxClickedEvent(object sender)
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Optoins o = new Optoins();
+            o.ShowDialog(this);
+        }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About a = new About();
+            a.ShowDialog(this);
         }
         #endregion
     }

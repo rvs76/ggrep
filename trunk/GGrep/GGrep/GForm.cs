@@ -515,10 +515,12 @@ namespace GGrep
 
                     if (option.IsRegex)
                     {
+#if DEBUG1
                         if (option.Multiline)
                         {
                             ro = ro | RegexOptions.Multiline;
                         }
+#endif
                     }
                     else
                     {

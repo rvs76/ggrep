@@ -448,7 +448,6 @@ namespace GGrep
             else
             {
                 list.AddObjects(dataList);
-                backgroundWorker.ReportProgress(status.Progress);
             }
         }
 
@@ -752,6 +751,7 @@ namespace GGrep
                     status.Finished++;
                     if (list.Count > 0)
                         AddRows(folvResult, list, status);
+                    backgroundWorker.ReportProgress(status.Progress);
                 }
             }
 

@@ -213,7 +213,10 @@ namespace GGrep
                 return "";
             string s = "";
 
-            for (int i = 0; i < cb.Items.Count; i++)
+            // saved option max count is 20
+            int count = cb.Items.Count > 20 ? 20 : cb.Items.Count;
+
+            for (int i = 0; i < count; i++)
             {
                 s += SEPERATOR + cb.Items[i].ToString();
             }

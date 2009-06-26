@@ -23,9 +23,11 @@ namespace GGrep
         #region Members
         public const char SEPERATOR = '	';
 
+        Stopwatch sw = new Stopwatch();
+
         SearchOptions option = null;
+        SearchStatus status = null;
         bool isRunning = false;
-        long seq = 0;
         #endregion
 
         #region Properties
@@ -161,12 +163,19 @@ namespace GGrep
             option.SearchFolder = cbbSearchFolder.Text;
             ManagerCombox(cbbSearchFolder, option.SearchFolder);
 
-            option.IsRegex = cbRegex.Checked;
-            option.IsCaseSensitive = cbCaseSensitive.Checked;
-            option.IsSearchOnWords = cbSearchOnWords.Checked;
             option.IncludeSubFolders = cbIncludeSubFolders.Checked;
             option.IncludeHiddenFolders = cbIncludeHiddenFolder.Checked;
-            option.Multiline = cbMultiline.Checked;
+
+            option.IsRegex = cbRegex.Checked;
+            if (cbRegex.Checked)
+            {
+                option.Multiline = cbMultiline.Checked;
+            }
+            else
+            {
+                option.IsCaseSensitive = cbCaseSensitive.Checked;
+                option.IsSearchOnWords = cbSearchOnWords.Checked;
+            }
 
             option.Encoding = cbbEncoding.Text;
             ManagerCombox(cbbEncoding, option.Encoding);
@@ -270,6 +279,9 @@ namespace GGrep
             cbRegex.Checked = Properties.Settings.Default.Regex;
             cbCaseSensitive.Checked = Properties.Settings.Default.CaseSensitive;
             cbSearchOnWords.Checked = Properties.Settings.Default.SearchOnWords;
+            cbSearchOnWords.Enabled = !cbRegex.Checked;
+            cbCaseSensitive.Enabled = !cbRegex.Checked;
+            cbMultiline.Enabled = cbRegex.Checked;
 
             cbIncludeSubFolders.Checked = Properties.Settings.Default.IncludeSubFolders;
             cbIncludeHiddenFolder.Checked = Properties.Settings.Default.IncludeHiddenFolders;
@@ -346,12 +358,10 @@ namespace GGrep
             }
         }
 
-        private void SaveFilterCollapsible()
-        {
-            Properties.Settings.Default.FilterIsCollapsed = gbFilter.IsCollapsed;
-            Properties.Settings.Default.Save();
-        }
-
+        /// <summary>
+        /// Open File in Specific Editor
+        /// </summary>
+        /// <param name="data">result data</param>
         private void OpenWithEditor(ResultData data)
         {
             System.Diagnostics.Process p = new System.Diagnostics.Process();
@@ -427,18 +437,18 @@ namespace GGrep
             }
         }
 
-        delegate void AddRowsCallback(ObjectListView list, ArrayList dataList);
-        private void AddRows(ObjectListView list, ArrayList dataList)
+        delegate void AddRowsCallback(ObjectListView list, ArrayList dataList, SearchStatus status);
+        private void AddRows(ObjectListView list, ArrayList dataList, SearchStatus status)
         {
             if (list.InvokeRequired)
             {
                 AddRowsCallback d = new AddRowsCallback(AddRows);
-                this.Invoke(d, new object[] { list, dataList });
+                this.Invoke(d, new object[] { list, dataList, status });
             }
             else
             {
                 list.AddObjects(dataList);
-                SetToolStripLabel(statusLabel, string.Format(Properties.Resources.MSG_STATUS_RUNNING, seq));
+                backgroundWorker.ReportProgress(status.Progress);
             }
         }
 
@@ -458,119 +468,89 @@ namespace GGrep
         #endregion
 
         #region Grep
-        private void DoGrep()
+        private ArrayList SearchInFile(string path, DoWorkEventArgs e)
         {
-            isRunning = true;
-            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_CANCEL);
-            folvResult.ClearObjects();
-            SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, false);
-            SetControlActive(cbbSearchText, false);
-            SetControlActive(cbbSearchFolder, false);
-            SetControlActive(btnBrowse, false);
-            SetControlActive(gbFilter, false);
-            SetControlActive(menuStripMain, false);
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            seq = 0;
-            SetToolStripLabel(statusLabel, Properties.Resources.MSG_STATUS_STARTED);
-            AnalyzeDirectory(option.SearchFolder);
-            sw.Stop();
-            SetToolStripLabel(statusLabel, string.Format(Properties.Resources.MSG_STATUS_FINISHED, seq, sw.ElapsedMilliseconds));
-            SetControlActive(menuStripMain, true);
-            SetControlActive(cbbSearchText, true);
-            SetControlActive(cbbSearchFolder, true);
-            SetControlActive(btnBrowse, true);
-            SetControlActive(gbFilter, true);
-            if (seq > 0)
-                SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, true);
-            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_SEARCH);
-            isRunning = false;
-        }
-
-        private void AnalyzeDirectory(string path)
-        {
-            if (isRunning)
+            ArrayList list = new ArrayList();
+            if (File.Exists(path))
             {
-                if (Directory.Exists(path))
+                StreamReader sr;
+                long rowNo = 0;
+                string line;
+
+                if (IsAutoEncoding)
                 {
-                    if (option.IncludeSubFolders)
+                    sr = new StreamReader(File.OpenRead(path));
+                }
+                else
+                {
+                    sr = new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding));
+                }
+
+                while (!sr.EndOfStream && isRunning)
+                {
+                    if (backgroundWorker.CancellationPending)
                     {
-                        // sub directory
-                        foreach (string f_path in option.GetMatchedFolders(path))
+                        e.Cancel = true;
+                        break;
+                    }
+                    line = sr.ReadLine();
+                    rowNo++;
+
+                    if (!option.IsRegex)
+                    {
+                        if (option.IsCaseSensitive)
                         {
-                            AnalyzeDirectory(f_path);
+                            if (!line.Contains(option.SearchString))
+                                continue;
+                        }
+                        else
+                        {
+                            if (!line.ToLower().Contains(option.SearchString.ToLower()))
+                                continue;
                         }
                     }
 
-                    // file
-                    foreach (string f_path in option.GetMatchedFiles(path))
-                    {
-                        AnalyzeDirectory(f_path);
-                    }
-                }
-                else if (File.Exists(path))
-                {
-                    ArrayList list = new ArrayList();
-                    StreamReader sr;
-                    long rowNo = 0;
-                    string line;
+                    RegexOptions ro = RegexOptions.Singleline;
+                    string input = option.SearchString;
 
-                    if (IsAutoEncoding)
+                    if (option.IsRegex)
                     {
-                        sr = new StreamReader(path);
+                        if (option.Multiline)
+                        {
+                            ro = ro | RegexOptions.Multiline;
+                        }
                     }
                     else
                     {
-                        sr = new StreamReader(path, Encoding.GetEncoding(option.Encoding));
-                    }
-
-                    while (!sr.EndOfStream && isRunning)
-                    {
-                        line = sr.ReadLine();
-                        rowNo++;
-                        RegexOptions ro = RegexOptions.Singleline;
-                        string input = option.SearchString;
-
                         if (!option.IsCaseSensitive)
                         {
                             ro = ro | RegexOptions.IgnoreCase;
                         }
 
-                        if (option.IsRegex)
+                        input = Utils.SearchStringRegexEscaped(option.SearchString);
+                        if (option.IsSearchOnWords)
                         {
-                            if (option.Multiline)
-                            {
-                                ro = ro | RegexOptions.Multiline;
-                            }
-                        }
-                        else
-                        {
-                            input = option.SearchStringRegexEscaped;
-                            if (option.IsSearchOnWords)
-                            {
-                                input = @"\b" + input + @"\b";
-                            }
-                        }
-                        Regex re = new Regex(input, ro);
-
-                        foreach (Match m in re.Matches(line))
-                        {
-                            ResultData data = new ResultData();
-                            data.No = (++seq);
-                            data.FileName = path;
-                            data.RowNo = rowNo;
-                            data.ColNo = m.Index;
-                            data.Line = line;
-                            data.MatchedString = m.Value;
-                            list.Add(data);
+                            input = @"\b" + input + @"\b";
                         }
                     }
+                    Regex re = new Regex(input, ro);
 
-                    sr.Close();
-                    if (list.Count > 0)
-                        AddRows(folvResult, list);
+                    foreach (Match m in re.Matches(line))
+                    {
+                        ResultData data = new ResultData();
+                        data.No = (++status.Hit);
+                        data.FileName = path;
+                        data.RowNo = rowNo;
+                        data.ColNo = m.Index;
+                        data.Line = line;
+                        data.MatchedString = m.Value;
+                        list.Add(data);
+                    }
                 }
+
+                sr.Close();
             }
+            return list;
         }
         #endregion
 
@@ -646,7 +626,7 @@ namespace GGrep
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!isRunning)
+            if (!isRunning && !backgroundWorker.IsBusy)
             {
                 // start
                 if (!CheckAndSaveSearchOptions())
@@ -655,16 +635,15 @@ namespace GGrep
                 SaveSearchOptions();
 
                 //DoGrep();
-                Thread th = new Thread(new ThreadStart(DoGrep));
-                th.Start();
+                //Thread th = new Thread(new ThreadStart(DoGrep));
+                //th.Start();
+                backgroundWorker.RunWorkerAsync();
             }
             else
             {
-                if (ShowMessage(2, Properties.Resources.MSG_WARN_01) == DialogResult.OK)
-                {
-                    // stop
-                    isRunning = false;
-                }
+                // stop
+                isRunning = false;
+                backgroundWorker.CancelAsync();
             }
 
         }
@@ -672,12 +651,13 @@ namespace GGrep
         private void cbRegex_CheckedChanged(object sender, EventArgs e)
         {
             cbMultiline.Enabled = cbRegex.Checked;
-            cbSearchOnWords.Enabled = cbRegex.Checked;
+            cbSearchOnWords.Enabled = !cbRegex.Checked;
+            cbCaseSensitive.Enabled = !cbRegex.Checked;
         }
 
         private void GForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (isRunning)
+            if (isRunning || backgroundWorker.IsBusy)
             {
                 if (ShowMessage(2, Properties.Resources.MSG_WARN_01) != DialogResult.OK)
                 {
@@ -685,8 +665,10 @@ namespace GGrep
                 }
                 // stop
                 isRunning = false;
+                backgroundWorker.CancelAsync();
             }
-            SaveFilterCollapsible();
+            Properties.Settings.Default.FilterIsCollapsed = gbFilter.IsCollapsed;
+            Properties.Settings.Default.Save();
         }
 
         private void folvResult_DoubleClick(object sender, EventArgs e)
@@ -696,7 +678,6 @@ namespace GGrep
                 OpenWithEditor((ResultData)((FastObjectListView)sender).SelectedObject);
             }
         }
-        #endregion
 
         #region menu
         private void saveAsCsvToolStripMenuItem_Click(object sender, EventArgs e)
@@ -733,6 +714,112 @@ namespace GGrep
             a.ShowDialog(this);
         }
         #endregion
+
+        #region backgroundworker
+        private void DoGrep(object sender, DoWorkEventArgs e)
+        {
+            isRunning = true;
+            status = new SearchStatus();
+            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_CANCEL);
+            folvResult.ClearObjects();
+            SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, false);
+            SetControlActive(cbbSearchText, false);
+            SetControlActive(cbbSearchFolder, false);
+            SetControlActive(btnBrowse, false);
+            SetControlActive(gbFilter, false);
+            SetControlActive(menuStripMain, false);
+            sw.Reset();
+            sw.Start();
+            SetToolStripLabel(statusLabel, Properties.Resources.MSG_STATUS_STARTED);
+
+            ArrayList fileList = new ArrayList();
+            Utils.AnalyzeDirectory(option.SearchFolder, option, fileList, backgroundWorker, e);
+
+            if (fileList.Count > 0)
+            {
+                status.Total = fileList.Count;
+                foreach (string file in fileList)
+                {
+                    if (backgroundWorker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+
+                    ArrayList list = SearchInFile(file, e);
+                    status.Finished++;
+                    if (list.Count > 0)
+                        AddRows(folvResult, list, status);
+                }
+            }
+
+        }
+
+        private void GrepProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (isRunning)
+            {
+                toolStripProgressBar.Value = e.ProgressPercentage;
+                SetToolStripLabel(statusLabel, string.Format(Properties.Resources.MSG_STATUS_RUNNING, status.Finished, status.Total, status.Hit));
+            }
+        }
+
+        private void GrepCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            sw.Stop();
+            toolStripProgressBar.Value = 0;
+            if (e.Error != null)
+            {
+                ShowMessage(0, e.Error.Message);
+            }
+            else
+            {
+                SetToolStripLabel(statusLabel, string.Format((e.Cancelled ? Properties.Resources.MSG_STATUS_CANCELED : Properties.Resources.MSG_STATUS_FINISHED), status.Hit, sw.ElapsedMilliseconds));
+            }
+            SetControlActive(menuStripMain, true);
+            SetControlActive(cbbSearchText, true);
+            SetControlActive(cbbSearchFolder, true);
+            SetControlActive(btnBrowse, true);
+            SetControlActive(gbFilter, true);
+            if (status.Hit > 0)
+                SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, true);
+            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_SEARCH);
+            isRunning = false;
+        }
+        #endregion
+
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Search Status Class
+    /// </summary>
+    internal class SearchStatus
+    {
+        private long hit = 0;
+        public long Hit
+        {
+            get { return hit; }
+            set { hit = value; }
+        }
+        private long total = 0;
+        public long Total
+        {
+            get { return total; }
+            set { total = value; }
+        }
+        private long finished = 0;
+        public long Finished
+        {
+            get { return finished; }
+            set { finished = value; }
+        }
+
+        public int Progress
+        {
+            get { return (int)((double)finished * 100 / total); }
+        }
     }
 
     /// <summary>
@@ -800,30 +887,6 @@ namespace GGrep
         {
             get { return searchString; }
             set { searchString = value; }
-        }
-        public string SearchStringRegexEscaped
-        {
-            get
-            {
-                string s = searchString;
-                s = s.Replace("\\", "\\\\");
-                s = s.Replace(".", "\\.");
-                s = s.Replace("*", "\\*");
-                s = s.Replace("+", "\\+");
-                s = s.Replace("?", "\\?");
-                s = s.Replace("{", "\\{");
-                s = s.Replace("}", "\\}");
-                s = s.Replace("[", "\\[");
-                s = s.Replace("]", "\\]");
-                s = s.Replace("(", "\\(");
-                s = s.Replace(")", "\\)");
-                s = s.Replace("^", "\\^");
-                s = s.Replace("$", "\\$");
-                s = s.Replace("-", "\\-");
-                s = s.Replace("|", "\\|");
-                s = s.Replace("/", "\\/");
-                return s;
-            }
         }
 
         private string searchFolder;
@@ -933,100 +996,16 @@ namespace GGrep
         }
 
         private string notMatchFileRegex;
-        private string notMatchFolderRegex;
-        #endregion
-
-        #region Methods
-        public string[] GetMatchedFolders(string dir)
+        public string NotMatchFileRegex
         {
-            ArrayList list = new ArrayList();
-            if (!string.IsNullOrEmpty(matchFolders))
-            {
-                foreach (string p in matchFolders.Split(','))
-                {
-                    foreach (string f in Directory.GetDirectories(dir, p))
-                    {
-                        // not matched folders check
-                        if (!string.IsNullOrEmpty(notMatchFolderRegex))
-                        {
-                            if (!Regex.IsMatch(f, notMatchFolderRegex))
-                                continue;
-                        }
-
-                        DirectoryInfo di = new DirectoryInfo(f);
-                        if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
-                            continue;
-
-                        list.Add(f);
-                    }
-                }
-            }
-            else
-            {
-                foreach (string f in Directory.GetDirectories(dir))
-                {
-                    // not matched folders check
-                    if (!string.IsNullOrEmpty(notMatchFolderRegex))
-                    {
-                        if (!Regex.IsMatch(f, notMatchFolderRegex))
-                            continue;
-                    }
-
-                    DirectoryInfo di = new DirectoryInfo(f);
-                    if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
-                        continue;
-
-                    list.Add(f);
-                }
-            }
-
-            return (string[])list.ToArray(typeof(string));
+            get { return notMatchFileRegex; }
+            set { notMatchFileRegex = value; }
         }
-
-        public string[] GetMatchedFiles(string dir)
+        private string notMatchFolderRegex;
+        public string NotMatchFolderRegex
         {
-            ArrayList list = new ArrayList();
-            if (!string.IsNullOrEmpty(matchFiles))
-            {
-                foreach (string p in matchFiles.Split(','))
-                {
-                    foreach (string f in Directory.GetFiles(dir, p))
-                    {
-                        // not matched files check
-                        if (!string.IsNullOrEmpty(notMatchFileRegex))
-                        {
-                            if (Regex.IsMatch(f, notMatchFileRegex))
-                                continue;
-                        }
-
-                        FileInfo di = new FileInfo(f);
-                        if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
-                            continue;
-
-                        list.Add(f);
-                    }
-                }
-            }
-            else
-            {
-                foreach (string f in Directory.GetFiles(dir))
-                {
-                    // not matched files check
-                    if (!string.IsNullOrEmpty(notMatchFileRegex))
-                    {
-                        if (Regex.IsMatch(f, notMatchFileRegex))
-                            continue;
-                    }
-
-                    FileInfo di = new FileInfo(f);
-                    if (((di.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden) && !includeHiddenFolders)
-                        continue;
-
-                    list.Add(f);
-                }
-            }
-
-            return (string[])list.ToArray(typeof(string));
+            get { return notMatchFolderRegex; }
+            set { notMatchFolderRegex = value; }
         }
         #endregion
     }

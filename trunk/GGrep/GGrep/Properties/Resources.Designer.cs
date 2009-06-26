@@ -158,6 +158,15 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelled. Found {0} Places in {1} ms..
+        /// </summary>
+        internal static string MSG_STATUS_CANCELED {
+            get {
+                return ResourceManager.GetString("MSG_STATUS_CANCELED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done. Found {0} Places in {1} ms..
         /// </summary>
         internal static string MSG_STATUS_FINISHED {
@@ -167,7 +176,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching...    Now {0} hits.
+        ///   Looks up a localized string similar to ({0}/{1}) Searching...    Now {2} hits.
         /// </summary>
         internal static string MSG_STATUS_RUNNING {
             get {

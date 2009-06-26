@@ -53,6 +53,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tooltipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -318,7 +320,9 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filterToolStripMenuItem});
+            this.filterToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.tooltipsToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.viewToolStripMenuItem.Text = "&View";
@@ -330,6 +334,18 @@
             this.filterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.filterToolStripMenuItem.Text = "Fil&ter";
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // tooltipsToolStripMenuItem
+            // 
+            this.tooltipsToolStripMenuItem.CheckOnClick = true;
+            this.tooltipsToolStripMenuItem.Name = "tooltipsToolStripMenuItem";
+            this.tooltipsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tooltipsToolStripMenuItem.Text = "Too&ltips";
             // 
             // toolsToolStripMenuItem
             // 
@@ -660,6 +676,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem tooltipsToolStripMenuItem;
     }
 }
 

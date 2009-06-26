@@ -226,5 +226,17 @@ namespace GGrep.Properties {
                 this["CustomEditorArguments"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TooltipsShown {
+            get {
+                return ((bool)(this["TooltipsShown"]));
+            }
+            set {
+                this["TooltipsShown"] = value;
+            }
+        }
     }
 }

@@ -39,12 +39,23 @@ namespace GGrep
             SetSearchOptions();
             btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
             filterToolStripMenuItem.Checked = !Properties.Settings.Default.FilterIsCollapsed;
+            tooltipsToolStripMenuItem.Checked = Properties.Settings.Default.TooltipsShown;
 
             #region tooltips
             folvResult.CellToolTipGetter = delegate(OLVColumn column, Object rowObject)
             {
-                if (rowObject != null)
-                    return string.Format("{0}({1},{2}):{3}", ((ResultData)rowObject).FileName, ((ResultData)rowObject).RowNo, ((ResultData)rowObject).ColNo, ((ResultData)rowObject).Line);
+                if (rowObject != null && tooltipsToolStripMenuItem.Checked)
+                {
+                    switch (column.DisplayIndex)
+                    {
+                        case 1:
+                            return ((ResultData)rowObject).FileName;
+                        case 4:
+                            return ((ResultData)rowObject).Line;
+                        default:
+                            return null;
+                    }
+                }
                 else
                     return null;
             };
@@ -54,53 +65,44 @@ namespace GGrep
             colLine.RendererDelegate = delegate(DrawListViewSubItemEventArgs e, Graphics g, Rectangle itemBounds, Object rowObject)
             {
                 // if selected, draw by default
-                if (e.Item.Selected)
+                if (e.Item.Selected && folvResult.Focused)
                     return false;
 
                 ResultData data = (ResultData)rowObject;
+                string strLeft = data.Line.Substring(0, (int)data.ColNo - 1);
 
-                string strLeft = data.Line.Substring(0, (int)data.ColNo);
-                string strRight = data.Line.Substring((int)(data.ColNo + data.MatchedString.Length));
+                StringFormat sf = new StringFormat();
+                sf.Trimming = StringTrimming.EllipsisCharacter;
 
-                SizeF leftSize = g.MeasureString(strLeft, Font);
-                SizeF matchedSize = g.MeasureString(data.MatchedString, Font);
-                SizeF rightSize = g.MeasureString(strRight, Font);
+                Rectangle rect = itemBounds;
+                Font f = e.Item.Font;
+                Color color = e.Item.ForeColor;
 
-                PointF leftP = new PointF(itemBounds.X, itemBounds.Y);
-                PointF matchedP = new PointF(itemBounds.X + leftSize.Width, itemBounds.Y);
-                PointF rightP = new PointF(itemBounds.X + leftSize.Width + matchedSize.Width, itemBounds.Y);
+                SizeF leftSize = TextRenderer.MeasureText(g, strLeft, f, rect.Size, TextFormatFlags.NoPadding);
+                SizeF matchedSize = TextRenderer.MeasureText(g, data.MatchedString, f, rect.Size, TextFormatFlags.NoPadding);
 
-                RectangleF leftRect = new RectangleF(leftP, leftSize);
+                PointF matchedP = new PointF(rect.X + leftSize.Width, rect.Y);
                 RectangleF matchedRect = new RectangleF(matchedP, matchedSize);
-                RectangleF rightRect = new RectangleF(rightP.X, rightP.Y, itemBounds.Width - leftSize.Width - matchedSize.Width, itemBounds.Height);
 
                 // highlight brush
-                SolidBrush sbhf = new SolidBrush(Color.Blue);
                 SolidBrush sbhb = new SolidBrush(Color.Yellow);
 
                 // normal brush
-                SolidBrush sbf = new SolidBrush(folvResult.ForeColor);
+                SolidBrush sbf = new SolidBrush(color);
                 SolidBrush sbb;
                 if (e.ItemIndex % 2 != 0)
                     sbb = new SolidBrush(folvResult.AlternateRowBackColorOrDefault);
                 else
                     sbb = new SolidBrush(folvResult.BackColor);
 
-                // draw background
-                g.FillRectangle(sbb, leftRect);
+                g.FillRectangle(sbb, rect);
                 g.FillRectangle(sbhb, matchedRect);
-                g.FillRectangle(sbb, rightRect);
-
-                // draw string
-                g.DrawString(strLeft, Font, sbf, leftP);
-                g.DrawString(data.MatchedString, Font, sbhf, matchedP);
-                g.DrawString(strRight, Font, sbf, rightP);
+                g.DrawString(data.Line, f, sbf, rect.Location, sf);
 
                 // Finally render the buffered graphics
                 sbb.Dispose();
                 sbf.Dispose();
                 sbhb.Dispose();
-                sbhf.Dispose();
 
                 // Return true to say that we've handled the drawing
                 return true;
@@ -553,7 +555,7 @@ namespace GGrep
                             data.No = (++status.Hit);
                             data.FileName = path;
                             data.RowNo = rowNo;
-                            data.ColNo = m.Index;
+                            data.ColNo = m.Index + 1;
                             data.Line = line;
                             data.MatchedString = m.Value;
                             list.Add(data);
@@ -686,6 +688,7 @@ namespace GGrep
                 backgroundWorker.CancelAsync();
             }
             Properties.Settings.Default.FilterIsCollapsed = gbFilter.IsCollapsed;
+            Properties.Settings.Default.TooltipsShown = tooltipsToolStripMenuItem.Checked;
             Properties.Settings.Default.Save();
         }
 

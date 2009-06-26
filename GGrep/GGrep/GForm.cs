@@ -28,9 +28,6 @@ namespace GGrep
         SearchOptions option = null;
         SearchStatus status = null;
         bool isRunning = false;
-        #endregion
-
-        #region Properties
         private bool IsAutoEncoding { get { return GetControlText(cbbEncoding).Trim().ToLower() == "auto"; } }
         #endregion
 
@@ -42,6 +39,16 @@ namespace GGrep
             SetSearchOptions();
             btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
             filterToolStripMenuItem.Checked = !Properties.Settings.Default.FilterIsCollapsed;
+
+            #region tooltips
+            folvResult.CellToolTipGetter = delegate(OLVColumn column, Object rowObject)
+            {
+                if (rowObject != null)
+                    return string.Format("{0}({1},{2}):{3}", ((ResultData)rowObject).FileName, ((ResultData)rowObject).RowNo, ((ResultData)rowObject).ColNo, ((ResultData)rowObject).Line);
+                else
+                    return null;
+            };
+            #endregion
 
             #region highlight matched string
             colLine.RendererDelegate = delegate(DrawListViewSubItemEventArgs e, Graphics g, Rectangle itemBounds, Object rowObject)
@@ -285,6 +292,7 @@ namespace GGrep
 
             cbIncludeSubFolders.Checked = Properties.Settings.Default.IncludeSubFolders;
             cbIncludeHiddenFolder.Checked = Properties.Settings.Default.IncludeHiddenFolders;
+            cbIncludeHiddenFolder.Enabled = cbIncludeSubFolders.Checked;
             cbMultiline.Checked = Properties.Settings.Default.Multiline;
 
             if (!string.IsNullOrEmpty(Properties.Settings.Default.Encoding))
@@ -472,84 +480,88 @@ namespace GGrep
             ArrayList list = new ArrayList();
             if (File.Exists(path))
             {
-                StreamReader sr;
                 long rowNo = 0;
                 string line;
 
-                if (IsAutoEncoding)
+                Encoding enc = null;
+                if (option.IsAutoEncoding)
                 {
-                    sr = new StreamReader(File.OpenRead(path));
+                    enc = Utils.GetEncoding(path);
                 }
                 else
                 {
-                    sr = new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding));
+                    enc = Encoding.GetEncoding(option.Encoding);
                 }
 
-                while (!sr.EndOfStream && isRunning)
+                using (StreamReader sr = new StreamReader(File.OpenRead(path), enc))
                 {
-                    if (backgroundWorker.CancellationPending)
+                    while (!sr.EndOfStream && isRunning)
                     {
-                        e.Cancel = true;
-                        break;
-                    }
-                    line = sr.ReadLine();
-                    rowNo++;
-
-                    if (!option.IsRegex)
-                    {
-                        if (option.IsCaseSensitive)
+                        if (backgroundWorker.CancellationPending)
                         {
-                            if (!line.Contains(option.SearchString))
-                                continue;
+                            e.Cancel = true;
+                            break;
                         }
-                        else
+                        line = sr.ReadLine();
+                        rowNo++;
+
+                        // for fast search
+                        if (!option.IsRegex)
                         {
-                            if (!line.ToLower().Contains(option.SearchString.ToLower()))
-                                continue;
+                            if (option.IsCaseSensitive)
+                            {
+                                if (!line.Contains(option.SearchString))
+                                    continue;
+                            }
+                            else
+                            {
+                                if (!line.ToLower().Contains(option.SearchString.ToLower()))
+                                    continue;
+                            }
                         }
-                    }
 
-                    RegexOptions ro = RegexOptions.Singleline;
-                    string input = option.SearchString;
+                        RegexOptions ro = RegexOptions.Singleline;
+                        string input = option.SearchString;
 
-                    if (option.IsRegex)
-                    {
+                        if (option.IsRegex)
+                        {
 #if DEBUG1
                         if (option.Multiline)
                         {
                             ro = ro | RegexOptions.Multiline;
                         }
 #endif
-                    }
-                    else
-                    {
-                        if (!option.IsCaseSensitive)
-                        {
-                            ro = ro | RegexOptions.IgnoreCase;
                         }
-
-                        input = Utils.SearchStringRegexEscaped(option.SearchString);
-                        if (option.IsSearchOnWords)
+                        else
                         {
-                            input = @"\b" + input + @"\b";
+                            if (!option.IsCaseSensitive)
+                            {
+                                ro = ro | RegexOptions.IgnoreCase;
+                            }
+
+                            input = Utils.SearchStringRegexEscaped(option.SearchString);
+                            if (option.IsSearchOnWords)
+                            {
+                                input = @"\b" + input + @"\b";
+                            }
+                        }
+                        Regex re = new Regex(input, ro);
+
+                        foreach (Match m in re.Matches(line))
+                        {
+                            ResultData data = new ResultData();
+                            data.No = (++status.Hit);
+                            data.FileName = path;
+                            data.RowNo = rowNo;
+                            data.ColNo = m.Index;
+                            data.Line = line;
+                            data.MatchedString = m.Value;
+                            list.Add(data);
                         }
                     }
-                    Regex re = new Regex(input, ro);
 
-                    foreach (Match m in re.Matches(line))
-                    {
-                        ResultData data = new ResultData();
-                        data.No = (++status.Hit);
-                        data.FileName = path;
-                        data.RowNo = rowNo;
-                        data.ColNo = m.Index;
-                        data.Line = line;
-                        data.MatchedString = m.Value;
-                        list.Add(data);
-                    }
+                    sr.Close();
                 }
-
-                sr.Close();
             }
             return list;
         }
@@ -654,6 +666,11 @@ namespace GGrep
             cbMultiline.Enabled = cbRegex.Checked;
             cbSearchOnWords.Enabled = !cbRegex.Checked;
             cbCaseSensitive.Enabled = !cbRegex.Checked;
+        }
+
+        private void cbIncludeSubFolders_CheckedChanged(object sender, EventArgs e)
+        {
+            cbIncludeHiddenFolder.Enabled = cbIncludeSubFolders.Checked;
         }
 
         private void GForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1009,6 +1026,8 @@ namespace GGrep
             get { return notMatchFolderRegex; }
             set { notMatchFolderRegex = value; }
         }
+
+        public bool IsAutoEncoding { get { return encoding.Trim().ToLower() == "auto"; } }
         #endregion
     }
 }

@@ -57,6 +57,7 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.gbFilter = new GGrep.CollapsibleGroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbbFolderNotMatch = new System.Windows.Forms.ComboBox();
@@ -76,7 +77,6 @@
             this.cbMultiline = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbbEncoding = new System.Windows.Forms.ComboBox();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.gbSearch.SuspendLayout();
             this.gbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
@@ -220,6 +220,7 @@
             this.colFileName.FillsFreeSpace = true;
             this.colFileName.IsEditable = false;
             this.colFileName.Text = "File";
+            this.colFileName.ToolTipText = "";
             this.colFileName.Width = 100;
             // 
             // colRowNo
@@ -360,6 +361,14 @@
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoGrep);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.GrepCompleted);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.GrepProgressChanged);
+            // 
             // gbFilter
             // 
             this.gbFilter.Controls.Add(this.panel2);
@@ -491,6 +500,7 @@
             this.cbIncludeSubFolders.TabIndex = 4;
             this.cbIncludeSubFolders.Text = "Include subfolders";
             this.cbIncludeSubFolders.UseVisualStyleBackColor = true;
+            this.cbIncludeSubFolders.CheckedChanged += new System.EventHandler(this.cbIncludeSubFolders_CheckedChanged);
             // 
             // cbIncludeHiddenFolder
             // 
@@ -560,14 +570,6 @@
             this.cbbEncoding.Name = "cbbEncoding";
             this.cbbEncoding.Size = new System.Drawing.Size(121, 22);
             this.cbbEncoding.TabIndex = 11;
-            // 
-            // backgroundWorker
-            // 
-            this.backgroundWorker.WorkerReportsProgress = true;
-            this.backgroundWorker.WorkerSupportsCancellation = true;
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoGrep);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.GrepCompleted);
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.GrepProgressChanged);
             // 
             // GForm
             // 

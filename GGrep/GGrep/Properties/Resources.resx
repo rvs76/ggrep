@@ -155,7 +155,7 @@
     <value>Done. Found {0} Places in {1} ms.</value>
   </data>
   <data name="MSG_STATUS_RUNNING" xml:space="preserve">
-    <value>Searching...    Now {0} hits</value>
+    <value>({0}/{1}) Searching...    Now {2} hits</value>
   </data>
   <data name="MSG_TITLE_01" xml:space="preserve">
     <value>Error</value>
@@ -166,9 +166,6 @@
   <data name="MSG_TITLE_03" xml:space="preserve">
     <value>Warning</value>
   </data>
-  <data name="MSG_WARN_01" xml:space="preserve">
-    <value>Do you like to cancel it ?</value>
-  </data>
   <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\plus.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,5 +174,11 @@
   </data>
   <data name="Search_files_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search files-128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MSG_STATUS_CANCELED" xml:space="preserve">
+    <value>Cancelled. Found {0} Places in {1} ms.</value>
+  </data>
+  <data name="MSG_WARN_01" xml:space="preserve">
+    <value>Do you like to cancel it ?</value>
   </data>
 </root>

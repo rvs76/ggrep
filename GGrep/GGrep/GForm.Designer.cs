@@ -44,6 +44,7 @@
             this.colColNo = new BrightIdeasSoftware.OLVColumn();
             this.colLine = new BrightIdeasSoftware.OLVColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,14 +68,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.cbSearchOnWords = new System.Windows.Forms.CheckBox();
             this.cbIncludeSubFolders = new System.Windows.Forms.CheckBox();
             this.cbIncludeHiddenFolder = new System.Windows.Forms.CheckBox();
             this.cbRegex = new System.Windows.Forms.CheckBox();
+            this.cbSearchOnWords = new System.Windows.Forms.CheckBox();
             this.cbCaseSensitive = new System.Windows.Forms.CheckBox();
             this.cbMultiline = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbbEncoding = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.gbSearch.SuspendLayout();
             this.gbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
@@ -249,12 +251,18 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar,
             this.statusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(6, 438);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(480, 22);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar
+            // 
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // statusLabel
             // 
@@ -318,7 +326,7 @@
             // 
             this.filterToolStripMenuItem.CheckOnClick = true;
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.filterToolStripMenuItem.Text = "Fil&ter";
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
@@ -348,7 +356,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -460,10 +468,10 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.cbSearchOnWords);
             this.flowLayoutPanel1.Controls.Add(this.cbIncludeSubFolders);
             this.flowLayoutPanel1.Controls.Add(this.cbIncludeHiddenFolder);
             this.flowLayoutPanel1.Controls.Add(this.cbRegex);
+            this.flowLayoutPanel1.Controls.Add(this.cbSearchOnWords);
             this.flowLayoutPanel1.Controls.Add(this.cbCaseSensitive);
             this.flowLayoutPanel1.Controls.Add(this.cbMultiline);
             this.flowLayoutPanel1.Controls.Add(this.label6);
@@ -474,20 +482,10 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(474, 52);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
-            // cbSearchOnWords
-            // 
-            this.cbSearchOnWords.AutoSize = true;
-            this.cbSearchOnWords.Location = new System.Drawing.Point(3, 3);
-            this.cbSearchOnWords.Name = "cbSearchOnWords";
-            this.cbSearchOnWords.Size = new System.Drawing.Size(118, 18);
-            this.cbSearchOnWords.TabIndex = 5;
-            this.cbSearchOnWords.Text = "Search on words";
-            this.cbSearchOnWords.UseVisualStyleBackColor = true;
-            // 
             // cbIncludeSubFolders
             // 
             this.cbIncludeSubFolders.AutoSize = true;
-            this.cbIncludeSubFolders.Location = new System.Drawing.Point(127, 3);
+            this.cbIncludeSubFolders.Location = new System.Drawing.Point(3, 3);
             this.cbIncludeSubFolders.Name = "cbIncludeSubFolders";
             this.cbIncludeSubFolders.Size = new System.Drawing.Size(125, 18);
             this.cbIncludeSubFolders.TabIndex = 4;
@@ -497,7 +495,7 @@
             // cbIncludeHiddenFolder
             // 
             this.cbIncludeHiddenFolder.AutoSize = true;
-            this.cbIncludeHiddenFolder.Location = new System.Drawing.Point(258, 3);
+            this.cbIncludeHiddenFolder.Location = new System.Drawing.Point(134, 3);
             this.cbIncludeHiddenFolder.Name = "cbIncludeHiddenFolder";
             this.cbIncludeHiddenFolder.Size = new System.Drawing.Size(147, 18);
             this.cbIncludeHiddenFolder.TabIndex = 12;
@@ -507,13 +505,23 @@
             // cbRegex
             // 
             this.cbRegex.AutoSize = true;
-            this.cbRegex.Location = new System.Drawing.Point(411, 3);
+            this.cbRegex.Location = new System.Drawing.Point(287, 3);
             this.cbRegex.Name = "cbRegex";
             this.cbRegex.Size = new System.Drawing.Size(60, 18);
             this.cbRegex.TabIndex = 7;
             this.cbRegex.Text = "Regex";
             this.cbRegex.UseVisualStyleBackColor = true;
             this.cbRegex.CheckedChanged += new System.EventHandler(this.cbRegex_CheckedChanged);
+            // 
+            // cbSearchOnWords
+            // 
+            this.cbSearchOnWords.AutoSize = true;
+            this.cbSearchOnWords.Location = new System.Drawing.Point(353, 3);
+            this.cbSearchOnWords.Name = "cbSearchOnWords";
+            this.cbSearchOnWords.Size = new System.Drawing.Size(118, 18);
+            this.cbSearchOnWords.TabIndex = 5;
+            this.cbSearchOnWords.Text = "Search on words";
+            this.cbSearchOnWords.UseVisualStyleBackColor = true;
             // 
             // cbCaseSensitive
             // 
@@ -534,6 +542,7 @@
             this.cbMultiline.TabIndex = 13;
             this.cbMultiline.Text = "Multiline";
             this.cbMultiline.UseVisualStyleBackColor = true;
+            this.cbMultiline.Visible = false;
             // 
             // label6
             // 
@@ -551,6 +560,14 @@
             this.cbbEncoding.Name = "cbbEncoding";
             this.cbbEncoding.Size = new System.Drawing.Size(121, 22);
             this.cbbEncoding.TabIndex = 11;
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoGrep);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.GrepCompleted);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.GrepProgressChanged);
             // 
             // GForm
             // 
@@ -639,6 +656,8 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
     }
 }
 

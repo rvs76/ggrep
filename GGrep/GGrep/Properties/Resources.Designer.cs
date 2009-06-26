@@ -185,7 +185,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching....
+        ///   Looks up a localized string similar to Analyzing Directories....
         /// </summary>
         internal static string MSG_STATUS_STARTED {
             get {

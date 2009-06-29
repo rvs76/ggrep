@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{37B165CC-AE82-42F9-89F1-0097E04ED12E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -73,6 +73,48 @@
     <Compile Include="controls\CollapsibleGroupBox.Designer.cs">
       <DependentUpon>CollapsibleGroupBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="EncodingTools\EncodingTools.cs" />
+    <Compile Include="EncodingTools\Multilang\CMLangConvertCharset.cs" />
+    <Compile Include="EncodingTools\Multilang\CMLangConvertCharsetClass.cs" />
+    <Compile Include="EncodingTools\Multilang\CMLangString.cs" />
+    <Compile Include="EncodingTools\Multilang\CMLangStringClass.cs" />
+    <Compile Include="EncodingTools\Multilang\CMultiLanguage.cs" />
+    <Compile Include="EncodingTools\Multilang\CMultiLanguageClass.cs" />
+    <Compile Include="EncodingTools\Multilang\IEnumCodePage.cs" />
+    <Compile Include="EncodingTools\Multilang\IEnumRfc1766.cs" />
+    <Compile Include="EncodingTools\Multilang\IEnumScript.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangCodePages.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangConvertCharset.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangFontLink.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangFontLink2.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangLineBreakConsole.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangString.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangStringAStr.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangStringBufA.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangStringBufW.cs" />
+    <Compile Include="EncodingTools\Multilang\IMLangStringWStr.cs" />
+    <Compile Include="EncodingTools\Multilang\IMultiLanguage.cs" />
+    <Compile Include="EncodingTools\Multilang\IMultiLanguage2.cs" />
+    <Compile Include="EncodingTools\Multilang\IMultiLanguage3.cs" />
+    <Compile Include="EncodingTools\Multilang\ISequentialStream.cs" />
+    <Compile Include="EncodingTools\Multilang\IStream.cs" />
+    <Compile Include="EncodingTools\Multilang\tagDetectEncodingInfo.cs" />
+    <Compile Include="EncodingTools\Multilang\tagMIMECONTF.cs" />
+    <Compile Include="EncodingTools\Multilang\tagMIMECPINFO.cs" />
+    <Compile Include="EncodingTools\Multilang\tagMIMECSETINFO.cs" />
+    <Compile Include="EncodingTools\Multilang\tagMLCPF.cs" />
+    <Compile Include="EncodingTools\Multilang\tagMLDETECTCP.cs" />
+    <Compile Include="EncodingTools\Multilang\tagMLSTR_FLAGS.cs" />
+    <Compile Include="EncodingTools\Multilang\tagRFC1766INFO.cs" />
+    <Compile Include="EncodingTools\Multilang\tagSCRIPFONTINFO.cs" />
+    <Compile Include="EncodingTools\Multilang\tagSCRIPTINFO.cs" />
+    <Compile Include="EncodingTools\Multilang\tagSTATSTG.cs" />
+    <Compile Include="EncodingTools\Multilang\tagUNICODERANGE.cs" />
+    <Compile Include="EncodingTools\Multilang\_FILETIME.cs" />
+    <Compile Include="EncodingTools\Multilang\_LARGE_INTEGER.cs" />
+    <Compile Include="EncodingTools\Multilang\_RemotableHandle.cs" />
+    <Compile Include="EncodingTools\Multilang\_ULARGE_INTEGER.cs" />
+    <Compile Include="EncodingTools\Multilang\__MIDL_IWinTypes_0009.cs" />
     <Compile Include="GForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,11 +191,7 @@
     <Content Include="Search files.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EncodingTools\EncodingTools.csproj">
-      <Project>{CA19D4DE-B232-491A-92BF-7BF3A2758694}</Project>
-      <Name>EncodingTools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ObjectListView\ObjectListView2008.csproj">
+    <ProjectReference Include="..\..\ObjectListView\ObjectListView\ObjectListView2008.csproj">
       <Project>{18FEDA0C-D147-4286-B39A-01204808106A}</Project>
       <Name>ObjectListView2008</Name>
     </ProjectReference>

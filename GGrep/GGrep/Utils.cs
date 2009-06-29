@@ -19,7 +19,7 @@ namespace GGrep
                 {
                     byte[] bom = new byte[4]; // Get the byte-order mark, if there is one
                     file.Read(bom, 0, 4);
-                    enc = href.Utils.EncodingTools.DetectInputCodepage(bom);
+                    enc = EncodingTools.DetectInputCodepage(bom);
                 }
                 else
                 {

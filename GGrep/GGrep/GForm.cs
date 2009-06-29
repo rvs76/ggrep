@@ -629,6 +629,10 @@ namespace GGrep
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (!string.IsNullOrEmpty(cbbSearchFolder.Text) && Directory.Exists(cbbSearchFolder.Text))
+            {
+                fbd.SelectedPath = cbbSearchFolder.Text;
+            }
             switch (fbd.ShowDialog(this))
             {
                 case DialogResult.OK:

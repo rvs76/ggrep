@@ -53,7 +53,7 @@ namespace GGrep
                     switch (column.DisplayIndex)
                     {
                         case 1:
-                            return ((ResultData)rowObject).FileName;
+                            return ((ResultData)rowObject).FullFileName;
                         case 4:
                             return ((ResultData)rowObject).Line;
                         default:
@@ -333,13 +333,13 @@ namespace GGrep
             System.Diagnostics.Process p = new System.Diagnostics.Process();
             if (!Properties.Settings.Default.UseCustomEditor)
             {
-                p.StartInfo.FileName = string.Format("\"{0}\"", data.FileName);
+                p.StartInfo.FileName = string.Format("\"{0}\"", data.FullFileName);
             }
             else
             {
                 // col, row, filename
                 p.StartInfo.FileName = string.Format("\"{0}\"", Properties.Settings.Default.CustomEditorPath);
-                p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", string.Format("\"{0}\"", data.FileName)).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
+                p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", string.Format("\"{0}\"", data.FullFileName)).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
             }
             p.Start();
             if (p.HasExited)
@@ -508,8 +508,9 @@ namespace GGrep
                         foreach (Match m in re.Matches(line))
                         {
                             ResultData data = new ResultData();
+                            data.SelectedPath = option.SearchFolder;
                             data.No = (++status.Hit);
-                            data.FileName = path;
+                            data.FullFileName = path;
                             data.RowNo = rowNo;
                             data.ColNo = m.Index + 1;
                             data.Line = line;
@@ -565,7 +566,7 @@ namespace GGrep
             StringBuilder sb = new StringBuilder();
             sb.Append(data.No);
             sb.Append(",");
-            sb.Append(data.FileName);
+            sb.Append(data.FullFileName);
             sb.Append(",");
             sb.Append(data.RowNo);
             sb.Append(",");
@@ -817,12 +818,39 @@ namespace GGrep
             set { no = value; }
         }
 
-        private string fileName;
+        private string selectedPath;
+        private int startIndex = -1;
+        public string SelectedPath
+        {
+            get { return selectedPath; }
+            set 
+            { 
+                selectedPath = value;
+                if (!string.IsNullOrEmpty(selectedPath))
+                {
+                    startIndex = selectedPath.Length;
+                    if (!selectedPath.EndsWith("\\"))
+                    {
+                        startIndex++;
+                    }
+                }
+            }
+        }
+        private string fullFileName;
 
+        public string FullFileName
+        {
+            get { return fullFileName; }
+            set { fullFileName = value; }
+        }
         public string FileName
         {
-            get { return fileName; }
-            set { fileName = value; }
+            get 
+            {
+                if ((!string.IsNullOrEmpty(selectedPath)) && (!string.IsNullOrEmpty(fullFileName)) && fullFileName.Length > startIndex)
+                    return fullFileName.Substring(startIndex);
+                return fullFileName;
+            }
         }
         private long rowNo;
 

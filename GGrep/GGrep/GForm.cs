@@ -41,6 +41,10 @@ namespace GGrep
             filterToolStripMenuItem.Checked = !Properties.Settings.Default.FilterIsCollapsed;
             tooltipsToolStripMenuItem.Checked = Properties.Settings.Default.TooltipsShown;
 
+            #region highlight render
+            this.colLine.Renderer = new HighlightRenderer();
+            #endregion
+
             #region tooltips
             folvResult.CellToolTipGetter = delegate(OLVColumn column, Object rowObject)
             {
@@ -58,54 +62,6 @@ namespace GGrep
                 }
                 else
                     return null;
-            };
-            #endregion
-
-            #region highlight matched string
-            colLine.RendererDelegate = delegate(DrawListViewSubItemEventArgs e, Graphics g, Rectangle itemBounds, Object rowObject)
-            {
-                // if selected, draw by default
-                if (e.Item.Selected && folvResult.Focused)
-                    return false;
-
-                ResultData data = (ResultData)rowObject;
-                string strLeft = data.Line.Substring(0, (int)data.ColNo - 1);
-
-                StringFormat sf = new StringFormat();
-                sf.Trimming = StringTrimming.EllipsisCharacter;
-
-                Rectangle rect = itemBounds;
-                Font f = e.Item.Font;
-                Color color = e.Item.ForeColor;
-
-                SizeF leftSize = TextRenderer.MeasureText(g, strLeft, f, rect.Size, TextFormatFlags.NoPadding);
-                SizeF matchedSize = TextRenderer.MeasureText(g, data.MatchedString, f, rect.Size, TextFormatFlags.NoPadding);
-
-                PointF matchedP = new PointF(rect.X + leftSize.Width, rect.Y);
-                RectangleF matchedRect = new RectangleF(matchedP, matchedSize);
-
-                // highlight brush
-                SolidBrush sbhb = new SolidBrush(Color.Yellow);
-
-                // normal brush
-                SolidBrush sbf = new SolidBrush(color);
-                SolidBrush sbb;
-                if (e.ItemIndex % 2 != 0)
-                    sbb = new SolidBrush(folvResult.AlternateRowBackColorOrDefault);
-                else
-                    sbb = new SolidBrush(folvResult.BackColor);
-
-                g.FillRectangle(sbb, rect);
-                g.FillRectangle(sbhb, matchedRect);
-                g.DrawString(data.Line, f, sbf, rect.Location, sf);
-
-                // Finally render the buffered graphics
-                sbb.Dispose();
-                sbf.Dispose();
-                sbhb.Dispose();
-
-                // Return true to say that we've handled the drawing
-                return true;
             };
             #endregion
         }
@@ -814,7 +770,6 @@ namespace GGrep
         }
         #endregion
 
-
         #endregion
     }
 
@@ -1036,5 +991,36 @@ namespace GGrep
 
         public bool IsAutoEncoding { get { return encoding.Trim().ToLower() == "auto"; } }
         #endregion
+    }
+
+    /// <summary>
+    /// Highlight Matched String
+    /// </summary>
+    internal class HighlightRenderer : BaseRenderer
+    {
+        public override void Render(Graphics g, Rectangle r)
+        {
+            // if selected, draw by default
+            if (this.IsItemSelected && this.ListView.Focused)
+            {
+                base.Render(g, r);
+            }
+            else
+            {
+                ResultData data = (ResultData)this.RowObject;
+                string strLeft = data.Line.Substring(0, (int)data.ColNo - 1);
+
+                int leftWidth = CalculateTextWidth(g, strLeft) - 3;
+                int matchedWidth = CalculateTextWidth(g, data.MatchedString) - 8;
+                Rectangle matchedRect = new Rectangle(r.X + leftWidth, r.Y, matchedWidth, r.Height);
+
+                this.DrawBackground(g, r);
+                using (Brush brush = new SolidBrush(Color.Yellow))
+                {
+                    g.FillRectangle(brush, matchedRect);
+                }
+                this.DrawText(g, r, data.Line);
+            }
+        }
     }
 }

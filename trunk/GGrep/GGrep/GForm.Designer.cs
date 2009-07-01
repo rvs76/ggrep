@@ -37,12 +37,6 @@
             this.gbSearch = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.gbResult = new System.Windows.Forms.GroupBox();
-            this.folvResult = new BrightIdeasSoftware.FastObjectListView();
-            this.colNo = new BrightIdeasSoftware.OLVColumn();
-            this.colFileName = new BrightIdeasSoftware.OLVColumn();
-            this.colRowNo = new BrightIdeasSoftware.OLVColumn();
-            this.colColNo = new BrightIdeasSoftware.OLVColumn();
-            this.colLine = new BrightIdeasSoftware.OLVColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -60,6 +54,12 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.folvResult = new BrightIdeasSoftware.FastObjectListView();
+            this.colNo = new BrightIdeasSoftware.OLVColumn();
+            this.colFileName = new BrightIdeasSoftware.OLVColumn();
+            this.colRowNo = new BrightIdeasSoftware.OLVColumn();
+            this.colColNo = new BrightIdeasSoftware.OLVColumn();
+            this.colLine = new BrightIdeasSoftware.OLVColumn();
             this.gbFilter = new GGrep.CollapsibleGroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbbFolderNotMatch = new System.Windows.Forms.ComboBox();
@@ -81,9 +81,9 @@
             this.cbbEncoding = new System.Windows.Forms.ComboBox();
             this.gbSearch.SuspendLayout();
             this.gbResult.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
             this.gbFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -178,79 +178,6 @@
             this.gbResult.TabIndex = 10;
             this.gbResult.TabStop = false;
             this.gbResult.Text = "Result";
-            // 
-            // folvResult
-            // 
-            this.folvResult.AllColumns.Add(this.colNo);
-            this.folvResult.AllColumns.Add(this.colFileName);
-            this.folvResult.AllColumns.Add(this.colRowNo);
-            this.folvResult.AllColumns.Add(this.colColNo);
-            this.folvResult.AllColumns.Add(this.colLine);
-            this.folvResult.AlternateRowBackColor = System.Drawing.Color.Honeydew;
-            this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colNo,
-            this.colFileName,
-            this.colRowNo,
-            this.colColNo,
-            this.colLine});
-            this.folvResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.folvResult.EmptyListMsg = "Nothing Founded!!!";
-            this.folvResult.FullRowSelect = true;
-            this.folvResult.GridLines = true;
-            this.folvResult.Location = new System.Drawing.Point(3, 18);
-            this.folvResult.Name = "folvResult";
-            this.folvResult.OwnerDraw = true;
-            this.folvResult.ShowGroups = false;
-            this.folvResult.Size = new System.Drawing.Size(474, 98);
-            this.folvResult.TabIndex = 9;
-            this.folvResult.UseAlternatingBackColors = true;
-            this.folvResult.UseCompatibleStateImageBehavior = false;
-            this.folvResult.View = System.Windows.Forms.View.Details;
-            this.folvResult.VirtualMode = true;
-            this.folvResult.DoubleClick += new System.EventHandler(this.folvResult_DoubleClick);
-            // 
-            // colNo
-            // 
-            this.colNo.AspectName = "No";
-            this.colNo.IsEditable = false;
-            this.colNo.Text = "#";
-            this.colNo.Width = 30;
-            // 
-            // colFileName
-            // 
-            this.colFileName.AspectName = "FileName";
-            this.colFileName.FillsFreeSpace = true;
-            this.colFileName.IsEditable = false;
-            this.colFileName.MaximumWidth = 250;
-            this.colFileName.Text = "File";
-            this.colFileName.ToolTipText = "";
-            this.colFileName.Width = 100;
-            // 
-            // colRowNo
-            // 
-            this.colRowNo.AspectName = "RowNo";
-            this.colRowNo.AspectToStringFormat = "";
-            this.colRowNo.IsEditable = false;
-            this.colRowNo.Text = "Line";
-            this.colRowNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colRowNo.Width = 40;
-            // 
-            // colColNo
-            // 
-            this.colColNo.AspectName = "ColNo";
-            this.colColNo.AspectToStringFormat = "";
-            this.colColNo.IsEditable = false;
-            this.colColNo.Text = "Column";
-            this.colColNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colColNo.Width = 40;
-            // 
-            // colLine
-            // 
-            this.colLine.AspectName = "Line";
-            this.colLine.FillsFreeSpace = true;
-            this.colLine.IsEditable = false;
-            this.colLine.Text = "Result";
-            this.colLine.Width = 240;
             // 
             // statusStrip1
             // 
@@ -385,6 +312,79 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoGrep);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.GrepCompleted);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.GrepProgressChanged);
+            // 
+            // folvResult
+            // 
+            this.folvResult.AllColumns.Add(this.colNo);
+            this.folvResult.AllColumns.Add(this.colFileName);
+            this.folvResult.AllColumns.Add(this.colRowNo);
+            this.folvResult.AllColumns.Add(this.colColNo);
+            this.folvResult.AllColumns.Add(this.colLine);
+            this.folvResult.AlternateRowBackColor = System.Drawing.Color.Honeydew;
+            this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colNo,
+            this.colFileName,
+            this.colRowNo,
+            this.colColNo,
+            this.colLine});
+            this.folvResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.folvResult.EmptyListMsg = "Nothing Founded!!!";
+            this.folvResult.FullRowSelect = true;
+            this.folvResult.GridLines = true;
+            this.folvResult.Location = new System.Drawing.Point(3, 18);
+            this.folvResult.Name = "folvResult";
+            this.folvResult.OwnerDraw = true;
+            this.folvResult.ShowGroups = false;
+            this.folvResult.Size = new System.Drawing.Size(474, 98);
+            this.folvResult.TabIndex = 9;
+            this.folvResult.UseAlternatingBackColors = true;
+            this.folvResult.UseCompatibleStateImageBehavior = false;
+            this.folvResult.View = System.Windows.Forms.View.Details;
+            this.folvResult.VirtualMode = true;
+            this.folvResult.DoubleClick += new System.EventHandler(this.folvResult_DoubleClick);
+            // 
+            // colNo
+            // 
+            this.colNo.AspectName = "No";
+            this.colNo.IsEditable = false;
+            this.colNo.Text = "#";
+            this.colNo.Width = 30;
+            // 
+            // colFileName
+            // 
+            this.colFileName.AspectName = "FileName";
+            this.colFileName.FillsFreeSpace = true;
+            this.colFileName.IsEditable = false;
+            this.colFileName.MaximumWidth = 300;
+            this.colFileName.Text = "File";
+            this.colFileName.ToolTipText = "";
+            this.colFileName.Width = 100;
+            // 
+            // colRowNo
+            // 
+            this.colRowNo.AspectName = "RowNo";
+            this.colRowNo.AspectToStringFormat = "";
+            this.colRowNo.IsEditable = false;
+            this.colRowNo.Text = "Line";
+            this.colRowNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colRowNo.Width = 40;
+            // 
+            // colColNo
+            // 
+            this.colColNo.AspectName = "ColNo";
+            this.colColNo.AspectToStringFormat = "";
+            this.colColNo.IsEditable = false;
+            this.colColNo.Text = "Column";
+            this.colColNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colColNo.Width = 40;
+            // 
+            // colLine
+            // 
+            this.colLine.AspectName = "Line";
+            this.colLine.FillsFreeSpace = true;
+            this.colLine.IsEditable = false;
+            this.colLine.Text = "Result";
+            this.colLine.Width = 240;
             // 
             // gbFilter
             // 
@@ -611,11 +611,11 @@
             this.gbSearch.ResumeLayout(false);
             this.gbSearch.PerformLayout();
             this.gbResult.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();
             this.panel2.ResumeLayout(false);

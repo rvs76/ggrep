@@ -221,6 +221,7 @@
             this.colFileName.AspectName = "FileName";
             this.colFileName.FillsFreeSpace = true;
             this.colFileName.IsEditable = false;
+            this.colFileName.MaximumWidth = 250;
             this.colFileName.Text = "File";
             this.colFileName.ToolTipText = "";
             this.colFileName.Width = 100;
@@ -331,20 +332,20 @@
             // 
             this.filterToolStripMenuItem.CheckOnClick = true;
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.filterToolStripMenuItem.Text = "Fil&ter";
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(114, 6);
             // 
             // tooltipsToolStripMenuItem
             // 
             this.tooltipsToolStripMenuItem.CheckOnClick = true;
             this.tooltipsToolStripMenuItem.Name = "tooltipsToolStripMenuItem";
-            this.tooltipsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tooltipsToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.tooltipsToolStripMenuItem.Text = "Too&ltips";
             // 
             // toolsToolStripMenuItem

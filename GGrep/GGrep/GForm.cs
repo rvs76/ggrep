@@ -1010,8 +1010,14 @@ namespace GGrep
                 ResultData data = (ResultData)this.RowObject;
                 string strLeft = data.Line.Substring(0, (int)data.ColNo - 1);
 
-                int leftWidth = CalculateTextWidth(g, strLeft) - 3;
-                int matchedWidth = CalculateTextWidth(g, data.MatchedString) - 8;
+                int leftWidth = CalculateTextWidth(g, strLeft);
+                int matchedWidth = CalculateTextWidth(g, data.MatchedString);
+                int rightWidth = CalculateTextWidth(g, data.Line.Substring((int)data.ColNo - 1 + data.MatchedString.Length));
+
+                int space = (leftWidth + matchedWidth + rightWidth - CalculateTextWidth(g, data.Line)) / 3;
+                leftWidth -= space;
+                matchedWidth -= space * 2;
+
                 Rectangle matchedRect = new Rectangle(r.X + leftWidth, r.Y, matchedWidth, r.Height);
 
                 this.DrawBackground(g, r);

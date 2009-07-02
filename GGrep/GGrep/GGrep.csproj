@@ -191,7 +191,7 @@
     <Content Include="Search files.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ObjectListView\ObjectListView2008.csproj">
+    <ProjectReference Include="..\..\demo\ObjectListViewDemo20\ObjectListView\ObjectListView2008.csproj">
       <Project>{18FEDA0C-D147-4286-B39A-01204808106A}</Project>
       <Name>ObjectListView2008</Name>
     </ProjectReference>

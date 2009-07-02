@@ -55,7 +55,7 @@ namespace GGrep
                         case 1:
                             return ((ResultData)rowObject).FullFileName;
                         case 4:
-                            return ((ResultData)rowObject).Line;
+                            return ((ResultData)rowObject).Line.Trim();
                         default:
                             return null;
                     }

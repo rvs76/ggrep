@@ -1056,5 +1056,16 @@ namespace GGrep
                 this.DrawText(g, r, data.Line);
             }
         }
+
+        protected override void DrawTextGdi(Graphics g, Rectangle r, String txt)
+        {
+            Color backColor = Color.Transparent;
+            if (this.IsDrawBackground && this.IsItemSelected && this.Column.Index == 0 && !this.ListView.FullRowSelect)
+                backColor = this.GetTextBackgroundColor();
+
+            TextFormatFlags flags = TextFormatFlags.NoPrefix | TextFormatFlags.VerticalCenter | TextFormatFlags.PreserveGraphicsTranslateTransform;
+            TextRenderer.DrawText(g, txt, this.Font, r, this.GetForegroundColor(), backColor, flags);
+        }
+
     }
 }

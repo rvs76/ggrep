@@ -70,7 +70,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to S&amp;earch.
+        ///   Looks up a localized string similar to &amp;Search.
         /// </summary>
         internal static string BTN_TEXT_SEARCH {
             get {
@@ -149,7 +149,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Csv File Saved..
+        ///   Looks up a localized string similar to Your Csv File has Saved..
         /// </summary>
         internal static string MSG_SAVED {
             get {

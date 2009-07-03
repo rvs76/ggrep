@@ -10,6 +10,13 @@ namespace GGrep
 {
     class Utils
     {
+        #region Methods
+
+        /// <summary>
+        /// Get Auto Encoding
+        /// </summary>
+        /// <param name="filePath">file path</param>
+        /// <returns></returns>
         public static System.Text.Encoding GetEncoding(string filePath)
         {
             System.Text.Encoding enc = null;
@@ -40,6 +47,11 @@ namespace GGrep
             return enc;
         }
 
+        /// <summary>
+        /// Get escaped string of regex
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
         public static string SearchStringRegexEscaped(string searchString)
         {
                 string s = searchString;
@@ -62,6 +74,12 @@ namespace GGrep
                 return s;
         }
 
+        /// <summary>
+        /// Get Matched Folders
+        /// </summary>
+        /// <param name="dir">Directory</param>
+        /// <param name="option">Options</param>
+        /// <returns></returns>
         public static ArrayList GetMatchedFolders(string dir, SearchOptions option)
         {
             ArrayList list = new ArrayList();
@@ -93,7 +111,15 @@ namespace GGrep
             return list;
         }
 
-        public static void GetMatchedFiles(BackgroundWorker worker, DoWorkEventArgs e, string dir, SearchOptions option, ArrayList list)
+        /// <summary>
+        /// Get Matched Files
+        /// </summary>
+        /// <param name="dir">directory</param>
+        /// <param name="option">options</param>
+        /// <param name="list">result file list</param>
+        /// <param name="worker">thread</param>
+        /// <param name="e">event</param>
+        public static void GetMatchedFiles(string dir, SearchOptions option, ArrayList list, BackgroundWorker worker, DoWorkEventArgs e)
         {
             string m = "*";
             if (!string.IsNullOrEmpty(option.MatchFiles))
@@ -123,6 +149,14 @@ namespace GGrep
             }
         }
 
+        /// <summary>
+        /// Get All files
+        /// </summary>
+        /// <param name="path">directory</param>
+        /// <param name="option">options</param>
+        /// <param name="fileList">result file list</param>
+        /// <param name="worker">thread</param>
+        /// <param name="e">event</param>
         public static void AnalyzeDirectory(string path, SearchOptions option, ArrayList fileList, BackgroundWorker worker, DoWorkEventArgs e)
         {
             if (worker.CancellationPending)
@@ -143,8 +177,10 @@ namespace GGrep
                 }
 
                 // file
-                Utils.GetMatchedFiles(worker, e, path, option, fileList);
+                Utils.GetMatchedFiles(path, option, fileList, worker, e);
             }
         }
+
+        #endregion
     }
 }

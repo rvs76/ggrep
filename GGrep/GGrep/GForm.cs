@@ -9,12 +9,14 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Threading;
-using BrightIdeasSoftware;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
+using BrightIdeasSoftware;
 
 namespace GGrep
 {
+    #region Main Class
+
     /// <summary>
     /// Main Grep Form
     /// </summary>
@@ -68,6 +70,9 @@ namespace GGrep
         #endregion
 
         #region Methods
+
+        #region General
+
         /// <summary>
         /// Check & Save Search Options
         /// </summary>
@@ -346,6 +351,8 @@ namespace GGrep
                 p.Kill();
         }
 
+        #endregion
+
         #region CallBack
         delegate void SetControlTextCallback(Control ctl, string text);
         private void SetControlText(Control ctl, string text)
@@ -433,6 +440,12 @@ namespace GGrep
         #endregion
 
         #region Grep
+        /// <summary>
+        /// Search In Files
+        /// </summary>
+        /// <param name="path">File Or Directory</param>
+        /// <param name="e">Event</param>
+        /// <returns></returns>
         private ArrayList SearchInFile(string path, DoWorkEventArgs e)
         {
             ArrayList list = new ArrayList();
@@ -527,6 +540,10 @@ namespace GGrep
         #endregion
 
         #region Output Csv
+        /// <summary>
+        /// Save as CSV
+        /// </summary>
+        /// <returns></returns>
         private bool SaveCsvFile()
         {
             try
@@ -540,6 +557,7 @@ namespace GGrep
                     // save
                     using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.GetEncoding("SJIS")))
                     {
+                        sw.WriteLine("#,File,Line,Column,Result");
                         int index = 1;
                         foreach (ResultData data in folvResult.Objects)
                         {
@@ -561,6 +579,11 @@ namespace GGrep
             return true;
         }
 
+        /// <summary>
+        /// Make Csv Line
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private string ToCsvLine(ResultData data)
         {
             StringBuilder sb = new StringBuilder();
@@ -583,6 +606,8 @@ namespace GGrep
         #endregion
 
         #region Events
+
+        #region button, combobox, checkbox and etc.
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -660,6 +685,8 @@ namespace GGrep
                 OpenWithEditor((ResultData)((FastObjectListView)sender).SelectedObject);
             }
         }
+
+        #endregion
 
         #region menu
         private void saveAsCsvToolStripMenuItem_Click(object sender, EventArgs e)
@@ -773,6 +800,10 @@ namespace GGrep
 
         #endregion
     }
+
+    #endregion
+
+    #region internal class
 
     /// <summary>
     /// Search Status Class
@@ -1068,4 +1099,6 @@ namespace GGrep
         }
 
     }
+
+    #endregion
 }

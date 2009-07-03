@@ -121,7 +121,7 @@
     <value>&amp;Cancel</value>
   </data>
   <data name="BTN_TEXT_SEARCH" xml:space="preserve">
-    <value>S&amp;earch</value>
+    <value>&amp;Search</value>
   </data>
   <data name="FILE_FILTER" xml:space="preserve">
     <value>Csv File(*.csv)|*.csv|All File(*.*)|*.*</value>
@@ -149,7 +149,7 @@
     <value>Nothing to Save.</value>
   </data>
   <data name="MSG_SAVED" xml:space="preserve">
-    <value>Csv File Saved.</value>
+    <value>Your Csv File has Saved.</value>
   </data>
   <data name="MSG_STATUS_FINISHED" xml:space="preserve">
     <value>Done. Found {0} Places in {1} ms.</value>

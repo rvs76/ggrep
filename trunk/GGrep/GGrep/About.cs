@@ -9,6 +9,11 @@ namespace GGrep
 {
     partial class About : Form
     {
+        #region Contructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public About()
         {
             InitializeComponent();
@@ -18,6 +23,8 @@ namespace GGrep
             this.labelCopyright.Text = AssemblyCopyright;
             this.textBoxDescription.Text = AssemblyDescription;
         }
+
+        #endregion
 
         #region Assembly Attribute Accessors
 

@@ -10,6 +10,11 @@ namespace GGrep
 {
     public partial class Optoins : Form
     {
+        #region Contructor
+
+        /// <summary>
+        /// Contructor
+        /// </summary>
         public Optoins()
         {
             InitializeComponent();
@@ -19,6 +24,10 @@ namespace GGrep
             tbArguments.Text = Properties.Settings.Default.CustomEditorArguments;
             SetActive(rbCustom.Checked);
         }
+
+        #endregion
+
+        #region Events
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
@@ -43,12 +52,21 @@ namespace GGrep
         {
             SetActive(rbCustom.Checked);
         }
+        #endregion
 
+        #region Method
+
+        /// <summary>
+        /// Activity Setting
+        /// </summary>
+        /// <param name="active"></param>
         private void SetActive(bool active)
         {
             tbArguments.Enabled = active;
             tbCustomEditor.Enabled = active;
             btnBrowse.Enabled = active;
         }
+
+        #endregion
     }
 }

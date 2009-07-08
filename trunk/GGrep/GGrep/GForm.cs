@@ -66,6 +66,16 @@ namespace GGrep
                     return null;
             };
             #endregion
+
+            #region set window location & size
+            // Set window location
+            if (Properties.Settings.Default.WindowLocation != null)
+                this.Location = Properties.Settings.Default.WindowLocation;
+
+            // Set window size
+            if (Properties.Settings.Default.WindowSize != null)
+                this.Size = Properties.Settings.Default.WindowSize;
+            #endregion
         }
         #endregion
 
@@ -673,6 +683,16 @@ namespace GGrep
                 isRunning = false;
                 backgroundWorker.CancelAsync();
             }
+
+            // Copy window location to app settings
+            Properties.Settings.Default.WindowLocation = this.Location;
+
+            // Copy window size to app settings
+            if (this.WindowState == FormWindowState.Normal)
+                Properties.Settings.Default.WindowSize = this.Size;
+            else
+                Properties.Settings.Default.WindowSize = this.RestoreBounds.Size;
+
             Properties.Settings.Default.FilterIsCollapsed = gbFilter.IsCollapsed;
             Properties.Settings.Default.TooltipsShown = tooltipsToolStripMenuItem.Checked;
             Properties.Settings.Default.Save();

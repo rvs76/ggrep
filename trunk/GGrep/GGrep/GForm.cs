@@ -339,28 +339,35 @@ namespace GGrep
             }
         }
 
+        #endregion
+
+        #region Open File
         /// <summary>
         /// Open File in Specific Editor
         /// </summary>
         /// <param name="data">result data</param>
         private void OpenWithEditor(ResultData data)
         {
-            System.Diagnostics.Process p = new System.Diagnostics.Process();
-            if (!Properties.Settings.Default.UseCustomEditor)
+            try
             {
-                p.StartInfo.FileName = string.Format("\"{0}\"", data.FullFileName);
+                System.Diagnostics.Process p = new System.Diagnostics.Process();
+                if (!Properties.Settings.Default.UseCustomEditor)
+                {
+                    p.StartInfo.FileName = string.Format("\"{0}\"", data.FullFileName);
+                    p.Start();
+                }
+                else
+                {
+                    // col, row, filename
+                    p.StartInfo.FileName = string.Format("\"{0}\"", Properties.Settings.Default.CustomEditorPath);
+                    p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", string.Format("\"{0}\"", data.FullFileName)).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
+                    p.Start();
+                    if (p.HasExited)
+                        p.Kill();
+                }
             }
-            else
-            {
-                // col, row, filename
-                p.StartInfo.FileName = string.Format("\"{0}\"", Properties.Settings.Default.CustomEditorPath);
-                p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", string.Format("\"{0}\"", data.FullFileName)).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
-            }
-            p.Start();
-            if (p.HasExited)
-                p.Kill();
+            catch { }
         }
-
         #endregion
 
         #region CallBack

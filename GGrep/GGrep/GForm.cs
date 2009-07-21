@@ -684,6 +684,7 @@ namespace GGrep
             {
                 if (ShowMessage(2, Properties.Resources.MSG_WARN_01) != DialogResult.OK)
                 {
+                    e.Cancel = true;
                     return;
                 }
                 // stop

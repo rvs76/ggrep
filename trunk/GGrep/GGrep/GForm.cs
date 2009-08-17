@@ -56,7 +56,9 @@ namespace GGrep
                     {
                         case 1:
                             return ((ResultData)rowObject).FullFileName;
-                        case 4:
+                        case 2:
+                            return ((ResultData)rowObject).FileEncoding;
+                        case 5:
                             return ((ResultData)rowObject).Line.Trim();
                         default:
                             return null;
@@ -471,17 +473,7 @@ namespace GGrep
                 long rowNo = 0;
                 string line;
 
-                Encoding enc = null;
-                if (option.IsAutoEncoding)
-                {
-                    enc = Utils.GetEncoding(path);
-                }
-                else
-                {
-                    enc = Encoding.GetEncoding(option.Encoding);
-                }
-
-                using (StreamReader sr = new StreamReader(File.OpenRead(path), enc))
+                using (StreamReader sr = option.IsAutoEncoding ? EncodingTools.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding)))
                 {
                     while (!sr.EndOfStream && isRunning)
                     {
@@ -545,6 +537,7 @@ namespace GGrep
                             data.ColNo = m.Index + 1;
                             data.Line = line;
                             data.MatchedString = m.Value;
+                            data.FileEncoding = sr.CurrentEncoding.EncodingName;
                             list.Add(data);
                         }
                     }
@@ -574,7 +567,7 @@ namespace GGrep
                     // save
                     using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.GetEncoding("SJIS")))
                     {
-                        sw.WriteLine("#,File,Line,Column,Result");
+                        sw.WriteLine("#,File,Encoding,Line,Column,Result");
                         int index = 1;
                         foreach (ResultData data in folvResult.Objects)
                         {
@@ -607,6 +600,8 @@ namespace GGrep
             sb.Append(data.No);
             sb.Append(",");
             sb.Append(data.FullFileName);
+            sb.Append(",");
+            sb.Append(data.FileEncoding);
             sb.Append(",");
             sb.Append(data.RowNo);
             sb.Append(",");
@@ -939,6 +934,13 @@ namespace GGrep
         {
             get { return matchedString; }
             set { matchedString = value; }
+        }
+        private string fileEncoding;
+
+        public string FileEncoding
+        {
+            get { return fileEncoding; }
+            set { fileEncoding = value; }
         }
         #endregion
     }

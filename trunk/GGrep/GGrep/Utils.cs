@@ -13,41 +13,6 @@ namespace GGrep
         #region Methods
 
         /// <summary>
-        /// Get Auto Encoding
-        /// </summary>
-        /// <param name="filePath">file path</param>
-        /// <returns></returns>
-        public static System.Text.Encoding GetEncoding(string filePath)
-        {
-            System.Text.Encoding enc = null;
-            using (System.IO.FileStream file = new System.IO.FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                if (file.CanSeek)
-                {
-                    byte[] bom = new byte[4]; // Get the byte-order mark, if there is one
-                    file.Read(bom, 0, 4);
-                    enc = EncodingTools.DetectInputCodepage(bom);
-                }
-                else
-                {
-                    // The file cannot be randomly accessed, so you need to decide what to set the default to
-                    // based on the data provided. If you're expecting data from a lot of older applications,
-                    // default your encoding to Encoding.ASCII. If you're expecting data from a lot of newer
-                    // applications, default your encoding to Encoding.Unicode. Also, since binary files are
-                    // single byte-based, so you will want to use Encoding.ASCII, even though you'll probably
-                    // never need to use the encoding then since the Encoding classes are really meant to get
-                    // strings from the byte array that is the file.
-
-                    enc = System.Text.Encoding.ASCII;
-                }
-
-                // Close the file: never forget this step!
-                file.Close();
-            }
-            return enc;
-        }
-
-        /// <summary>
         /// Get escaped string of regex
         /// </summary>
         /// <param name="searchString"></param>

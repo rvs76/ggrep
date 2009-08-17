@@ -52,13 +52,13 @@ namespace GGrep
             {
                 if (rowObject != null && tooltipsToolStripMenuItem.Checked)
                 {
-                    switch (column.DisplayIndex)
+                    switch (column.AspectName)
                     {
-                        case 1:
+                        case "FullFileName":
                             return ((ResultData)rowObject).FullFileName;
-                        case 2:
+                        case "FileEncoding":
                             return ((ResultData)rowObject).FileEncoding;
-                        case 5:
+                        case "Line":
                             return ((ResultData)rowObject).Line.Trim();
                         default:
                             return null;

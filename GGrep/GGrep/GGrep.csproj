@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{37B165CC-AE82-42F9-89F1-0097E04ED12E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -191,7 +191,7 @@
     <Content Include="Search files.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ObjectListView\ObjectListView\ObjectListView2008.csproj">
+    <ProjectReference Include="..\..\demo\ObjectListViewDemo20\ObjectListView\ObjectListView2008.csproj">
       <Project>{18FEDA0C-D147-4286-B39A-01204808106A}</Project>
       <Name>ObjectListView2008</Name>
     </ProjectReference>

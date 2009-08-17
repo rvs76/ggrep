@@ -40,6 +40,7 @@
             this.folvResult = new BrightIdeasSoftware.FastObjectListView();
             this.colNo = new BrightIdeasSoftware.OLVColumn();
             this.colFileName = new BrightIdeasSoftware.OLVColumn();
+            this.colEncoding = new BrightIdeasSoftware.OLVColumn();
             this.colRowNo = new BrightIdeasSoftware.OLVColumn();
             this.colColNo = new BrightIdeasSoftware.OLVColumn();
             this.colLine = new BrightIdeasSoftware.OLVColumn();
@@ -79,7 +80,6 @@
             this.cbMultiline = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbbEncoding = new System.Windows.Forms.ComboBox();
-            this.colEncoding = new BrightIdeasSoftware.OLVColumn();
             this.gbSearch.SuspendLayout();
             this.gbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
@@ -192,7 +192,6 @@
             this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNo,
             this.colFileName,
-            this.colEncoding,
             this.colRowNo,
             this.colColNo,
             this.colLine});
@@ -228,6 +227,14 @@
             this.colFileName.Text = "File";
             this.colFileName.ToolTipText = "";
             this.colFileName.Width = 100;
+            // 
+            // colEncoding
+            // 
+            this.colEncoding.AspectName = "FileEncoding";
+            this.colEncoding.DisplayIndex = 2;
+            this.colEncoding.IsEditable = false;
+            this.colEncoding.IsVisible = false;
+            this.colEncoding.Text = "Encoding";
             // 
             // colRowNo
             // 
@@ -593,12 +600,6 @@
             this.cbbEncoding.Name = "cbbEncoding";
             this.cbbEncoding.Size = new System.Drawing.Size(121, 22);
             this.cbbEncoding.TabIndex = 11;
-            // 
-            // colEncoding
-            // 
-            this.colEncoding.AspectName = "FileEncoding";
-            this.colEncoding.IsEditable = false;
-            this.colEncoding.Text = "Encoding";
             // 
             // GForm
             // 

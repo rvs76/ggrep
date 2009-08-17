@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Collections;
 
 namespace GGrep
 {
@@ -17,7 +18,8 @@ namespace GGrep
         // this contains all codepages, sorted by preference and byte usage 
         public static int[] AllEncodings;
 
-        
+        static Encoding[] encList ;
+      
         
         /// <summary>
         /// Static constructor that fills the default preferred codepages
@@ -28,6 +30,18 @@ namespace GGrep
             List<int> streamEcodings= new List<int>();
             List<int> allEncodings = new List<int>();
             List<int> mimeEcodings = new List<int>();
+
+            #region 2009/08/17 Gao Add For Japanese
+            //TODO:Set encoding
+            encList = new Encoding[6];
+            encList[0] = Encoding.GetEncoding("sjis");
+            encList[0] = Encoding.GetEncoding("jis");
+            encList[0] = Encoding.GetEncoding("euc-jp");
+            encList[0] = Encoding.GetEncoding("utf-8");
+            encList[0] = Encoding.GetEncoding("utf-7");
+            encList[0] = Encoding.GetEncoding("unicode");
+            #endregion
+
 
             // asscii - most simple so put it in first place...
             streamEcodings.Add(Encoding.ASCII.CodePage);
@@ -55,8 +69,15 @@ namespace GGrep
 
             // always allow unicode flavours for streams (they all have a preamble)
             streamEcodings.Add(Encoding.Unicode.CodePage);
-            foreach (EncodingInfo enc in Encoding.GetEncodings())
+            //foreach (EncodingInfo enc in Encoding.GetEncodings())
+            foreach (Object obj in encList)
             {
+                Encoding enc;
+                if (obj is EncodingInfo)
+                    enc = ((EncodingInfo)obj).GetEncoding();
+                else
+                    enc = (Encoding)obj;
+
                 if (!streamEcodings.Contains(enc.CodePage))
                 {
                     Encoding encoding = Encoding.GetEncoding(enc.CodePage);
@@ -71,11 +92,16 @@ namespace GGrep
            
 
             // all singlebyte encodings
-            foreach (EncodingInfo enc in Encoding.GetEncodings())
+            //foreach (EncodingInfo enc in Encoding.GetEncodings())
+            foreach (Object obj in encList)
             {
-                
 
-                if (!enc.GetEncoding().IsSingleByte)
+                Encoding enc;
+                if (obj is EncodingInfo)
+                    enc = ((EncodingInfo)obj).GetEncoding();
+                else
+                    enc = (Encoding)obj;
+                if (!enc.IsSingleByte)
                     continue;
 
                 if (!allEncodings.Contains(enc.CodePage))
@@ -89,9 +115,15 @@ namespace GGrep
             }
 
             // add the rest (multibyte)
-            foreach (EncodingInfo enc in Encoding.GetEncodings())
+            //foreach (EncodingInfo enc in Encoding.GetEncodings())
+            foreach (Object obj in encList)
             {
-                if (!enc.GetEncoding().IsSingleByte)
+                Encoding enc;
+                if (obj is EncodingInfo)
+                    enc = ((EncodingInfo)obj).GetEncoding();
+                else
+                    enc = (Encoding)obj;
+                if (!enc.IsSingleByte)
                 {
                     if (!allEncodings.Contains(enc.CodePage))
                         allEncodings.Add(enc.CodePage);
@@ -231,7 +263,8 @@ namespace GGrep
                 throw new System.Runtime.InteropServices.COMException("Failed to get IMultilang3");
             try
             {
-                int[] resultCodePages = new int[preferedEncodings != null ? preferedEncodings.Length : Encoding.GetEncodings().Length];
+                //int[] resultCodePages = new int[preferedEncodings != null ? preferedEncodings.Length : Encoding.GetEncodings().Length];
+                int[] resultCodePages = new int[preferedEncodings != null ? preferedEncodings.Length : encList.Length];
                 uint detectedCodepages = (uint)resultCodePages.Length;
                 ushort specialChar = (ushort)'?';
 

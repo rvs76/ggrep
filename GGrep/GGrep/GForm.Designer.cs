@@ -79,6 +79,7 @@
             this.cbMultiline = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbbEncoding = new System.Windows.Forms.ComboBox();
+            this.colEncoding = new BrightIdeasSoftware.OLVColumn();
             this.gbSearch.SuspendLayout();
             this.gbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
@@ -183,6 +184,7 @@
             // 
             this.folvResult.AllColumns.Add(this.colNo);
             this.folvResult.AllColumns.Add(this.colFileName);
+            this.folvResult.AllColumns.Add(this.colEncoding);
             this.folvResult.AllColumns.Add(this.colRowNo);
             this.folvResult.AllColumns.Add(this.colColNo);
             this.folvResult.AllColumns.Add(this.colLine);
@@ -190,6 +192,7 @@
             this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNo,
             this.colFileName,
+            this.colEncoding,
             this.colRowNo,
             this.colColNo,
             this.colLine});
@@ -591,6 +594,12 @@
             this.cbbEncoding.Size = new System.Drawing.Size(121, 22);
             this.cbbEncoding.TabIndex = 11;
             // 
+            // colEncoding
+            // 
+            this.colEncoding.AspectName = "FileEncoding";
+            this.colEncoding.IsEditable = false;
+            this.colEncoding.Text = "Encoding";
+            // 
             // GForm
             // 
             this.AcceptButton = this.btnSearch;
@@ -682,6 +691,7 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem tooltipsToolStripMenuItem;
+        private BrightIdeasSoftware.OLVColumn colEncoding;
     }
 }
 

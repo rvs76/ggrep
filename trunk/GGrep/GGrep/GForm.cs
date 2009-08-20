@@ -473,7 +473,7 @@ namespace GGrep
                 long rowNo = 0;
                 string line;
 
-                using (StreamReader sr = option.IsAutoEncoding ? EncodingTools.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding)))
+                using (StreamReader sr = option.IsAutoEncoding ? Utils.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding)))
                 {
                     while (!sr.EndOfStream && isRunning)
                     {

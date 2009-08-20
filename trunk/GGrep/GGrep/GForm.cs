@@ -54,7 +54,7 @@ namespace GGrep
                 {
                     switch (column.AspectName)
                     {
-                        case "FullFileName":
+                        case "FileName":
                             return ((ResultData)rowObject).FullFileName;
                         case "FileEncoding":
                             return ((ResultData)rowObject).FileEncoding;

@@ -221,12 +221,10 @@
             // colFileName
             // 
             this.colFileName.AspectName = "FileName";
-            this.colFileName.FillsFreeSpace = true;
             this.colFileName.IsEditable = false;
-            this.colFileName.MaximumWidth = 300;
             this.colFileName.Text = "File";
             this.colFileName.ToolTipText = "";
-            this.colFileName.Width = 100;
+            this.colFileName.Width = 300;
             // 
             // colEncoding
             // 

@@ -32,20 +32,40 @@ namespace GGrep
             if (!stream.CanSeek)
                 throw new ArgumentException("the stream must support seek operations", "stream");
 
-            // assume default encoding at first place
-            Encoding detectedEncoding = Encoding.Default;
+            Encoding detectedEncoding = null;
 
-            // seek to stream start
-            stream.Seek(0, SeekOrigin.Begin);
+            byte[] buf = null;
 
-            // buffer for preamble and up to 512b sample text for dection
-            byte[] buf = new byte[System.Math.Min(stream.Length, 512)];
+            int count = 1;
 
-            stream.Read(buf, 0, buf.Length);
+            // try 3 times to detect encode, increase the length of detected bytes
+            while (detectedEncoding == null && count <= 3)
+            {
+                // seek to stream start
+                stream.Seek(0, SeekOrigin.Begin);
+                // buffer for preamble and up to 512b sample text for dection
+                buf = new byte[System.Math.Min(stream.Length, 512 * count)];
+                stream.Read(buf, 0, buf.Length);
 
-            detectedEncoding = GetCode(buf);
+                detectedEncoding = GetCode(buf);
+
+                // if length of stream is less than request, break
+                if (stream.Length < 512 * count)
+                    break;
+
+                count++;
+            }
+
+            // if not found at last, use mlanguage to detect
             if (detectedEncoding == null)
+            {
+                // seek to stream start
+                stream.Seek(0, SeekOrigin.Begin);
+                // buffer for preamble and up to 512b sample text for dection
+                buf = new byte[System.Math.Min(stream.Length, 512)];
+
                 detectedEncoding = EncodingTools.DetectInputCodepage(buf);
+            }
 
             // seek back to stream start
             stream.Seek(0, SeekOrigin.Begin);

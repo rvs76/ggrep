@@ -44,7 +44,7 @@ namespace GGrep
             tooltipsToolStripMenuItem.Checked = Properties.Settings.Default.TooltipsShown;
 
             #region highlight render
-            this.colLine.Renderer = new HighlightRenderer();
+            this.colResult.Renderer = new HighlightRenderer();
             #endregion
 
             #region tooltips
@@ -567,7 +567,21 @@ namespace GGrep
                     // save
                     using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.GetEncoding("SJIS")))
                     {
-                        sw.WriteLine("#,File,Encoding,Line,Column,Result");
+                        #region write header
+                        sw.Write("#");
+                        if (colFileName.IsVisible)
+                            sw.Write(",File");
+                        if (colEncoding.IsVisible)
+                            sw.Write(",Encoding");
+                        if (colRowNo.IsVisible)
+                            sw.Write(",Row");
+                        if (colColNo.IsVisible)
+                            sw.Write(",Column");
+                        if (colResult.IsVisible)
+                            sw.Write(",Result");
+                        sw.Write(System.Environment.NewLine);
+                        #endregion
+
                         int index = 1;
                         foreach (ResultData data in folvResult.Objects)
                         {
@@ -598,18 +612,33 @@ namespace GGrep
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(data.No);
-            sb.Append(",");
-            sb.Append(data.FullFileName);
-            sb.Append(",");
-            sb.Append(data.FileEncoding);
-            sb.Append(",");
-            sb.Append(data.RowNo);
-            sb.Append(",");
-            sb.Append(data.ColNo);
-            sb.Append(",");
-            sb.Append("\"");
-            sb.Append(data.Line.Replace("\"", "\"\""));
-            sb.Append("\"");
+            if (colFileName.IsVisible)
+            {
+                sb.Append(",");
+                sb.Append(data.FullFileName);
+            }
+            if (colEncoding.IsVisible)
+            {
+                sb.Append(",");
+                sb.Append(data.FileEncoding);
+            }
+            if (colRowNo.IsVisible)
+            {
+                sb.Append(",");
+                sb.Append(data.RowNo);
+            }
+            if (colColNo.IsVisible)
+            {
+                sb.Append(",");
+                sb.Append(data.ColNo);
+            }
+            if (colResult.IsVisible)
+            {
+                sb.Append(",");
+                sb.Append("\"");
+                sb.Append(data.Line.Replace("\"", "\"\""));
+                sb.Append("\"");
+            }
 
             return sb.ToString();
         }

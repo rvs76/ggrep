@@ -43,7 +43,7 @@
             this.colEncoding = new BrightIdeasSoftware.OLVColumn();
             this.colRowNo = new BrightIdeasSoftware.OLVColumn();
             this.colColNo = new BrightIdeasSoftware.OLVColumn();
-            this.colLine = new BrightIdeasSoftware.OLVColumn();
+            this.colResult = new BrightIdeasSoftware.OLVColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -187,14 +187,14 @@
             this.folvResult.AllColumns.Add(this.colEncoding);
             this.folvResult.AllColumns.Add(this.colRowNo);
             this.folvResult.AllColumns.Add(this.colColNo);
-            this.folvResult.AllColumns.Add(this.colLine);
+            this.folvResult.AllColumns.Add(this.colResult);
             this.folvResult.AlternateRowBackColor = System.Drawing.Color.Honeydew;
             this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colNo,
             this.colFileName,
             this.colRowNo,
             this.colColNo,
-            this.colLine});
+            this.colResult});
             this.folvResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.folvResult.EmptyListMsg = "Nothing Founded!!!";
             this.folvResult.FullRowSelect = true;
@@ -241,7 +241,7 @@
             this.colRowNo.AspectName = "RowNo";
             this.colRowNo.AspectToStringFormat = "";
             this.colRowNo.IsEditable = false;
-            this.colRowNo.Text = "Line";
+            this.colRowNo.Text = "Row";
             this.colRowNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colRowNo.Width = 40;
             // 
@@ -254,13 +254,13 @@
             this.colColNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colColNo.Width = 40;
             // 
-            // colLine
+            // colResult
             // 
-            this.colLine.AspectName = "Line";
-            this.colLine.FillsFreeSpace = true;
-            this.colLine.IsEditable = false;
-            this.colLine.Text = "Result";
-            this.colLine.Width = 240;
+            this.colResult.AspectName = "Line";
+            this.colResult.FillsFreeSpace = true;
+            this.colResult.IsEditable = false;
+            this.colResult.Text = "Result";
+            this.colResult.Width = 240;
             // 
             // statusStrip1
             // 
@@ -673,7 +673,7 @@
         private BrightIdeasSoftware.OLVColumn colFileName;
         private BrightIdeasSoftware.OLVColumn colRowNo;
         private BrightIdeasSoftware.OLVColumn colColNo;
-        private BrightIdeasSoftware.OLVColumn colLine;
+        private BrightIdeasSoftware.OLVColumn colResult;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private BrightIdeasSoftware.OLVColumn colNo;

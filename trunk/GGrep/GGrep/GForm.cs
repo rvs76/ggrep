@@ -60,6 +60,8 @@ namespace GGrep
                             return ((ResultData)rowObject).FileEncoding;
                         case "Line":
                             return ((ResultData)rowObject).Line.Trim();
+                        case "Matched":
+                            return ((ResultData)rowObject).MatchedString.Trim();
                         default:
                             return null;
                     }
@@ -579,6 +581,8 @@ namespace GGrep
                             sw.Write(",Column");
                         if (colResult.IsVisible)
                             sw.Write(",Result");
+                        if (colMatched.IsVisible)
+                            sw.Write(",Matched");
                         sw.Write(System.Environment.NewLine);
                         #endregion
 
@@ -637,6 +641,13 @@ namespace GGrep
                 sb.Append(",");
                 sb.Append("\"");
                 sb.Append(data.Line.Replace("\"", "\"\""));
+                sb.Append("\"");
+            }
+            if (colMatched.IsVisible)
+            {
+                sb.Append(",");
+                sb.Append("\"");
+                sb.Append(data.MatchedString.Replace("\"", "\"\""));
                 sb.Append("\"");
             }
 

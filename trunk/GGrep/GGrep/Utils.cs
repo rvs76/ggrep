@@ -12,6 +12,16 @@ namespace GGrep
     {
         #region Methods
 
+        public static string GetAppLang()
+        {
+            string lang = Properties.Settings.Default.Language;
+            if (string.IsNullOrEmpty(lang))
+            {
+                lang = "en-US";
+            }
+            return lang;
+        }
+
         /// <summary>
         /// Creates a stream reader from a stream and detects
         /// the encoding form the first bytes in the stream
@@ -24,7 +34,7 @@ namespace GGrep
             if (path == null)
                 throw new ArgumentNullException("path");
 
-            Stream stream = File.Open(path, FileMode.Open);
+            Stream stream = File.Open(path, FileMode.Open, FileAccess.Read);
 
             // check stream parameter
             if (stream == null)

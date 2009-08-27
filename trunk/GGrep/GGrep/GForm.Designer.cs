@@ -37,6 +37,14 @@
             this.gbSearch = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.gbResult = new System.Windows.Forms.GroupBox();
+            this.folvResult = new BrightIdeasSoftware.FastObjectListView();
+            this.colNo = new BrightIdeasSoftware.OLVColumn();
+            this.colFileName = new BrightIdeasSoftware.OLVColumn();
+            this.colEncoding = new BrightIdeasSoftware.OLVColumn();
+            this.colRowNo = new BrightIdeasSoftware.OLVColumn();
+            this.colColNo = new BrightIdeasSoftware.OLVColumn();
+            this.colMatched = new BrightIdeasSoftware.OLVColumn();
+            this.colResult = new BrightIdeasSoftware.OLVColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -50,18 +58,14 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tooltipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.japaneseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.folvResult = new BrightIdeasSoftware.FastObjectListView();
-            this.colNo = new BrightIdeasSoftware.OLVColumn();
-            this.colFileName = new BrightIdeasSoftware.OLVColumn();
-            this.colEncoding = new BrightIdeasSoftware.OLVColumn();
-            this.colRowNo = new BrightIdeasSoftware.OLVColumn();
-            this.colColNo = new BrightIdeasSoftware.OLVColumn();
-            this.colMatched = new BrightIdeasSoftware.OLVColumn();
-            this.colResult = new BrightIdeasSoftware.OLVColumn();
             this.gbFilter = new GGrep.CollapsibleGroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbbFolderNotMatch = new System.Windows.Forms.ComboBox();
@@ -83,9 +87,9 @@
             this.cbbEncoding = new System.Windows.Forms.ComboBox();
             this.gbSearch.SuspendLayout();
             this.gbResult.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).BeginInit();
             this.gbFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -93,218 +97,395 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(441, 45);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBrowse.AccessibleDescription = null;
+            this.btnBrowse.AccessibleName = null;
+            resources.ApplyResources(this.btnBrowse, "btnBrowse");
+            this.btnBrowse.BackgroundImage = null;
+            this.btnBrowse.Font = null;
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(30, 23);
-            this.btnBrowse.TabIndex = 1;
-            this.btnBrowse.Text = "...";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // cbbSearchFolder
             // 
-            this.cbbSearchFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbSearchFolder.AccessibleDescription = null;
+            this.cbbSearchFolder.AccessibleName = null;
+            resources.ApplyResources(this.cbbSearchFolder, "cbbSearchFolder");
+            this.cbbSearchFolder.BackgroundImage = null;
+            this.cbbSearchFolder.Font = null;
             this.cbbSearchFolder.FormattingEnabled = true;
-            this.cbbSearchFolder.Location = new System.Drawing.Point(63, 46);
-            this.cbbSearchFolder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbbSearchFolder.Name = "cbbSearchFolder";
-            this.cbbSearchFolder.Size = new System.Drawing.Size(372, 22);
-            this.cbbSearchFolder.TabIndex = 2;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 20);
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Font = null;
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 14);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Search:";
             // 
             // cbbSearchText
             // 
-            this.cbbSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbSearchText.AccessibleDescription = null;
+            this.cbbSearchText.AccessibleName = null;
+            resources.ApplyResources(this.cbbSearchText, "cbbSearchText");
+            this.cbbSearchText.BackgroundImage = null;
+            this.cbbSearchText.Font = null;
             this.cbbSearchText.FormattingEnabled = true;
-            this.cbbSearchText.Location = new System.Drawing.Point(63, 16);
-            this.cbbSearchText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbbSearchText.Name = "cbbSearchText";
-            this.cbbSearchText.Size = new System.Drawing.Size(408, 22);
-            this.cbbSearchText.TabIndex = 4;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 50);
+            this.label2.AccessibleDescription = null;
+            this.label2.AccessibleName = null;
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Font = null;
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 14);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Folder:";
             // 
             // gbSearch
             // 
+            this.gbSearch.AccessibleDescription = null;
+            this.gbSearch.AccessibleName = null;
+            resources.ApplyResources(this.gbSearch, "gbSearch");
+            this.gbSearch.BackgroundImage = null;
             this.gbSearch.Controls.Add(this.label1);
             this.gbSearch.Controls.Add(this.btnSearch);
             this.gbSearch.Controls.Add(this.cbbSearchFolder);
             this.gbSearch.Controls.Add(this.label2);
             this.gbSearch.Controls.Add(this.btnBrowse);
             this.gbSearch.Controls.Add(this.cbbSearchText);
-            this.gbSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbSearch.Location = new System.Drawing.Point(6, 30);
+            this.gbSearch.Font = null;
             this.gbSearch.Name = "gbSearch";
-            this.gbSearch.Size = new System.Drawing.Size(480, 107);
-            this.gbSearch.TabIndex = 7;
             this.gbSearch.TabStop = false;
-            this.gbSearch.Text = "Search";
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(396, 75);
+            this.btnSearch.AccessibleDescription = null;
+            this.btnSearch.AccessibleName = null;
+            resources.ApplyResources(this.btnSearch, "btnSearch");
+            this.btnSearch.BackgroundImage = null;
+            this.btnSearch.Font = null;
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 8;
-            this.btnSearch.Text = "&Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // gbResult
             // 
+            this.gbResult.AccessibleDescription = null;
+            this.gbResult.AccessibleName = null;
+            resources.ApplyResources(this.gbResult, "gbResult");
+            this.gbResult.BackgroundImage = null;
             this.gbResult.Controls.Add(this.folvResult);
-            this.gbResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbResult.Location = new System.Drawing.Point(6, 319);
+            this.gbResult.Font = null;
             this.gbResult.Name = "gbResult";
-            this.gbResult.Size = new System.Drawing.Size(480, 119);
-            this.gbResult.TabIndex = 10;
             this.gbResult.TabStop = false;
-            this.gbResult.Text = "Result";
+            // 
+            // folvResult
+            // 
+            this.folvResult.AccessibleDescription = null;
+            this.folvResult.AccessibleName = null;
+            resources.ApplyResources(this.folvResult, "folvResult");
+            this.folvResult.AllColumns.Add(this.colNo);
+            this.folvResult.AllColumns.Add(this.colFileName);
+            this.folvResult.AllColumns.Add(this.colEncoding);
+            this.folvResult.AllColumns.Add(this.colRowNo);
+            this.folvResult.AllColumns.Add(this.colColNo);
+            this.folvResult.AllColumns.Add(this.colMatched);
+            this.folvResult.AllColumns.Add(this.colResult);
+            this.folvResult.AlternateRowBackColor = System.Drawing.Color.Honeydew;
+            this.folvResult.BackgroundImage = null;
+            this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colNo,
+            this.colFileName,
+            this.colRowNo,
+            this.colColNo,
+            this.colResult});
+            this.folvResult.Font = null;
+            this.folvResult.FullRowSelect = true;
+            this.folvResult.GridLines = true;
+            this.folvResult.GroupWithItemCountFormat = null;
+            this.folvResult.GroupWithItemCountSingularFormat = null;
+            this.folvResult.Name = "folvResult";
+            this.folvResult.OverlayText.Text = null;
+            this.folvResult.OwnerDraw = true;
+            this.folvResult.ShowGroups = false;
+            this.folvResult.UseAlternatingBackColors = true;
+            this.folvResult.UseCompatibleStateImageBehavior = false;
+            this.folvResult.View = System.Windows.Forms.View.Details;
+            this.folvResult.VirtualMode = true;
+            this.folvResult.DoubleClick += new System.EventHandler(this.folvResult_DoubleClick);
+            // 
+            // colNo
+            // 
+            this.colNo.AspectName = "No";
+            this.colNo.GroupWithItemCountFormat = null;
+            this.colNo.GroupWithItemCountSingularFormat = null;
+            this.colNo.IsEditable = false;
+            resources.ApplyResources(this.colNo, "colNo");
+            this.colNo.ToolTipText = null;
+            // 
+            // colFileName
+            // 
+            this.colFileName.AspectName = "FileName";
+            this.colFileName.GroupWithItemCountFormat = null;
+            this.colFileName.GroupWithItemCountSingularFormat = null;
+            this.colFileName.IsEditable = false;
+            resources.ApplyResources(this.colFileName, "colFileName");
+            // 
+            // colEncoding
+            // 
+            this.colEncoding.AspectName = "FileEncoding";
+            resources.ApplyResources(this.colEncoding, "colEncoding");
+            this.colEncoding.GroupWithItemCountFormat = null;
+            this.colEncoding.GroupWithItemCountSingularFormat = null;
+            this.colEncoding.IsEditable = false;
+            this.colEncoding.IsVisible = false;
+            this.colEncoding.ToolTipText = null;
+            // 
+            // colRowNo
+            // 
+            this.colRowNo.AspectName = "RowNo";
+            this.colRowNo.AspectToStringFormat = "";
+            this.colRowNo.GroupWithItemCountFormat = null;
+            this.colRowNo.GroupWithItemCountSingularFormat = null;
+            this.colRowNo.IsEditable = false;
+            resources.ApplyResources(this.colRowNo, "colRowNo");
+            this.colRowNo.ToolTipText = null;
+            // 
+            // colColNo
+            // 
+            this.colColNo.AspectName = "ColNo";
+            this.colColNo.AspectToStringFormat = "";
+            this.colColNo.GroupWithItemCountFormat = null;
+            this.colColNo.GroupWithItemCountSingularFormat = null;
+            this.colColNo.IsEditable = false;
+            resources.ApplyResources(this.colColNo, "colColNo");
+            this.colColNo.ToolTipText = null;
+            // 
+            // colMatched
+            // 
+            this.colMatched.AspectName = "MatchedString";
+            resources.ApplyResources(this.colMatched, "colMatched");
+            this.colMatched.GroupWithItemCountFormat = null;
+            this.colMatched.GroupWithItemCountSingularFormat = null;
+            this.colMatched.IsVisible = false;
+            this.colMatched.ToolTipText = null;
+            // 
+            // colResult
+            // 
+            this.colResult.AspectName = "Line";
+            this.colResult.FillsFreeSpace = true;
+            this.colResult.GroupWithItemCountFormat = null;
+            this.colResult.GroupWithItemCountSingularFormat = null;
+            this.colResult.IsEditable = false;
+            resources.ApplyResources(this.colResult, "colResult");
+            this.colResult.ToolTipText = null;
             // 
             // statusStrip1
             // 
+            this.statusStrip1.AccessibleDescription = null;
+            this.statusStrip1.AccessibleName = null;
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.BackgroundImage = null;
+            this.statusStrip1.Font = null;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar,
             this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(6, 438);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(480, 22);
-            this.statusStrip1.TabIndex = 12;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripProgressBar
             // 
+            this.toolStripProgressBar.AccessibleDescription = null;
+            this.toolStripProgressBar.AccessibleName = null;
+            resources.ApplyResources(this.toolStripProgressBar, "toolStripProgressBar");
             this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // statusLabel
             // 
+            this.statusLabel.AccessibleDescription = null;
+            this.statusLabel.AccessibleName = null;
+            resources.ApplyResources(this.statusLabel, "statusLabel");
+            this.statusLabel.BackgroundImage = null;
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(115, 17);
-            this.statusLabel.Text = "Click &Search to Start.";
             // 
             // menuStripMain
             // 
-            this.menuStripMain.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.menuStripMain.AccessibleDescription = null;
+            this.menuStripMain.AccessibleName = null;
+            resources.ApplyResources(this.menuStripMain, "menuStripMain");
+            this.menuStripMain.BackgroundImage = null;
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStripMain.Location = new System.Drawing.Point(6, 6);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(480, 24);
-            this.menuStripMain.TabIndex = 13;
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.AccessibleDescription = null;
+            this.fileToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
+            this.fileToolStripMenuItem.BackgroundImage = null;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveAsCsvToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
-            this.fileToolStripMenuItem.Text = "&File";
+            this.fileToolStripMenuItem.ShortcutKeyDisplayString = null;
             // 
             // saveAsCsvToolStripMenuItem
             // 
-            this.saveAsCsvToolStripMenuItem.Enabled = false;
+            this.saveAsCsvToolStripMenuItem.AccessibleDescription = null;
+            this.saveAsCsvToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.saveAsCsvToolStripMenuItem, "saveAsCsvToolStripMenuItem");
+            this.saveAsCsvToolStripMenuItem.BackgroundImage = null;
             this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
-            this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.saveAsCsvToolStripMenuItem.Text = "&Save as Csv";
+            this.saveAsCsvToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.saveAsCsvToolStripMenuItem.Click += new System.EventHandler(this.saveAsCsvToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
+            this.toolStripSeparator1.AccessibleDescription = null;
+            this.toolStripSeparator1.AccessibleName = null;
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.AccessibleDescription = null;
+            this.exitToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.BackgroundImage = null;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
+            this.viewToolStripMenuItem.AccessibleDescription = null;
+            this.viewToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
+            this.viewToolStripMenuItem.BackgroundImage = null;
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterToolStripMenuItem,
             this.toolStripSeparator2,
             this.tooltipsToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.viewToolStripMenuItem.Text = "&View";
+            this.viewToolStripMenuItem.ShortcutKeyDisplayString = null;
             // 
             // filterToolStripMenuItem
             // 
+            this.filterToolStripMenuItem.AccessibleDescription = null;
+            this.filterToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.filterToolStripMenuItem, "filterToolStripMenuItem");
+            this.filterToolStripMenuItem.BackgroundImage = null;
             this.filterToolStripMenuItem.CheckOnClick = true;
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.filterToolStripMenuItem.Text = "Fi&lter";
+            this.filterToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
+            this.toolStripSeparator2.AccessibleDescription = null;
+            this.toolStripSeparator2.AccessibleName = null;
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(114, 6);
             // 
             // tooltipsToolStripMenuItem
             // 
+            this.tooltipsToolStripMenuItem.AccessibleDescription = null;
+            this.tooltipsToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.tooltipsToolStripMenuItem, "tooltipsToolStripMenuItem");
+            this.tooltipsToolStripMenuItem.BackgroundImage = null;
             this.tooltipsToolStripMenuItem.CheckOnClick = true;
             this.tooltipsToolStripMenuItem.Name = "tooltipsToolStripMenuItem";
-            this.tooltipsToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.tooltipsToolStripMenuItem.Text = "Toolti&ps";
+            this.tooltipsToolStripMenuItem.ShortcutKeyDisplayString = null;
             // 
             // toolsToolStripMenuItem
             // 
+            this.toolsToolStripMenuItem.AccessibleDescription = null;
+            this.toolsToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
+            this.toolsToolStripMenuItem.BackgroundImage = null;
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.languageToolStripMenuItem,
+            this.toolStripSeparator3,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "&Tools";
+            this.toolsToolStripMenuItem.ShortcutKeyDisplayString = null;
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.AccessibleDescription = null;
+            this.languageToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
+            this.languageToolStripMenuItem.BackgroundImage = null;
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem,
+            this.japaneseToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.ShortcutKeyDisplayString = null;
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.AccessibleDescription = null;
+            this.englishToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.BackgroundImage = null;
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            this.englishToolStripMenuItem.ShortcutKeyDisplayString = null;
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishChangeToolStripMenuItem_Clicked);
+            // 
+            // japaneseToolStripMenuItem
+            // 
+            this.japaneseToolStripMenuItem.AccessibleDescription = null;
+            this.japaneseToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.japaneseToolStripMenuItem, "japaneseToolStripMenuItem");
+            this.japaneseToolStripMenuItem.BackgroundImage = null;
+            this.japaneseToolStripMenuItem.Checked = true;
+            this.japaneseToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.japaneseToolStripMenuItem.Name = "japaneseToolStripMenuItem";
+            this.japaneseToolStripMenuItem.ShortcutKeyDisplayString = null;
+            this.japaneseToolStripMenuItem.Click += new System.EventHandler(this.japaneseChangeToolStripMenuItem_Clicked);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.AccessibleDescription = null;
+            this.toolStripSeparator3.AccessibleName = null;
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
             // 
             // optionsToolStripMenuItem
             // 
+            this.optionsToolStripMenuItem.AccessibleDescription = null;
+            this.optionsToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
+            this.optionsToolStripMenuItem.BackgroundImage = null;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.optionsToolStripMenuItem.Text = "&Options";
+            this.optionsToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.AccessibleDescription = null;
+            this.helpToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            this.helpToolStripMenuItem.BackgroundImage = null;
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
+            this.helpToolStripMenuItem.ShortcutKeyDisplayString = null;
             // 
             // aboutToolStripMenuItem
             // 
+            this.aboutToolStripMenuItem.AccessibleDescription = null;
+            this.aboutToolStripMenuItem.AccessibleName = null;
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.aboutToolStripMenuItem.BackgroundImage = null;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // backgroundWorker
@@ -315,109 +496,24 @@
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.GrepCompleted);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.GrepProgressChanged);
             // 
-            // folvResult
-            // 
-            this.folvResult.AllColumns.Add(this.colNo);
-            this.folvResult.AllColumns.Add(this.colFileName);
-            this.folvResult.AllColumns.Add(this.colEncoding);
-            this.folvResult.AllColumns.Add(this.colRowNo);
-            this.folvResult.AllColumns.Add(this.colColNo);
-            this.folvResult.AllColumns.Add(this.colMatched);
-            this.folvResult.AllColumns.Add(this.colResult);
-            this.folvResult.AlternateRowBackColor = System.Drawing.Color.Honeydew;
-            this.folvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colNo,
-            this.colFileName,
-            this.colRowNo,
-            this.colColNo,
-            this.colResult});
-            this.folvResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.folvResult.EmptyListMsg = "Nothing Founded!!!";
-            this.folvResult.FullRowSelect = true;
-            this.folvResult.GridLines = true;
-            this.folvResult.Location = new System.Drawing.Point(3, 18);
-            this.folvResult.Name = "folvResult";
-            this.folvResult.OwnerDraw = true;
-            this.folvResult.ShowGroups = false;
-            this.folvResult.Size = new System.Drawing.Size(474, 98);
-            this.folvResult.TabIndex = 9;
-            this.folvResult.UseAlternatingBackColors = true;
-            this.folvResult.UseCompatibleStateImageBehavior = false;
-            this.folvResult.View = System.Windows.Forms.View.Details;
-            this.folvResult.VirtualMode = true;
-            this.folvResult.DoubleClick += new System.EventHandler(this.folvResult_DoubleClick);
-            // 
-            // colNo
-            // 
-            this.colNo.AspectName = "No";
-            this.colNo.IsEditable = false;
-            this.colNo.Text = "#";
-            this.colNo.Width = 30;
-            // 
-            // colFileName
-            // 
-            this.colFileName.AspectName = "FileName";
-            this.colFileName.IsEditable = false;
-            this.colFileName.Text = "File";
-            this.colFileName.ToolTipText = "";
-            this.colFileName.Width = 300;
-            // 
-            // colEncoding
-            // 
-            this.colEncoding.AspectName = "FileEncoding";
-            this.colEncoding.DisplayIndex = 2;
-            this.colEncoding.IsEditable = false;
-            this.colEncoding.IsVisible = false;
-            this.colEncoding.Text = "Encoding";
-            // 
-            // colRowNo
-            // 
-            this.colRowNo.AspectName = "RowNo";
-            this.colRowNo.AspectToStringFormat = "";
-            this.colRowNo.IsEditable = false;
-            this.colRowNo.Text = "Row";
-            this.colRowNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colRowNo.Width = 40;
-            // 
-            // colColNo
-            // 
-            this.colColNo.AspectName = "ColNo";
-            this.colColNo.AspectToStringFormat = "";
-            this.colColNo.IsEditable = false;
-            this.colColNo.Text = "Column";
-            this.colColNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colColNo.Width = 40;
-            // 
-            // colMatched
-            // 
-            this.colMatched.AspectName = "MatchedString";
-            this.colMatched.DisplayIndex = 4;
-            this.colMatched.IsVisible = false;
-            this.colMatched.Text = "Matched";
-            // 
-            // colResult
-            // 
-            this.colResult.AspectName = "Line";
-            this.colResult.FillsFreeSpace = true;
-            this.colResult.IsEditable = false;
-            this.colResult.Text = "Result";
-            this.colResult.Width = 240;
-            // 
             // gbFilter
             // 
+            this.gbFilter.AccessibleDescription = null;
+            this.gbFilter.AccessibleName = null;
+            resources.ApplyResources(this.gbFilter, "gbFilter");
+            this.gbFilter.BackgroundImage = null;
             this.gbFilter.Controls.Add(this.panel2);
             this.gbFilter.Controls.Add(this.flowLayoutPanel1);
-            this.gbFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbFilter.Location = new System.Drawing.Point(6, 137);
+            this.gbFilter.Font = null;
             this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(480, 182);
-            this.gbFilter.TabIndex = 6;
             this.gbFilter.TabStop = false;
-            this.gbFilter.Text = "Filter";
             // 
             // panel2
             // 
-            this.panel2.AutoSize = true;
+            this.panel2.AccessibleDescription = null;
+            this.panel2.AccessibleName = null;
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.BackgroundImage = null;
             this.panel2.Controls.Add(this.cbbFolderNotMatch);
             this.panel2.Controls.Add(this.cbbFolderMatch);
             this.panel2.Controls.Add(this.label3);
@@ -426,91 +522,87 @@
             this.panel2.Controls.Add(this.cbbFileMatch);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 66);
+            this.panel2.Font = null;
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(474, 104);
-            this.panel2.TabIndex = 8;
             // 
             // cbbFolderNotMatch
             // 
-            this.cbbFolderNotMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbFolderNotMatch.AccessibleDescription = null;
+            this.cbbFolderNotMatch.AccessibleName = null;
+            resources.ApplyResources(this.cbbFolderNotMatch, "cbbFolderNotMatch");
+            this.cbbFolderNotMatch.BackgroundImage = null;
+            this.cbbFolderNotMatch.Font = null;
             this.cbbFolderNotMatch.FormattingEnabled = true;
-            this.cbbFolderNotMatch.Location = new System.Drawing.Point(118, 79);
             this.cbbFolderNotMatch.Name = "cbbFolderNotMatch";
-            this.cbbFolderNotMatch.Size = new System.Drawing.Size(349, 22);
-            this.cbbFolderNotMatch.TabIndex = 19;
             // 
             // cbbFolderMatch
             // 
-            this.cbbFolderMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbFolderMatch.AccessibleDescription = null;
+            this.cbbFolderMatch.AccessibleName = null;
+            resources.ApplyResources(this.cbbFolderMatch, "cbbFolderMatch");
+            this.cbbFolderMatch.BackgroundImage = null;
+            this.cbbFolderMatch.Font = null;
             this.cbbFolderMatch.FormattingEnabled = true;
-            this.cbbFolderMatch.Location = new System.Drawing.Point(118, 54);
             this.cbbFolderMatch.Name = "cbbFolderMatch";
-            this.cbbFolderMatch.Size = new System.Drawing.Size(349, 22);
-            this.cbbFolderMatch.TabIndex = 18;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 83);
+            this.label3.AccessibleDescription = null;
+            this.label3.AccessibleName = null;
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Font = null;
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 14);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Folder not match:";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 58);
+            this.label7.AccessibleDescription = null;
+            this.label7.AccessibleName = null;
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Font = null;
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 14);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Folder match:";
             // 
             // cbbFileNotMatch
             // 
-            this.cbbFileNotMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbFileNotMatch.AccessibleDescription = null;
+            this.cbbFileNotMatch.AccessibleName = null;
+            resources.ApplyResources(this.cbbFileNotMatch, "cbbFileNotMatch");
+            this.cbbFileNotMatch.BackgroundImage = null;
+            this.cbbFileNotMatch.Font = null;
             this.cbbFileNotMatch.FormattingEnabled = true;
-            this.cbbFileNotMatch.Location = new System.Drawing.Point(118, 29);
             this.cbbFileNotMatch.Name = "cbbFileNotMatch";
-            this.cbbFileNotMatch.Size = new System.Drawing.Size(349, 22);
-            this.cbbFileNotMatch.TabIndex = 15;
             // 
             // cbbFileMatch
             // 
-            this.cbbFileMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbFileMatch.AccessibleDescription = null;
+            this.cbbFileMatch.AccessibleName = null;
+            resources.ApplyResources(this.cbbFileMatch, "cbbFileMatch");
+            this.cbbFileMatch.BackgroundImage = null;
+            this.cbbFileMatch.Font = null;
             this.cbbFileMatch.FormattingEnabled = true;
-            this.cbbFileMatch.Location = new System.Drawing.Point(118, 4);
             this.cbbFileMatch.Name = "cbbFileMatch";
-            this.cbbFileMatch.Size = new System.Drawing.Size(349, 22);
-            this.cbbFileMatch.TabIndex = 14;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 33);
+            this.label5.AccessibleDescription = null;
+            this.label5.AccessibleName = null;
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Font = null;
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 14);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "File not match:";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 8);
+            this.label4.AccessibleDescription = null;
+            this.label4.AccessibleName = null;
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Font = null;
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 14);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "File match:";
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AccessibleDescription = null;
+            this.flowLayoutPanel1.AccessibleName = null;
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.BackgroundImage = null;
             this.flowLayoutPanel1.Controls.Add(this.cbIncludeSubFolders);
             this.flowLayoutPanel1.Controls.Add(this.cbIncludeHiddenFolder);
             this.flowLayoutPanel1.Controls.Add(this.cbRegex);
@@ -519,123 +611,113 @@
             this.flowLayoutPanel1.Controls.Add(this.cbMultiline);
             this.flowLayoutPanel1.Controls.Add(this.label6);
             this.flowLayoutPanel1.Controls.Add(this.cbbEncoding);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 18);
+            this.flowLayoutPanel1.Font = null;
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(474, 48);
-            this.flowLayoutPanel1.TabIndex = 8;
             // 
             // cbIncludeSubFolders
             // 
-            this.cbIncludeSubFolders.AutoSize = true;
-            this.cbIncludeSubFolders.Location = new System.Drawing.Point(3, 3);
+            this.cbIncludeSubFolders.AccessibleDescription = null;
+            this.cbIncludeSubFolders.AccessibleName = null;
+            resources.ApplyResources(this.cbIncludeSubFolders, "cbIncludeSubFolders");
+            this.cbIncludeSubFolders.BackgroundImage = null;
+            this.cbIncludeSubFolders.Font = null;
             this.cbIncludeSubFolders.Name = "cbIncludeSubFolders";
-            this.cbIncludeSubFolders.Size = new System.Drawing.Size(125, 18);
-            this.cbIncludeSubFolders.TabIndex = 4;
-            this.cbIncludeSubFolders.Text = "Include subfolders";
             this.cbIncludeSubFolders.UseVisualStyleBackColor = true;
             this.cbIncludeSubFolders.CheckedChanged += new System.EventHandler(this.cbIncludeSubFolders_CheckedChanged);
             // 
             // cbIncludeHiddenFolder
             // 
-            this.cbIncludeHiddenFolder.AutoSize = true;
-            this.cbIncludeHiddenFolder.Location = new System.Drawing.Point(134, 3);
+            this.cbIncludeHiddenFolder.AccessibleDescription = null;
+            this.cbIncludeHiddenFolder.AccessibleName = null;
+            resources.ApplyResources(this.cbIncludeHiddenFolder, "cbIncludeHiddenFolder");
+            this.cbIncludeHiddenFolder.BackgroundImage = null;
+            this.cbIncludeHiddenFolder.Font = null;
             this.cbIncludeHiddenFolder.Name = "cbIncludeHiddenFolder";
-            this.cbIncludeHiddenFolder.Size = new System.Drawing.Size(147, 18);
-            this.cbIncludeHiddenFolder.TabIndex = 12;
-            this.cbIncludeHiddenFolder.Text = "Include hidden folders";
             this.cbIncludeHiddenFolder.UseVisualStyleBackColor = true;
             // 
             // cbRegex
             // 
-            this.cbRegex.AutoSize = true;
-            this.cbRegex.Location = new System.Drawing.Point(287, 3);
+            this.cbRegex.AccessibleDescription = null;
+            this.cbRegex.AccessibleName = null;
+            resources.ApplyResources(this.cbRegex, "cbRegex");
+            this.cbRegex.BackgroundImage = null;
+            this.cbRegex.Font = null;
             this.cbRegex.Name = "cbRegex";
-            this.cbRegex.Size = new System.Drawing.Size(60, 18);
-            this.cbRegex.TabIndex = 7;
-            this.cbRegex.Text = "Regex";
             this.cbRegex.UseVisualStyleBackColor = true;
             this.cbRegex.CheckedChanged += new System.EventHandler(this.cbRegex_CheckedChanged);
             // 
             // cbSearchOnWords
             // 
-            this.cbSearchOnWords.AutoSize = true;
-            this.cbSearchOnWords.Location = new System.Drawing.Point(353, 3);
+            this.cbSearchOnWords.AccessibleDescription = null;
+            this.cbSearchOnWords.AccessibleName = null;
+            resources.ApplyResources(this.cbSearchOnWords, "cbSearchOnWords");
+            this.cbSearchOnWords.BackgroundImage = null;
+            this.cbSearchOnWords.Font = null;
             this.cbSearchOnWords.Name = "cbSearchOnWords";
-            this.cbSearchOnWords.Size = new System.Drawing.Size(118, 18);
-            this.cbSearchOnWords.TabIndex = 5;
-            this.cbSearchOnWords.Text = "Search on words";
             this.cbSearchOnWords.UseVisualStyleBackColor = true;
             // 
             // cbCaseSensitive
             // 
-            this.cbCaseSensitive.AutoSize = true;
-            this.cbCaseSensitive.Location = new System.Drawing.Point(3, 27);
+            this.cbCaseSensitive.AccessibleDescription = null;
+            this.cbCaseSensitive.AccessibleName = null;
+            resources.ApplyResources(this.cbCaseSensitive, "cbCaseSensitive");
+            this.cbCaseSensitive.BackgroundImage = null;
+            this.cbCaseSensitive.Font = null;
             this.cbCaseSensitive.Name = "cbCaseSensitive";
-            this.cbCaseSensitive.Size = new System.Drawing.Size(101, 18);
-            this.cbCaseSensitive.TabIndex = 6;
-            this.cbCaseSensitive.Text = "Case sensitive";
             this.cbCaseSensitive.UseVisualStyleBackColor = true;
             // 
             // cbMultiline
             // 
-            this.cbMultiline.AutoSize = true;
-            this.cbMultiline.Location = new System.Drawing.Point(110, 27);
+            this.cbMultiline.AccessibleDescription = null;
+            this.cbMultiline.AccessibleName = null;
+            resources.ApplyResources(this.cbMultiline, "cbMultiline");
+            this.cbMultiline.BackgroundImage = null;
+            this.cbMultiline.Font = null;
             this.cbMultiline.Name = "cbMultiline";
-            this.cbMultiline.Size = new System.Drawing.Size(69, 18);
-            this.cbMultiline.TabIndex = 13;
-            this.cbMultiline.Text = "Multiline";
             this.cbMultiline.UseVisualStyleBackColor = true;
-            this.cbMultiline.Visible = false;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(185, 27);
-            this.label6.Margin = new System.Windows.Forms.Padding(3);
+            this.label6.AccessibleDescription = null;
+            this.label6.AccessibleName = null;
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Font = null;
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 14);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Encoding:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cbbEncoding
             // 
+            this.cbbEncoding.AccessibleDescription = null;
+            this.cbbEncoding.AccessibleName = null;
+            resources.ApplyResources(this.cbbEncoding, "cbbEncoding");
+            this.cbbEncoding.BackgroundImage = null;
+            this.cbbEncoding.Font = null;
             this.cbbEncoding.FormattingEnabled = true;
-            this.cbbEncoding.Location = new System.Drawing.Point(252, 24);
-            this.cbbEncoding.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.cbbEncoding.Name = "cbbEncoding";
-            this.cbbEncoding.Size = new System.Drawing.Size(121, 22);
-            this.cbbEncoding.TabIndex = 11;
             // 
             // GForm
             // 
             this.AcceptButton = this.btnSearch;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 466);
+            this.BackgroundImage = null;
             this.Controls.Add(this.gbResult);
             this.Controls.Add(this.gbFilter);
             this.Controls.Add(this.gbSearch);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStripMain);
-            this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "GForm";
-            this.Padding = new System.Windows.Forms.Padding(6);
-            this.Text = "GGrep";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GForm_FormClosing);
             this.gbSearch.ResumeLayout(false);
             this.gbSearch.PerformLayout();
             this.gbResult.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.folvResult)).EndInit();
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -701,6 +783,10 @@
         private System.Windows.Forms.ToolStripMenuItem tooltipsToolStripMenuItem;
         private BrightIdeasSoftware.OLVColumn colEncoding;
         private BrightIdeasSoftware.OLVColumn colMatched;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem japaneseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 

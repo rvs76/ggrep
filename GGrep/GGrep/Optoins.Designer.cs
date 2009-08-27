@@ -44,15 +44,18 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(128, 78);
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Font = null;
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 14);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Arguments:";
             // 
             // gbEditor
             // 
+            this.gbEditor.AccessibleDescription = null;
+            this.gbEditor.AccessibleName = null;
+            resources.ApplyResources(this.gbEditor, "gbEditor");
+            this.gbEditor.BackgroundImage = null;
             this.gbEditor.Controls.Add(this.label2);
             this.gbEditor.Controls.Add(this.tbArguments);
             this.gbEditor.Controls.Add(this.btnBrowse);
@@ -60,106 +63,107 @@
             this.gbEditor.Controls.Add(this.rbCustom);
             this.gbEditor.Controls.Add(this.rbDefault);
             this.gbEditor.Controls.Add(this.label1);
-            this.gbEditor.Location = new System.Drawing.Point(12, 10);
+            this.gbEditor.Font = null;
             this.gbEditor.Name = "gbEditor";
-            this.gbEditor.Size = new System.Drawing.Size(470, 143);
-            this.gbEditor.TabIndex = 2;
             this.gbEditor.TabStop = false;
-            this.gbEditor.Text = "Editor";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(159, 99);
+            this.label2.AccessibleDescription = null;
+            this.label2.AccessibleName = null;
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Font = null;
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(293, 33);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "(Use %file, %line and %column keywords to specify file location, line number and " +
-                "column number)";
             // 
             // tbArguments
             // 
-            this.tbArguments.Location = new System.Drawing.Point(202, 74);
+            this.tbArguments.AccessibleDescription = null;
+            this.tbArguments.AccessibleName = null;
+            resources.ApplyResources(this.tbArguments, "tbArguments");
+            this.tbArguments.BackgroundImage = null;
+            this.tbArguments.Font = null;
             this.tbArguments.Name = "tbArguments";
-            this.tbArguments.Size = new System.Drawing.Size(214, 22);
-            this.tbArguments.TabIndex = 6;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(422, 45);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBrowse.AccessibleDescription = null;
+            this.btnBrowse.AccessibleName = null;
+            resources.ApplyResources(this.btnBrowse, "btnBrowse");
+            this.btnBrowse.BackgroundImage = null;
+            this.btnBrowse.Font = null;
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(30, 23);
-            this.btnBrowse.TabIndex = 5;
-            this.btnBrowse.Text = "...";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // tbCustomEditor
             // 
-            this.tbCustomEditor.Location = new System.Drawing.Point(131, 46);
+            this.tbCustomEditor.AccessibleDescription = null;
+            this.tbCustomEditor.AccessibleName = null;
+            resources.ApplyResources(this.tbCustomEditor, "tbCustomEditor");
+            this.tbCustomEditor.BackgroundImage = null;
+            this.tbCustomEditor.Font = null;
             this.tbCustomEditor.Name = "tbCustomEditor";
-            this.tbCustomEditor.Size = new System.Drawing.Size(285, 22);
-            this.tbCustomEditor.TabIndex = 4;
             // 
             // rbCustom
             // 
-            this.rbCustom.AutoSize = true;
-            this.rbCustom.Location = new System.Drawing.Point(19, 47);
+            this.rbCustom.AccessibleDescription = null;
+            this.rbCustom.AccessibleName = null;
+            resources.ApplyResources(this.rbCustom, "rbCustom");
+            this.rbCustom.BackgroundImage = null;
+            this.rbCustom.Font = null;
             this.rbCustom.Name = "rbCustom";
-            this.rbCustom.Size = new System.Drawing.Size(106, 18);
-            this.rbCustom.TabIndex = 3;
             this.rbCustom.TabStop = true;
-            this.rbCustom.Text = "Custom Editor:";
             this.rbCustom.UseVisualStyleBackColor = true;
             this.rbCustom.CheckedChanged += new System.EventHandler(this.rbCustom_CheckedChanged);
             // 
             // rbDefault
             // 
-            this.rbDefault.AutoSize = true;
-            this.rbDefault.Location = new System.Drawing.Point(19, 23);
+            this.rbDefault.AccessibleDescription = null;
+            this.rbDefault.AccessibleName = null;
+            resources.ApplyResources(this.rbDefault, "rbDefault");
+            this.rbDefault.BackgroundImage = null;
+            this.rbDefault.Font = null;
             this.rbDefault.Name = "rbDefault";
-            this.rbDefault.Size = new System.Drawing.Size(162, 18);
-            this.rbDefault.TabIndex = 2;
             this.rbDefault.TabStop = true;
-            this.rbDefault.Text = "Default file specific editor";
             this.rbDefault.UseVisualStyleBackColor = true;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(146, 159);
+            this.btnOk.AccessibleDescription = null;
+            this.btnOk.AccessibleName = null;
+            resources.ApplyResources(this.btnOk, "btnOk");
+            this.btnOk.BackgroundImage = null;
+            this.btnOk.Font = null;
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 9;
-            this.btnOk.Text = "&OK";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.AccessibleDescription = null;
+            this.btnCancel.AccessibleName = null;
+            resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.BackgroundImage = null;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(274, 159);
+            this.btnCancel.Font = null;
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 10;
-            this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // Optoins
             // 
             this.AcceptButton = this.btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = null;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(494, 193);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.gbEditor);
-            this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Optoins";
-            this.Text = "Optoins";
             this.gbEditor.ResumeLayout(false);
             this.gbEditor.PerformLayout();
             this.ResumeLayout(false);

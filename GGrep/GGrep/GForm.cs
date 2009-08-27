@@ -36,12 +36,24 @@ namespace GGrep
         #region Constructor
         public GForm()
         {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Utils.GetAppLang());
+
             InitializeComponent();
             gbFilter.IsCollapsed = Properties.Settings.Default.FilterIsCollapsed;
             SetSearchOptions();
             btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
             filterToolStripMenuItem.Checked = !Properties.Settings.Default.FilterIsCollapsed;
             tooltipsToolStripMenuItem.Checked = Properties.Settings.Default.TooltipsShown;
+            if ("ja-JP".Equals(Utils.GetAppLang()))
+            {
+                japaneseToolStripMenuItem.Checked = true;
+                englishToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                japaneseToolStripMenuItem.Checked = false;
+                englishToolStripMenuItem.Checked = true;
+            }
 
             #region highlight render
             this.colResult.Renderer = new HighlightRenderer();
@@ -343,6 +355,16 @@ namespace GGrep
             }
         }
 
+        /// <summary>
+        /// Set language
+        /// </summary>
+        /// <param name="lang"></param>
+        private void SetLanguage(string lang)
+        {
+            Properties.Settings.Default.Language = lang;
+            Properties.Settings.Default.Save();
+            Application.Restart();
+        }
         #endregion
 
         #region Open File
@@ -784,6 +806,26 @@ namespace GGrep
         {
             About a = new About();
             a.ShowDialog(this);
+        }
+
+        private void japaneseChangeToolStripMenuItem_Clicked(object sender, EventArgs e)
+        {
+            if (!japaneseToolStripMenuItem.Checked)
+            {
+                japaneseToolStripMenuItem.Checked = !japaneseToolStripMenuItem.Checked;
+                englishToolStripMenuItem.Checked = !englishToolStripMenuItem.Checked;
+                SetLanguage("ja-JP");
+            }
+        }
+
+        private void englishChangeToolStripMenuItem_Clicked(object sender, EventArgs e)
+        {
+            if (!englishToolStripMenuItem.Checked)
+            {
+                japaneseToolStripMenuItem.Checked = !japaneseToolStripMenuItem.Checked;
+                englishToolStripMenuItem.Checked = !englishToolStripMenuItem.Checked;
+                SetLanguage("en-US");
+            }
         }
         #endregion
 

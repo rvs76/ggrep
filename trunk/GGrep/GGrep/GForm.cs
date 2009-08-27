@@ -36,8 +36,7 @@ namespace GGrep
         #region Constructor
         public GForm()
         {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Utils.GetAppLang());
-
+            ApplyLanguage();
             InitializeComponent();
             gbFilter.IsCollapsed = Properties.Settings.Default.FilterIsCollapsed;
             SetSearchOptions();
@@ -364,6 +363,12 @@ namespace GGrep
             Properties.Settings.Default.Language = lang;
             Properties.Settings.Default.Save();
             Application.Restart();
+        }
+
+        private void ApplyLanguage()
+        {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(Utils.GetAppLang());
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Utils.GetAppLang());
         }
         #endregion
 
@@ -832,6 +837,7 @@ namespace GGrep
         #region backgroundworker
         private void DoGrep(object sender, DoWorkEventArgs e)
         {
+            ApplyLanguage();
             isRunning = true;
             status = new SearchStatus();
             SetControlText(btnSearch, Properties.Resources.BTN_TEXT_CANCEL);

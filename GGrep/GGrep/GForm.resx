@@ -173,14 +173,17 @@
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="cbCaseSensitive.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
   <data name="cbRegex.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+  <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -218,9 +221,6 @@
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 33</value>
   </data>
@@ -243,7 +243,7 @@
     <value>3, 18</value>
   </data>
   <data name="&gt;&gt;colResult.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="tooltipsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 22</value>
@@ -354,6 +354,9 @@
   <data name="colRowNo.Text" xml:space="preserve">
     <value>Row</value>
   </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
   <data name="&gt;&gt;cbbFileMatch.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
@@ -368,9 +371,6 @@
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 83</value>
-  </data>
-  <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;colColNo.Name" xml:space="preserve">
     <value>colColNo</value>
@@ -387,17 +387,14 @@
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="&gt;&gt;menuStripMain.Name" xml:space="preserve">
     <value>menuStripMain</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>500, 500</value>
   </data>
-  <data name="gbFilter.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;cbCaseSensitive.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;cbIncludeHiddenFolder.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
@@ -407,6 +404,9 @@
   </data>
   <data name="&gt;&gt;optionsToolStripMenuItem.Name" xml:space="preserve">
     <value>optionsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;statusLabel.Name" xml:space="preserve">
+    <value>statusLabel</value>
   </data>
   <data name="&gt;&gt;panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -453,6 +453,9 @@
   <data name="cbbFolderMatch.Size" type="System.Drawing.Size, System.Drawing">
     <value>349, 22</value>
   </data>
+  <data name="&gt;&gt;colEncoding.Name" xml:space="preserve">
+    <value>colEncoding</value>
+  </data>
   <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -462,8 +465,8 @@
   <data name="cbIncludeHiddenFolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 18</value>
   </data>
-  <data name="cbCaseSensitive.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="cbCaseSensitive.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -475,10 +478,10 @@
     <value>5</value>
   </data>
   <data name="&gt;&gt;colRowNo.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;colNo.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -528,6 +531,9 @@
   <data name="gbResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>480, 128</value>
   </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="cbCaseSensitive.Text" xml:space="preserve">
     <value>Case sensitive</value>
   </data>
@@ -542,9 +548,6 @@
   </data>
   <data name="gbResult.Text" xml:space="preserve">
     <value>Result</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -585,11 +588,11 @@
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 8</value>
   </data>
-  <data name="&gt;&gt;cbbSearchText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;folvResult.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.FastObjectListView, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbSearchOnWords.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -607,7 +610,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gbFilter.Type" xml:space="preserve">
-    <value>GGrep.CollapsibleGroupBox, GGrep, Version=0.1.3526.22506, Culture=neutral, PublicKeyToken=null</value>
+    <value>GGrep.CollapsibleGroupBox, GGrep, Version=0.1.3527.18197, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -619,7 +622,7 @@
     <value>1</value>
   </data>
   <data name="&gt;&gt;colEncoding.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -648,14 +651,14 @@
   <data name="&gt;&gt;cbbFolderNotMatch.Name" xml:space="preserve">
     <value>cbbFolderNotMatch</value>
   </data>
-  <data name="label6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="cbCaseSensitive.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 17</value>
   </data>
   <data name="&gt;&gt;colMatched.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="saveAsCsvToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -673,7 +676,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;colColNo.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="cbbFolderMatch.Location" type="System.Drawing.Point, System.Drawing">
     <value>118, 54</value>
@@ -705,9 +708,6 @@
   <data name="&gt;&gt;cbbFolderNotMatch.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="menuStripMain.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9pt</value>
-  </data>
   <data name="cbMultiline.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
@@ -732,11 +732,14 @@
   <data name="cbSearchOnWords.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;cbCaseSensitive.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;cbbEncoding.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;View</value>
+  </data>
+  <data name="&gt;&gt;gbSearch.Name" xml:space="preserve">
+    <value>gbSearch</value>
   </data>
   <data name="gbSearch.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -762,11 +765,14 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Folder not match:</value>
   </data>
-  <data name="&gt;&gt;colEncoding.Name" xml:space="preserve">
-    <value>colEncoding</value>
+  <data name="&gt;&gt;gbFilter.Name" xml:space="preserve">
+    <value>gbFilter</value>
   </data>
   <data name="cbbSearchFolder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
+  </data>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;English</value>
   </data>
   <data name="&gt;&gt;cbbEncoding.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -810,9 +816,6 @@
   <data name="cbbFileMatch.Size" type="System.Drawing.Size, System.Drawing">
     <value>349, 22</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -849,9 +852,6 @@
   <data name="&gt;&gt;cbbFolderNotMatch.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cbCaseSensitive.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
@@ -875,6 +875,9 @@
   </data>
   <data name="cbIncludeSubFolders.Text" xml:space="preserve">
     <value>Include subfolders</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;tooltipsToolStripMenuItem.Name" xml:space="preserve">
     <value>tooltipsToolStripMenuItem</value>
@@ -2758,7 +2761,7 @@
     <value>6, 30</value>
   </data>
   <data name="&gt;&gt;colFileName.Type" xml:space="preserve">
-    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30864, Culture=neutral, PublicKeyToken=null</value>
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.2.0.30745, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="colResult.Width" type="System.Int32, mscorlib">
     <value>240</value>
@@ -2780,9 +2783,6 @@
   </data>
   <data name="&gt;&gt;cbMultiline.Name" xml:space="preserve">
     <value>cbMultiline</value>
-  </data>
-  <data name="gbResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 310</value>
   </data>
   <data name="folvResult.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2811,8 +2811,8 @@
   <data name="cbIncludeHiddenFolder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;filterToolStripMenuItem.Name" xml:space="preserve">
     <value>filterToolStripMenuItem</value>
@@ -2859,8 +2859,8 @@
   <data name="&gt;&gt;cbbSearchFolder.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
-    <value>gbSearch</value>
+  <data name="&gt;&gt;cbbSearchText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cbbSearchText.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 16</value>
@@ -2868,11 +2868,14 @@
   <data name="colEncoding.Text" xml:space="preserve">
     <value>Encoding</value>
   </data>
+  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
   <data name="&gt;&gt;cbIncludeSubFolders.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="label6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="colMatched.Text" xml:space="preserve">
     <value>Matched</value>
@@ -2889,8 +2892,14 @@
   <data name="cbSearchOnWords.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
   <data name="&gt;&gt;cbCaseSensitive.Name" xml:space="preserve">
     <value>cbCaseSensitive</value>
+  </data>
+  <data name="&gt;&gt;folvResult.Parent" xml:space="preserve">
+    <value>gbResult</value>
   </data>
   <data name="&gt;&gt;cbbFileNotMatch.Name" xml:space="preserve">
     <value>cbbFileNotMatch</value>
@@ -2970,9 +2979,6 @@
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 14</value>
   </data>
-  <data name="&gt;&gt;cbbFileMatch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2994,9 +3000,6 @@
   <data name="gbSearch.Text" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="btnSearch.Text" xml:space="preserve">
-    <value>&amp;Search</value>
-  </data>
   <data name="&gt;&gt;gbSearch.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -3017,9 +3020,6 @@
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
     <value>toolStripSeparator3</value>
-  </data>
-  <data name="&gt;&gt;gbFilter.Name" xml:space="preserve">
-    <value>gbFilter</value>
   </data>
   <data name="&gt;&gt;japaneseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3048,17 +3048,14 @@
   <data name="cbbSearchFolder.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;cbbEncoding.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
   <data name="&gt;&gt;gbSearch.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="gbFilter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
-  </data>
-  <data name="colNo.Width" type="System.Int32, mscorlib">
-    <value>30</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 14</value>
@@ -3096,6 +3093,9 @@
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>...</value>
   </data>
+  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
+    <value>gbSearch</value>
+  </data>
   <data name="&gt;&gt;cbRegex.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -3105,29 +3105,29 @@
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 14</value>
   </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btnSearch.Text" xml:space="preserve">
+    <value>&amp;Search</value>
   </data>
-  <data name="&gt;&gt;gbSearch.Name" xml:space="preserve">
-    <value>gbSearch</value>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>panel2</value>
   </data>
-  <data name="cbCaseSensitive.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="menuStripMain.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9pt</value>
   </data>
   <data name="gbResult.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="gbResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 310</value>
   </data>
-  <data name="&gt;&gt;statusLabel.Name" xml:space="preserve">
-    <value>statusLabel</value>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;colRowNo.Name" xml:space="preserve">
     <value>colRowNo</value>
   </data>
-  <data name="&gt;&gt;folvResult.Parent" xml:space="preserve">
-    <value>gbResult</value>
+  <data name="colNo.Width" type="System.Int32, mscorlib">
+    <value>30</value>
   </data>
   <data name="colColNo.Width" type="System.Int32, mscorlib">
     <value>40</value>
@@ -3135,8 +3135,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Search:</value>
   </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;English</value>
+  <data name="&gt;&gt;cbbFileMatch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="statusLabel.Text" xml:space="preserve">
     <value>Click &amp;Search to Start.</value>
@@ -3153,8 +3153,8 @@
   <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 20</value>
@@ -3168,11 +3168,11 @@
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>5, 439</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <metadata name="backgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>260, 17</value>

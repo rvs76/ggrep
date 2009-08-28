@@ -171,7 +171,7 @@
     <value>5, 29</value>
   </data>
   <data name="gbSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="gbSearch.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
@@ -234,7 +234,7 @@
     <value>191, 17</value>
   </data>
   <data name="statusLabel.Text" xml:space="preserve">
-    <value>検索(S)ボタンを押下して初めて下さい。</value>
+    <value>検索(S)ボタンを押下して始めて下さい。</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 439</value>

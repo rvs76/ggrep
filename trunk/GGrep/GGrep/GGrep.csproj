@@ -23,7 +23,7 @@
     <ManifestCertificateThumbprint>578851A7A6FE95E1EF15EB24F0F37D3799832C8B</ManifestCertificateThumbprint>
     <ManifestKeyFile>GGrep_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>

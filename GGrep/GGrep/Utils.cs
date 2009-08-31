@@ -12,6 +12,10 @@ namespace GGrep
     {
         #region Methods
 
+        /// <summary>
+        /// Get Language present
+        /// </summary>
+        /// <returns></returns>
         public static string GetAppLang()
         {
             string lang = Properties.Settings.Default.Language;
@@ -83,7 +87,6 @@ namespace GGrep
             return new StreamReader(stream, detectedEncoding);
 
         }
-
 
         /// <summary>
         /// 文字コードを判別する
@@ -295,7 +298,7 @@ namespace GGrep
                     // not matched folders check
                     if (!string.IsNullOrEmpty(option.NotMatchFolderRegex))
                     {
-                        if (!Regex.IsMatch(f, option.NotMatchFolderRegex))
+                        if (Regex.IsMatch(f, option.NotMatchFolderRegex, RegexOptions.IgnoreCase))
                             continue;
                     }
 
@@ -339,7 +342,7 @@ namespace GGrep
                     // not matched files check
                     if (!string.IsNullOrEmpty(option.NotMatchFileRegex))
                     {
-                        if (Regex.IsMatch(f, option.NotMatchFileRegex))
+                        if (Regex.IsMatch(f, option.NotMatchFileRegex, RegexOptions.IgnoreCase))
                             continue;
                     }
 

@@ -534,6 +534,7 @@ namespace GGrep
 
                         if (option.IsRegex)
                         {
+                            ro = ro | RegexOptions.IgnoreCase;
 #if DEBUG1
                         if (option.Multiline)
                         {

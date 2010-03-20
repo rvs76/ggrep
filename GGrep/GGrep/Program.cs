@@ -10,7 +10,7 @@ namespace GGrep
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -28,7 +28,7 @@ namespace GGrep
             }
             #endregion
 
-            Application.Run(new GForm());
+            Application.Run(new GForm(args));
         }
     }
 }

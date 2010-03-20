@@ -12,7 +12,9 @@ using System.Threading;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using BrightIdeasSoftware;
-
+#if DEBUG_PDF
+using iTextSharp.text.pdf;
+#endif
 namespace GGrep
 {
     #region Main Class
@@ -34,7 +36,7 @@ namespace GGrep
         #endregion
 
         #region Constructor
-        public GForm()
+        public GForm(string[] args)
         {
             ApplyLanguage();
             InitializeComponent();
@@ -91,12 +93,30 @@ namespace GGrep
             if (Properties.Settings.Default.WindowSize != null)
                 this.Size = Properties.Settings.Default.WindowSize;
             #endregion
+
+            #region check arguments
+            if (args != null && args.Length == 1)
+            {
+                cbbSearchFolder.Text = args[0];
+            }
+            #endregion
         }
         #endregion
 
         #region Methods
 
         #region General
+#if DEBUG_PDF
+        /// <summary>
+        /// Check Pdf File
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private bool IsPdf(string path)
+        {
+            return (Path.GetExtension(path).ToLower() == ".pdf");
+        }
+#endif
 
         /// <summary>
         /// Check & Save Search Options
@@ -382,7 +402,11 @@ namespace GGrep
             try
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
+#if DEBUG_PDF
+                if (!Properties.Settings.Default.UseCustomEditor || IsPdf(data.FullFileName))
+#else
                 if (!Properties.Settings.Default.UseCustomEditor)
+#endif
                 {
                     p.StartInfo.FileName = string.Format("\"{0}\"", data.FullFileName);
                     p.Start();
@@ -501,81 +525,150 @@ namespace GGrep
             {
                 long rowNo = 0;
                 string line;
-
-                using (StreamReader sr = option.IsAutoEncoding ? Utils.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding)))
+#if DEBUG_PDF
+               PdfReader reader = null;
+#endif
+                try
                 {
-                    while (!sr.EndOfStream && isRunning)
+#if DEBUG_PDF
+                    if (IsPdf(path))
                     {
-                        if (backgroundWorker.CancellationPending)
+                        reader = new PdfReader(path);
+
+                        for (int page = 1; page <= reader.NumberOfPages; page++)
                         {
-                            e.Cancel = true;
-                            break;
+                            byte[] bytes = reader.GetPageContent(page);
+                            if (bytes == null || bytes.Length == 0)
+                                continue;
+
+                            //// http://www.vbforums.com/showthread.php?t=475759
+                            //PRTokeniser pf = new PRTokeniser(bytes);
+                            //StringBuilder sb = new StringBuilder();
+                            //while (pf.NextToken())
+                            //{
+                            //    if (pf.TokenType == PRTokeniser.TK_STRING)
+                            //        sb.Append(pf.StringValue);
+                            //    else if (pf.TokenType == 1 && pf.StringValue == "-600")
+                            //        sb.Append(" ");
+                            //    else if (pf.TokenType == 10 && pf.StringValue == "-TJ")
+                            //        sb.Append(" ");
+                            //}
+                            //AnalyzeLine(sb.ToString(), list, path, page, Encoding.UTF8.EncodingName);
+                            AnalyzeLine(System.Text.Encoding.GetEncoding("sjis").GetString(bytes), list, path, page, Encoding.UTF8.EncodingName);
                         }
-                        line = sr.ReadLine();
-                        rowNo++;
-
-                        // for fast search
-                        if (!option.IsRegex)
+                        reader.Close();
+                    }
+                    else
+                    {
+#endif
+                        using (StreamReader sr = option.IsAutoEncoding ? Utils.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding)))
                         {
-                            if (option.IsCaseSensitive)
+                            while (!sr.EndOfStream && isRunning)
                             {
-                                if (!line.Contains(option.SearchString))
-                                    continue;
+                                if (backgroundWorker.CancellationPending)
+                                {
+                                    e.Cancel = true;
+                                    break;
+                                }
+                                line = sr.ReadLine();
+                                rowNo++;
+
+                                AnalyzeLine(line, list, path, rowNo, sr.CurrentEncoding.EncodingName);
                             }
-                            else
-                            {
-                                if (!line.ToLower().Contains(option.SearchString.ToLower()))
-                                    continue;
-                            }
+
+                            sr.Close();
                         }
+#if DEBUG_PDF
+                    }
 
-                        RegexOptions ro = RegexOptions.Singleline;
-                        string input = option.SearchString;
+#endif
+                }
+                catch (Exception)
+                {
+                    // ignore
+                }
+                finally
+                {
+#if DEBUG_PDF
+                    if (reader != null)
+                    {
+                        reader.Close();
+                        reader = null;
+                    }
+#endif
+                }
 
-                        if (option.IsRegex)
-                        {
-                            ro = ro | RegexOptions.IgnoreCase;
+
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// Search in line
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="list"></param>
+        /// <param name="path"></param>
+        /// <param name="rowNo"></param>
+        /// <param name="encoding"></param>
+        private void AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding)
+        {
+            // for fast search
+            if (!option.IsRegex)
+            {
+                if (option.IsCaseSensitive)
+                {
+                    if (!line.Contains(option.SearchString))
+                        return;
+                }
+                else
+                {
+                    if (!line.ToLower().Contains(option.SearchString.ToLower()))
+                        return;
+                }
+            }
+
+            RegexOptions ro = RegexOptions.Singleline;
+            string input = option.SearchString;
+
+            if (option.IsRegex)
+            {
+                ro = ro | RegexOptions.IgnoreCase;
 #if DEBUG1
                         if (option.Multiline)
                         {
                             ro = ro | RegexOptions.Multiline;
                         }
 #endif
-                        }
-                        else
-                        {
-                            if (!option.IsCaseSensitive)
-                            {
-                                ro = ro | RegexOptions.IgnoreCase;
-                            }
+            }
+            else
+            {
+                if (!option.IsCaseSensitive)
+                {
+                    ro = ro | RegexOptions.IgnoreCase;
+                }
 
-                            input = Utils.SearchStringRegexEscaped(option.SearchString);
-                            if (option.IsSearchOnWords)
-                            {
-                                input = @"\b" + input + @"\b";
-                            }
-                        }
-                        Regex re = new Regex(input, ro);
-
-                        foreach (Match m in re.Matches(line))
-                        {
-                            ResultData data = new ResultData();
-                            data.SelectedPath = option.SearchFolder;
-                            data.No = (++status.Hit);
-                            data.FullFileName = path;
-                            data.RowNo = rowNo;
-                            data.ColNo = m.Index + 1;
-                            data.Line = line;
-                            data.MatchedString = m.Value;
-                            data.FileEncoding = sr.CurrentEncoding.EncodingName;
-                            list.Add(data);
-                        }
-                    }
-
-                    sr.Close();
+                input = Utils.SearchStringRegexEscaped(option.SearchString);
+                if (option.IsSearchOnWords)
+                {
+                    input = @"\b" + input + @"\b";
                 }
             }
-            return list;
+            Regex re = new Regex(input, ro);
+
+            foreach (Match m in re.Matches(line))
+            {
+                ResultData data = new ResultData();
+                data.SelectedPath = option.SearchFolder;
+                data.No = (++status.Hit);
+                data.FullFileName = path;
+                data.RowNo = rowNo;
+                data.ColNo = m.Index + 1;
+                data.Line = line;
+                data.MatchedString = m.Value;
+                data.FileEncoding = encoding;
+                list.Add(data);
+            }
         }
         #endregion
 
@@ -910,6 +1003,44 @@ namespace GGrep
         }
         #endregion
 
+        #region drag
+        private void SearchFolder_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All; // Okay
+            else
+                e.Effect = DragDropEffects.None; // Unknown data, ignore it
+        }
+
+        private void SearchFolder_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (fileList != null && fileList.Length > 0)
+            {
+                if (Directory.Exists(fileList[0]))
+                {
+                    cbbSearchFolder.Text = fileList[0];
+                }
+                else if (File.Exists(fileList[0]))
+                {
+                    cbbSearchFolder.Text = Path.GetDirectoryName(fileList[0]);
+                }
+            }
+        }
+
+        private void SearchText_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.All; // Okay
+            else
+                e.Effect = DragDropEffects.None; // Unknown data, ignore it
+        }
+
+        private void SearchText_DragDrop(object sender, DragEventArgs e)
+        {
+            cbbSearchText.Text = (string)e.Data.GetData(DataFormats.Text, false);
+        }
+        #endregion
         #endregion
     }
 

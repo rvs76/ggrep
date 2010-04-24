@@ -12,9 +12,9 @@ using System.Threading;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using BrightIdeasSoftware;
-#if DEBUG_PDF
-using iTextSharp.text.pdf;
-#endif
+using GGrep.Instance;
+using GGrep.Pattern;
+
 namespace GGrep
 {
     #region Main Class
@@ -29,9 +29,17 @@ namespace GGrep
 
         Stopwatch sw = new Stopwatch();
 
-        SearchOptions option = null;
-        SearchStatus status = null;
-        bool isRunning = false;
+        private SearchOptions option = null;
+        public SearchOptions Option { get { return option; } }
+
+        private SearchStatus status = null;
+        public SearchStatus Status { get { return status; } set { status = value; } }
+        
+        private bool isRunning = false;
+        public bool IsRunning { get { return isRunning; } }
+
+        public BackgroundWorker BGW { get { return backgroundWorker; } }
+        
         private bool IsAutoEncoding { get { return GetControlText(cbbEncoding).Trim().ToLower() == "auto"; } }
         #endregion
 
@@ -106,17 +114,6 @@ namespace GGrep
         #region Methods
 
         #region General
-#if DEBUG_PDF
-        /// <summary>
-        /// Check Pdf File
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        private bool IsPdf(string path)
-        {
-            return (Path.GetExtension(path).ToLower() == ".pdf");
-        }
-#endif
 
         /// <summary>
         /// Check & Save Search Options
@@ -392,39 +389,6 @@ namespace GGrep
         }
         #endregion
 
-        #region Open File
-        /// <summary>
-        /// Open File in Specific Editor
-        /// </summary>
-        /// <param name="data">result data</param>
-        private void OpenWithEditor(ResultData data)
-        {
-            try
-            {
-                System.Diagnostics.Process p = new System.Diagnostics.Process();
-#if DEBUG_PDF
-                if (!Properties.Settings.Default.UseCustomEditor || IsPdf(data.FullFileName))
-#else
-                if (!Properties.Settings.Default.UseCustomEditor)
-#endif
-                {
-                    p.StartInfo.FileName = string.Format("\"{0}\"", data.FullFileName);
-                    p.Start();
-                }
-                else
-                {
-                    // col, row, filename
-                    p.StartInfo.FileName = string.Format("\"{0}\"", Properties.Settings.Default.CustomEditorPath);
-                    p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", string.Format("\"{0}\"", data.FullFileName)).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
-                    p.Start();
-                    if (p.HasExited)
-                        p.Kill();
-                }
-            }
-            catch { }
-        }
-        #endregion
-
         #region CallBack
         delegate void SetControlTextCallback(Control ctl, string text);
         private void SetControlText(Control ctl, string text)
@@ -507,167 +471,6 @@ namespace GGrep
             else
             {
                 ctl.Text = text;
-            }
-        }
-        #endregion
-
-        #region Grep
-        /// <summary>
-        /// Search In Files
-        /// </summary>
-        /// <param name="path">File Or Directory</param>
-        /// <param name="e">Event</param>
-        /// <returns></returns>
-        private ArrayList SearchInFile(string path, DoWorkEventArgs e)
-        {
-            ArrayList list = new ArrayList();
-            if (File.Exists(path))
-            {
-                long rowNo = 0;
-                string line;
-#if DEBUG_PDF
-               PdfReader reader = null;
-#endif
-                try
-                {
-#if DEBUG_PDF
-                    if (IsPdf(path))
-                    {
-                        reader = new PdfReader(path);
-
-                        for (int page = 1; page <= reader.NumberOfPages; page++)
-                        {
-                            byte[] bytes = reader.GetPageContent(page);
-                            if (bytes == null || bytes.Length == 0)
-                                continue;
-
-                            //// http://www.vbforums.com/showthread.php?t=475759
-                            //PRTokeniser pf = new PRTokeniser(bytes);
-                            //StringBuilder sb = new StringBuilder();
-                            //while (pf.NextToken())
-                            //{
-                            //    if (pf.TokenType == PRTokeniser.TK_STRING)
-                            //        sb.Append(pf.StringValue);
-                            //    else if (pf.TokenType == 1 && pf.StringValue == "-600")
-                            //        sb.Append(" ");
-                            //    else if (pf.TokenType == 10 && pf.StringValue == "-TJ")
-                            //        sb.Append(" ");
-                            //}
-                            //AnalyzeLine(sb.ToString(), list, path, page, Encoding.UTF8.EncodingName);
-                            AnalyzeLine(System.Text.Encoding.GetEncoding("sjis").GetString(bytes), list, path, page, Encoding.UTF8.EncodingName);
-                        }
-                        reader.Close();
-                    }
-                    else
-                    {
-#endif
-                        using (StreamReader sr = option.IsAutoEncoding ? Utils.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(option.Encoding)))
-                        {
-                            while (!sr.EndOfStream && isRunning)
-                            {
-                                if (backgroundWorker.CancellationPending)
-                                {
-                                    e.Cancel = true;
-                                    break;
-                                }
-                                line = sr.ReadLine();
-                                rowNo++;
-
-                                AnalyzeLine(line, list, path, rowNo, sr.CurrentEncoding.EncodingName);
-                            }
-
-                            sr.Close();
-                        }
-#if DEBUG_PDF
-                    }
-
-#endif
-                }
-                catch (Exception)
-                {
-                    // ignore
-                }
-                finally
-                {
-#if DEBUG_PDF
-                    if (reader != null)
-                    {
-                        reader.Close();
-                        reader = null;
-                    }
-#endif
-                }
-
-
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// Search in line
-        /// </summary>
-        /// <param name="line"></param>
-        /// <param name="list"></param>
-        /// <param name="path"></param>
-        /// <param name="rowNo"></param>
-        /// <param name="encoding"></param>
-        private void AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding)
-        {
-            // for fast search
-            if (!option.IsRegex)
-            {
-                if (option.IsCaseSensitive)
-                {
-                    if (!line.Contains(option.SearchString))
-                        return;
-                }
-                else
-                {
-                    if (!line.ToLower().Contains(option.SearchString.ToLower()))
-                        return;
-                }
-            }
-
-            RegexOptions ro = RegexOptions.Singleline;
-            string input = option.SearchString;
-
-            if (option.IsRegex)
-            {
-                ro = ro | RegexOptions.IgnoreCase;
-#if DEBUG1
-                        if (option.Multiline)
-                        {
-                            ro = ro | RegexOptions.Multiline;
-                        }
-#endif
-            }
-            else
-            {
-                if (!option.IsCaseSensitive)
-                {
-                    ro = ro | RegexOptions.IgnoreCase;
-                }
-
-                input = Utils.SearchStringRegexEscaped(option.SearchString);
-                if (option.IsSearchOnWords)
-                {
-                    input = @"\b" + input + @"\b";
-                }
-            }
-            Regex re = new Regex(input, ro);
-
-            foreach (Match m in re.Matches(line))
-            {
-                ResultData data = new ResultData();
-                data.SelectedPath = option.SearchFolder;
-                data.No = (++status.Hit);
-                data.FullFileName = path;
-                data.RowNo = rowNo;
-                data.ColNo = m.Index + 1;
-                data.Line = line;
-                data.MatchedString = m.Value;
-                data.FileEncoding = encoding;
-                list.Add(data);
             }
         }
         #endregion
@@ -866,7 +669,8 @@ namespace GGrep
         {
             if (((FastObjectListView)sender).SelectedObject != null)
             {
-                OpenWithEditor((ResultData)((FastObjectListView)sender).SelectedObject);
+                ResultData data = (ResultData)((FastObjectListView)sender).SelectedObject;
+                PatternFactory.GetPattern(this, data.FileName).OpenFileWithEditor(data);
             }
         }
 
@@ -960,7 +764,7 @@ namespace GGrep
                         break;
                     }
 
-                    ArrayList list = SearchInFile(file, e);
+                    ArrayList list = PatternFactory.GetPattern(this, file).SearchInFile(file, e);
                     status.Finished++;
                     if (list.Count > 0)
                         AddRows(folvResult, list, status);
@@ -1047,260 +851,6 @@ namespace GGrep
     #endregion
 
     #region internal class
-
-    /// <summary>
-    /// Search Status Class
-    /// </summary>
-    internal class SearchStatus
-    {
-        private long hit = 0;
-        public long Hit
-        {
-            get { return hit; }
-            set { hit = value; }
-        }
-        private long total = 0;
-        public long Total
-        {
-            get { return total; }
-            set { total = value; }
-        }
-        private long finished = 0;
-        public long Finished
-        {
-            get { return finished; }
-            set { finished = value; }
-        }
-
-        public int Progress
-        {
-            get { return (int)((double)finished * 100 / total); }
-        }
-    }
-
-    /// <summary>
-    /// Result Data Class
-    /// </summary>
-    internal class ResultData
-    {
-        #region Properties
-        private long no;
-
-        public long No
-        {
-            get { return no; }
-            set { no = value; }
-        }
-
-        private string selectedPath;
-        private int startIndex = -1;
-        public string SelectedPath
-        {
-            get { return selectedPath; }
-            set 
-            { 
-                selectedPath = value;
-                if (!string.IsNullOrEmpty(selectedPath))
-                {
-                    startIndex = selectedPath.Length;
-                    if (!selectedPath.EndsWith("\\"))
-                    {
-                        startIndex++;
-                    }
-                }
-            }
-        }
-        private string fullFileName;
-
-        public string FullFileName
-        {
-            get { return fullFileName; }
-            set { fullFileName = value; }
-        }
-        public string FileName
-        {
-            get 
-            {
-                if ((!string.IsNullOrEmpty(selectedPath)) && (!string.IsNullOrEmpty(fullFileName)) && fullFileName.Length > startIndex)
-                    return fullFileName.Substring(startIndex);
-                return fullFileName;
-            }
-        }
-        private long rowNo;
-
-        public long RowNo
-        {
-            get { return rowNo; }
-            set { rowNo = value; }
-        }
-        private long colNo;
-
-        public long ColNo
-        {
-            get { return colNo; }
-            set { colNo = value; }
-        }
-
-        private string line;
-
-        public string Line
-        {
-            get { return line; }
-            set { line = value; }
-        }
-        private string matchedString;
-
-        public string MatchedString
-        {
-            get { return matchedString; }
-            set { matchedString = value; }
-        }
-        private string fileEncoding;
-
-        public string FileEncoding
-        {
-            get { return fileEncoding; }
-            set { fileEncoding = value; }
-        }
-        #endregion
-    }
-
-    /// <summary>
-    /// Search Option Class
-    /// </summary>
-    internal class SearchOptions
-    {
-        #region Properties
-        private string searchString;
-
-        public string SearchString
-        {
-            get { return searchString; }
-            set { searchString = value; }
-        }
-
-        private string searchFolder;
-
-        public string SearchFolder
-        {
-            get { return searchFolder; }
-            set { searchFolder = value; }
-        }
-        
-        private bool isRegex;
-
-        public bool IsRegex
-        {
-            get { return isRegex; }
-            set { isRegex = value; }
-        }
-
-        private bool isCaseSensitive;
-
-        public bool IsCaseSensitive
-        {
-            get { return isCaseSensitive; }
-            set { isCaseSensitive = value; }
-        }
-        private bool isSearchOnWords;
-
-        public bool IsSearchOnWords
-        {
-            get { return isSearchOnWords; }
-            set { isSearchOnWords = value; }
-        }
-
-        private bool includeSubFolders;
-
-        public bool IncludeSubFolders
-        {
-            get { return includeSubFolders; }
-            set { includeSubFolders = value; }
-        }
-
-        private bool includeHiddenFolders;
-
-        public bool IncludeHiddenFolders
-        {
-            get { return includeHiddenFolders; }
-            set { includeHiddenFolders = value; }
-        }
-
-        private bool multiline;
-
-        public bool Multiline
-        {
-            get { return multiline; }
-            set { multiline = value; }
-        }
-	
-        private string encoding;
-
-        public string Encoding
-        {
-            get { return encoding; }
-            set { encoding = value; }
-        }
-
-        private string matchFiles;
-
-        public string MatchFiles
-        {
-            get { return matchFiles; }
-            set { matchFiles = value; }
-        }
-        private string notMatchFiles;
-
-        public string NotMatchFiles
-        {
-            get { return notMatchFiles; }
-            set 
-            { 
-                notMatchFiles = value;
-                // ? -> .+?.+
-                // * -> \w
-                notMatchFileRegex = notMatchFiles.Replace(",", "|").Replace(".", "\\.").Replace("?", ".+?.+").Replace("*", "\\w");
-            }
-        }
-
-        private string matchFolders;
-
-        public string MatchFolders
-        {
-            get { return matchFolders; }
-            set { matchFolders = value; }
-        }
-
-        private string notMatchFolders;
-
-        public string NotMatchFolders
-        {
-            get { return notMatchFolders; }
-            set 
-            { 
-                notMatchFolders = value;
-                // ? -> .+?.+
-                // * -> \w
-                notMatchFolderRegex = notMatchFolders.Replace(",", "|").Replace(".", "\\.").Replace("?", ".+?.+").Replace("*", "\\w");
-            }
-        }
-
-        private string notMatchFileRegex;
-        public string NotMatchFileRegex
-        {
-            get { return notMatchFileRegex; }
-            set { notMatchFileRegex = value; }
-        }
-        private string notMatchFolderRegex;
-        public string NotMatchFolderRegex
-        {
-            get { return notMatchFolderRegex; }
-            set { notMatchFolderRegex = value; }
-        }
-
-        public bool IsAutoEncoding { get { return encoding.Trim().ToLower() == "auto"; } }
-        #endregion
-    }
 
     /// <summary>
     /// Highlight Matched String

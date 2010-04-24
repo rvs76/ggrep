@@ -126,12 +126,19 @@
     <Compile Include="GForm.Designer.cs">
       <DependentUpon>GForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instance\ResultData.cs" />
+    <Compile Include="Instance\SearchOptions.cs" />
+    <Compile Include="Instance\SearchStatus.cs" />
     <Compile Include="Optoins.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Optoins.Designer.cs">
       <DependentUpon>Optoins.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pattern\BasePattern.cs" />
+    <Compile Include="Pattern\IPattern.cs" />
+    <Compile Include="Pattern\PatternFactory.cs" />
+    <Compile Include="Pattern\TxtPattern.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="About.resx">

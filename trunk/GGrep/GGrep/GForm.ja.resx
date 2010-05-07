@@ -2399,6 +2399,9 @@
         gAcAAIAPAACAHwAAwB8AAOE/AAD5/wAAMTExMTQ0
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>

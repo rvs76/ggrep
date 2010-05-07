@@ -173,7 +173,7 @@
     <value>デフォルトファイルエディタ</value>
   </data>
   <data name="gbEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 9</value>
+    <value>11, 61</value>
   </data>
   <data name="gbEditor.Size" type="System.Drawing.Size, System.Drawing">
     <value>472, 152</value>
@@ -182,7 +182,7 @@
     <value>エディタ</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 167</value>
+    <value>155, 219</value>
   </data>
   <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
@@ -191,13 +191,25 @@
     <value>確定(&amp;O)</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>265, 167</value>
+    <value>265, 219</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>キャンセル(&amp;C)</value>
+  </data>
+  <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>303, 16</value>
+  </data>
+  <data name="cbShowInDirContextMenu.Text" xml:space="preserve">
+    <value>フォルダのコンテキストメニューに"&amp;Grep in GGrep"を表示する</value>
+  </data>
+  <data name="gbShell.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 8</value>
+  </data>
+  <data name="gbShell.Text" xml:space="preserve">
+    <value>シェル</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 12</value>

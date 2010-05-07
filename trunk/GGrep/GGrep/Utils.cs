@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using GGrep.Instance;
+using System.Security.Principal;
 
 namespace GGrep
 {
@@ -25,6 +26,20 @@ namespace GGrep
                 lang = "en-US";
             }
             return lang;
+        }
+
+        /// <summary>
+        /// Is Administrator
+        /// </summary>
+        public static bool IsAdministrators
+        {
+            get
+            {
+                WindowsIdentity wi = WindowsIdentity.GetCurrent();
+                WindowsPrincipal wp = new WindowsPrincipal(wi);
+
+                return wp.IsInRole("Administrators");
+            }
         }
 
         /// <summary>

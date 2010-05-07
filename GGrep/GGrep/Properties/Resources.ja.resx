@@ -181,4 +181,7 @@
   <data name="MSG_WARN_01" xml:space="preserve">
     <value>キャンセルしますか？</value>
   </data>
+  <data name="MSG_ERROR_06" xml:space="preserve">
+    <value>このオプションを利用するにはAdministratorの権限が必要です。</value>
+  </data>
 </root>

@@ -181,4 +181,7 @@
   <data name="MSG_WARN_01" xml:space="preserve">
     <value>Do you like to cancel it ?</value>
   </data>
+  <data name="MSG_ERROR_06" xml:space="preserve">
+    <value>You should be Administrator to do this action.</value>
+  </data>
 </root>

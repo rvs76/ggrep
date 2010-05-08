@@ -13,7 +13,7 @@ namespace GGrep
     {
         #region Members
         private static string SHELL_KEY_NAME = "GGREP";
-        private static string SHELL_MENU_TEXT = "&Grep in GGrep";
+        private static string SHELL_MENU_TEXT = "G&Grep";
         #endregion
 
         #region Contructor
@@ -61,14 +61,14 @@ namespace GGrep
             if (cbShowInDirContextMenu.Checked)
             {
                 RegistShell("Directory");
-                RegistShell("Drive");
-                RegistShell("*");
+                //RegistShell("Drive");
+                //RegistShell("*");
             }
             else
             {
                 RemoveShell("Directory");
-                RemoveShell("Drive");
-                RemoveShell("*");
+                //RemoveShell("Drive");
+                //RemoveShell("*");
             }
 
             Properties.Settings.Default.CustomEditorPath = tbCustomEditor.Text;

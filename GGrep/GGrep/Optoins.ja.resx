@@ -200,10 +200,10 @@
     <value>キャンセル(&amp;C)</value>
   </data>
   <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 16</value>
+    <value>262, 16</value>
   </data>
   <data name="cbShowInDirContextMenu.Text" xml:space="preserve">
-    <value>フォルダのコンテキストメニューに"&amp;Grep in GGrep"を表示する</value>
+    <value>フォルダのコンテキストメニューに"G&amp;Grep"を表示する</value>
   </data>
   <data name="gbShell.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 8</value>

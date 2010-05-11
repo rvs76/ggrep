@@ -105,6 +105,7 @@ namespace GGrep
             #region check arguments
             if (args != null && args.Length == 1)
             {
+                cbbSearchFolder.SelectedIndex = -1;
                 cbbSearchFolder.Text = args[0];
             }
             #endregion

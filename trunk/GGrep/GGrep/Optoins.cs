@@ -38,7 +38,7 @@ namespace GGrep
 
         private void cbShowInDirContextMenu_CheckedChanged(object sender, EventArgs e)
         {
-            if (!Utils.IsAdministrators)
+            if (!Utils.IsAdministrators && cbShowInDirContextMenu.Checked)
             {
                 MessageBox.Show(this, Properties.Resources.MSG_ERROR_06, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 cbShowInDirContextMenu.Checked = false;

@@ -35,10 +35,35 @@ namespace GGrep
         {
             get
             {
-                WindowsIdentity wi = WindowsIdentity.GetCurrent();
-                WindowsPrincipal wp = new WindowsPrincipal(wi);
+                bool isAdmin;
+                try
+                {
+                    //get the currently logged in user
+                    WindowsIdentity user = WindowsIdentity.GetCurrent();
+                    WindowsPrincipal principal = new WindowsPrincipal(user);
+                    isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    isAdmin = false;
+                }
+                catch (Exception)
+                {
+                    isAdmin = false;
+                }
+                return isAdmin;
 
-                return wp.IsInRole("Administrators");
+
+                // ★works in Vista UAC, and have .Net Framework 3.5 or better
+                //bool isAllowed = false;
+                //using (PrincipalContext pc = new PrincipalContext(ContextType.Machine, null))
+                //{
+                //    UserPrincipal up = UserPrincipal.Current;
+                //    GroupPrincipal gp = GroupPrincipal.FindByIdentity(pc, "Administrators");
+                //    if (up.IsMemberOf(gp))
+                //        isAllowed = true;
+                //}
+
             }
         }
 

@@ -182,6 +182,6 @@
     <value>キャンセルしますか？</value>
   </data>
   <data name="MSG_ERROR_06" xml:space="preserve">
-    <value>このオプションを利用するにはAdministratorの権限が必要です。</value>
+    <value>このオプションを利用するにはAdministrator権限で実行する必要が有ります。</value>
   </data>
 </root>

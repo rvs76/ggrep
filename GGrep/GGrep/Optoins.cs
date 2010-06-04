@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace GGrep
 {
@@ -14,6 +15,7 @@ namespace GGrep
         #region Members
         private static string SHELL_KEY_NAME = "GGREP";
         private static string SHELL_MENU_TEXT = "G&Grep";
+        bool ignoreEvent = false;
         #endregion
 
         #region Contructor
@@ -24,12 +26,14 @@ namespace GGrep
         public Optoins()
         {
             InitializeComponent();
+            ignoreEvent = true;
             cbShowInDirContextMenu.Checked = Properties.Settings.Default.ShowGrepInDirContextMenu;
             rbDefault.Checked = !Properties.Settings.Default.UseCustomEditor;
             rbCustom.Checked = Properties.Settings.Default.UseCustomEditor;
             tbCustomEditor.Text = Properties.Settings.Default.CustomEditorPath;
             tbArguments.Text = Properties.Settings.Default.CustomEditorArguments;
             SetActive(rbCustom.Checked);
+            ignoreEvent = false;
         }
 
         #endregion
@@ -38,10 +42,15 @@ namespace GGrep
 
         private void cbShowInDirContextMenu_CheckedChanged(object sender, EventArgs e)
         {
+            if (ignoreEvent)
+                return;
+
             if (cbShowInDirContextMenu.Checked && !Utils.IsAdministrators)
             {
                 MessageBox.Show(this, Properties.Resources.MSG_ERROR_06, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                ignoreEvent = true;
                 cbShowInDirContextMenu.Checked = false;
+                ignoreEvent = false;
                 return;
             }
         }
@@ -86,6 +95,23 @@ namespace GGrep
         #endregion
 
         #region Method
+
+#if DELETE
+        private void RunElevated()
+        {
+            ProcessStartInfo processInfo = new ProcessStartInfo();
+            processInfo.Verb = "runas";
+            processInfo.FileName = Application.ExecutablePath;
+            try
+            {
+                Process.Start(processInfo);
+            }
+            catch (Win32Exception)
+            {
+                //Do nothing. Probably the user canceled the UAC window
+            }
+        }
+#endif
 
         /// <summary>
         /// Activity Setting

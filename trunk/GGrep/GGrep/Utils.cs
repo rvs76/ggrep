@@ -67,6 +67,15 @@ namespace GGrep
             }
         }
 
+        public static bool IsVista
+        {
+            get
+            {
+                return (System.Environment.OSVersion.Version.Major >= 6);
+            }
+        }
+
+
         /// <summary>
         /// Creates a stream reader from a stream and detects
         /// the encoding form the first bytes in the stream

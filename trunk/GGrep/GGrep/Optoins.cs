@@ -45,11 +45,11 @@ namespace GGrep
             if (ignoreEvent)
                 return;
 
-            if (cbShowInDirContextMenu.Checked && !Utils.IsAdministrators)
+            if (!Utils.IsAdministrators)
             {
                 MessageBox.Show(this, Properties.Resources.MSG_ERROR_06, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 ignoreEvent = true;
-                cbShowInDirContextMenu.Checked = false;
+                cbShowInDirContextMenu.Checked = !cbShowInDirContextMenu.Checked;
                 ignoreEvent = false;
                 return;
             }
@@ -67,17 +67,20 @@ namespace GGrep
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (cbShowInDirContextMenu.Checked)
+            if (Utils.IsAdministrators)
             {
-                RegistShell("Directory");
-                //RegistShell("Drive");
-                //RegistShell("*");
-            }
-            else
-            {
-                RemoveShell("Directory");
-                //RemoveShell("Drive");
-                //RemoveShell("*");
+                if (cbShowInDirContextMenu.Checked)
+                {
+                    RegistShell("Directory");
+                    //RegistShell("Drive");
+                    //RegistShell("*");
+                }
+                else
+                {
+                    RemoveShell("Directory");
+                    //RemoveShell("Drive");
+                    //RemoveShell("*");
+                }
             }
 
             Properties.Settings.Default.CustomEditorPath = tbCustomEditor.Text;

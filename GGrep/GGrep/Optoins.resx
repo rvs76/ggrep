@@ -112,313 +112,103 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;gbShell.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbCustomEditor.Parent" xml:space="preserve">
-    <value>gbEditor</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="rbDefault.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
-    <value>gbEditor</value>
-  </data>
-  <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tbCustomEditor.Name" xml:space="preserve">
-    <value>tbCustomEditor</value>
-  </data>
-  <data name="&gt;&gt;cbShowInDirContextMenu.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>gbEditor</value>
-  </data>
-  <data name="&gt;&gt;gbEditor.Name" xml:space="preserve">
-    <value>gbEditor</value>
-  </data>
-  <data name="&gt;&gt;btnBrowse.Name" xml:space="preserve">
-    <value>btnBrowse</value>
-  </data>
-  <data name="&gt;&gt;tbCustomEditor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tbCustomEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 46</value>
-  </data>
-  <data name="rbCustom.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;gbEditor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbCustom.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="gbEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 64</value>
-  </data>
-  <data name="tbCustomEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>494, 246</value>
-  </data>
-  <data name="&gt;&gt;gbShell.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;rbCustom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;gbEditor.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;rbDefault.Parent" xml:space="preserve">
-    <value>gbEditor</value>
-  </data>
-  <data name="rbDefault.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 23</value>
-  </data>
-  <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 23</value>
-  </data>
-  <data name="&gt;&gt;rbCustom.Parent" xml:space="preserve">
-    <value>gbEditor</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Optoins</value>
-  </data>
-  <data name="&gt;&gt;cbShowInDirContextMenu.Parent" xml:space="preserve">
-    <value>gbShell</value>
-  </data>
-  <data name="btnBrowse.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="cbShowInDirContextMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 14</value>
-  </data>
-  <data name="&gt;&gt;tbArguments.Name" xml:space="preserve">
-    <value>tbArguments</value>
-  </data>
-  <data name="cbShowInDirContextMenu.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnOk.Text" xml:space="preserve">
-    <value>&amp;OK</value>
-  </data>
-  <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 45</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9pt</value>
-  </data>
-  <data name="&gt;&gt;tbArguments.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 33</value>
-  </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 213</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>(Use %file, %line and %column keywords to specify file location, line number and column number)</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
-    <value>btnOk</value>
-  </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 213</value>
-  </data>
-  <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 18</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="rbCustom.Text" xml:space="preserve">
-    <value>Custom Editor:</value>
-  </data>
-  <data name="gbEditor.Text" xml:space="preserve">
-    <value>Editor</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Optoins</value>
-  </data>
-  <data name="tbArguments.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 74</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Arguments:</value>
   </data>
-  <data name="&gt;&gt;rbDefault.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;tbCustomEditor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnBrowse.Text" xml:space="preserve">
-    <value>...</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="gbShell.Size" type="System.Drawing.Size, System.Drawing">
+    <value>470, 47</value>
   </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tbCustomEditor.Parent" xml:space="preserve">
     <value>gbEditor</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 213</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 45</value>
+  </data>
+  <data name="&gt;&gt;rbDefault.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="gbShell.Text" xml:space="preserve">
     <value>Shell</value>
   </data>
-  <data name="tbCustomEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Optoins</value>
   </data>
-  <data name="tbArguments.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
-  </data>
-  <data name="&gt;&gt;cbShowInDirContextMenu.Name" xml:space="preserve">
-    <value>cbShowInDirContextMenu</value>
-  </data>
-  <data name="rbDefault.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 18</value>
-  </data>
-  <data name="rbCustom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 18</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 99</value>
-  </data>
-  <data name="rbDefault.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbShell.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnBrowse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;rbDefault.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="rbCustom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 47</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbCustom.Name" xml:space="preserve">
-    <value>rbCustom</value>
-  </data>
-  <data name="&gt;&gt;tbArguments.Parent" xml:space="preserve">
-    <value>gbEditor</value>
-  </data>
-  <data name="gbShell.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 47</value>
-  </data>
-  <data name="gbShell.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 11</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 14</value>
-  </data>
-  <data name="gbEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 143</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tbCustomEditor.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;tbArguments.ZOrder" xml:space="preserve">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="rbCustom.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="gbShell.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 11</value>
+  </data>
   <data name="&gt;&gt;gbEditor.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="rbDefault.Text" xml:space="preserve">
-    <value>Default file specific editor</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnBrowse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="cbShowInDirContextMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;cbShowInDirContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="cbShowInDirContextMenu.Text" xml:space="preserve">
-    <value>Show G&amp;Grep in folder's context menu</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rbCustom.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 78</value>
   </data>
   <data name="tbArguments.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="gbShell.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;rbDefault.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
-    <value>btnCancel</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbShowInDirContextMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbDefault.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 23</value>
+  </data>
+  <data name="tbCustomEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="&gt;&gt;gbShell.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnOk.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="rbDefault.Text" xml:space="preserve">
+    <value>Default file specific editor</value>
+  </data>
+  <data name="gbEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>gbEditor</value>
+  </data>
+  <data name="&gt;&gt;gbShell.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2277,28 +2067,235 @@
         gAcAAIAPAACAHwAAwB8AAOE/AAD5/wAAMTExMTQ0
 </value>
   </data>
-  <data name="&gt;&gt;rbDefault.Name" xml:space="preserve">
-    <value>rbDefault</value>
+  <data name="cbShowInDirContextMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 21</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tbArguments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="&gt;&gt;rbCustom.Name" xml:space="preserve">
+    <value>rbCustom</value>
+  </data>
+  <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="gbEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;tbArguments.Parent" xml:space="preserve">
+    <value>gbEditor</value>
   </data>
-  <data name="cbShowInDirContextMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 21</value>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gbShell.Name" xml:space="preserve">
-    <value>gbShell</value>
+  <data name="btnBrowse.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="gbEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>470, 143</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cbShowInDirContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 33</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="&gt;&gt;tbCustomEditor.Name" xml:space="preserve">
+    <value>tbCustomEditor</value>
+  </data>
+  <data name="gbEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 64</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbEditor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rbCustom.Text" xml:space="preserve">
+    <value>Custom Editor:</value>
+  </data>
+  <data name="&gt;&gt;gbEditor.Name" xml:space="preserve">
+    <value>gbEditor</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9pt</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 14</value>
+  </data>
+  <data name="&gt;&gt;rbDefault.Name" xml:space="preserve">
+    <value>rbDefault</value>
+  </data>
+  <data name="&gt;&gt;rbDefault.Parent" xml:space="preserve">
+    <value>gbEditor</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tbArguments.Name" xml:space="preserve">
+    <value>tbArguments</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.Name" xml:space="preserve">
+    <value>btnBrowse</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;rbCustom.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tbCustomEditor.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>274, 213</value>
+  </data>
+  <data name="btnBrowse.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tbArguments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 74</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>gbEditor</value>
+  </data>
+  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tbArguments.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="gbEditor.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="&gt;&gt;cbShowInDirContextMenu.Name" xml:space="preserve">
+    <value>cbShowInDirContextMenu</value>
+  </data>
+  <data name="cbShowInDirContextMenu.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Japanese</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
+    <value>gbEditor</value>
+  </data>
+  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="cbShowInDirContextMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rbDefault.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tbCustomEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="gbShell.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 78</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Optoins</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>(Use %file, %line and %column keywords to specify file location, line number and column number)</value>
+  </data>
+  <data name="rbDefault.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 18</value>
+  </data>
+  <data name="btnBrowse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
+    <value>btnOk</value>
+  </data>
+  <data name="&gt;&gt;gbShell.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rbCustom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 18</value>
+  </data>
+  <data name="&gt;&gt;tbArguments.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rbDefault.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 18</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 14</value>
+  </data>
+  <data name="cbShowInDirContextMenu.Text" xml:space="preserve">
+    <value>Show G&amp;Grep in folder's context menu</value>
+  </data>
+  <data name="rbCustom.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;cbShowInDirContextMenu.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>494, 246</value>
+  </data>
+  <data name="&gt;&gt;rbCustom.Parent" xml:space="preserve">
+    <value>gbEditor</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 99</value>
+  </data>
+  <data name="rbCustom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 47</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tbCustomEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 46</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbShell.Name" xml:space="preserve">
+    <value>gbShell</value>
+  </data>
+  <data name="&gt;&gt;cbShowInDirContextMenu.Parent" xml:space="preserve">
+    <value>gbShell</value>
+  </data>
+  <data name="&gt;&gt;rbCustom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>

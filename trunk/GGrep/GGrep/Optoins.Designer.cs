@@ -47,18 +47,12 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = null;
-            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
-            this.label1.Font = null;
             this.label1.Name = "label1";
             // 
             // gbEditor
             // 
-            this.gbEditor.AccessibleDescription = null;
-            this.gbEditor.AccessibleName = null;
             resources.ApplyResources(this.gbEditor, "gbEditor");
-            this.gbEditor.BackgroundImage = null;
             this.gbEditor.Controls.Add(this.label2);
             this.gbEditor.Controls.Add(this.tbArguments);
             this.gbEditor.Controls.Add(this.btnBrowse);
@@ -66,54 +60,34 @@
             this.gbEditor.Controls.Add(this.rbCustom);
             this.gbEditor.Controls.Add(this.rbDefault);
             this.gbEditor.Controls.Add(this.label1);
-            this.gbEditor.Font = null;
             this.gbEditor.Name = "gbEditor";
             this.gbEditor.TabStop = false;
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = null;
-            this.label2.AccessibleName = null;
             resources.ApplyResources(this.label2, "label2");
-            this.label2.Font = null;
             this.label2.Name = "label2";
             // 
             // tbArguments
             // 
-            this.tbArguments.AccessibleDescription = null;
-            this.tbArguments.AccessibleName = null;
             resources.ApplyResources(this.tbArguments, "tbArguments");
-            this.tbArguments.BackgroundImage = null;
-            this.tbArguments.Font = null;
             this.tbArguments.Name = "tbArguments";
             // 
             // btnBrowse
             // 
-            this.btnBrowse.AccessibleDescription = null;
-            this.btnBrowse.AccessibleName = null;
             resources.ApplyResources(this.btnBrowse, "btnBrowse");
-            this.btnBrowse.BackgroundImage = null;
-            this.btnBrowse.Font = null;
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // tbCustomEditor
             // 
-            this.tbCustomEditor.AccessibleDescription = null;
-            this.tbCustomEditor.AccessibleName = null;
             resources.ApplyResources(this.tbCustomEditor, "tbCustomEditor");
-            this.tbCustomEditor.BackgroundImage = null;
-            this.tbCustomEditor.Font = null;
             this.tbCustomEditor.Name = "tbCustomEditor";
             // 
             // rbCustom
             // 
-            this.rbCustom.AccessibleDescription = null;
-            this.rbCustom.AccessibleName = null;
             resources.ApplyResources(this.rbCustom, "rbCustom");
-            this.rbCustom.BackgroundImage = null;
-            this.rbCustom.Font = null;
             this.rbCustom.Name = "rbCustom";
             this.rbCustom.TabStop = true;
             this.rbCustom.UseVisualStyleBackColor = true;
@@ -121,55 +95,35 @@
             // 
             // rbDefault
             // 
-            this.rbDefault.AccessibleDescription = null;
-            this.rbDefault.AccessibleName = null;
             resources.ApplyResources(this.rbDefault, "rbDefault");
-            this.rbDefault.BackgroundImage = null;
-            this.rbDefault.Font = null;
             this.rbDefault.Name = "rbDefault";
             this.rbDefault.TabStop = true;
             this.rbDefault.UseVisualStyleBackColor = true;
             // 
             // btnOk
             // 
-            this.btnOk.AccessibleDescription = null;
-            this.btnOk.AccessibleName = null;
             resources.ApplyResources(this.btnOk, "btnOk");
-            this.btnOk.BackgroundImage = null;
-            this.btnOk.Font = null;
             this.btnOk.Name = "btnOk";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.AccessibleDescription = null;
-            this.btnCancel.AccessibleName = null;
             resources.ApplyResources(this.btnCancel, "btnCancel");
-            this.btnCancel.BackgroundImage = null;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = null;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // gbShell
             // 
-            this.gbShell.AccessibleDescription = null;
-            this.gbShell.AccessibleName = null;
             resources.ApplyResources(this.gbShell, "gbShell");
-            this.gbShell.BackgroundImage = null;
             this.gbShell.Controls.Add(this.cbShowInDirContextMenu);
-            this.gbShell.Font = null;
             this.gbShell.Name = "gbShell";
             this.gbShell.TabStop = false;
             // 
             // cbShowInDirContextMenu
             // 
-            this.cbShowInDirContextMenu.AccessibleDescription = null;
-            this.cbShowInDirContextMenu.AccessibleName = null;
             resources.ApplyResources(this.cbShowInDirContextMenu, "cbShowInDirContextMenu");
-            this.cbShowInDirContextMenu.BackgroundImage = null;
-            this.cbShowInDirContextMenu.Font = null;
             this.cbShowInDirContextMenu.Name = "cbShowInDirContextMenu";
             this.cbShowInDirContextMenu.UseVisualStyleBackColor = true;
             this.cbShowInDirContextMenu.CheckedChanged += new System.EventHandler(this.cbShowInDirContextMenu_CheckedChanged);
@@ -177,11 +131,8 @@
             // Optoins
             // 
             this.AcceptButton = this.btnOk;
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = null;
             this.CancelButton = this.btnCancel;
             this.Controls.Add(this.gbShell);
             this.Controls.Add(this.btnCancel);

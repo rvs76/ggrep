@@ -163,7 +163,7 @@
     <value>247, 16</value>
   </data>
   <data name="labelProductName.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>1</value>
   </data>
   <data name="labelProductName.Text" xml:space="preserve">
     <value>http://code.google.com/p/ggrep/</value>
@@ -196,7 +196,7 @@
     <value>247, 16</value>
   </data>
   <data name="labelVersion.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="labelVersion.Text" xml:space="preserve">
     <value>Version</value>
@@ -229,7 +229,7 @@
     <value>247, 16</value>
   </data>
   <data name="labelCopyright.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>3</value>
   </data>
   <data name="labelCopyright.Text" xml:space="preserve">
     <value>Copyright</value>
@@ -268,7 +268,7 @@
     <value>247, 50</value>
   </data>
   <data name="textBoxDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>4</value>
   </data>
   <data name="textBoxDescription.Text" xml:space="preserve">
     <value>Description</value>
@@ -295,7 +295,7 @@
     <value>75, 23</value>
   </data>
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>0</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>&amp;OK</value>

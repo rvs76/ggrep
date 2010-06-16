@@ -105,12 +105,5 @@ namespace GGrep
             }
         }
         #endregion
-
-        #region Link
-        private void labelProductName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://code.google.com/p/ggrep/");
-        }
-        #endregion
     }
 }

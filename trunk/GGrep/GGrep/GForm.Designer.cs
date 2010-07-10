@@ -35,6 +35,9 @@
             this.cbbSearchText = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbSearch = new System.Windows.Forms.GroupBox();
+            this.btnReplace = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbbReplaceText = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.gbResult = new System.Windows.Forms.GroupBox();
             this.folvResult = new BrightIdeasSoftware.FastObjectListView();
@@ -76,7 +79,7 @@
             this.cbbFileMatch = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.cbIncludeSubFolders = new System.Windows.Forms.CheckBox();
             this.cbIncludeHiddenFolder = new System.Windows.Forms.CheckBox();
             this.cbRegex = new System.Windows.Forms.CheckBox();
@@ -92,7 +95,7 @@
             this.menuStripMain.SuspendLayout();
             this.gbFilter.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBrowse
@@ -132,6 +135,9 @@
             // 
             // gbSearch
             // 
+            this.gbSearch.Controls.Add(this.btnReplace);
+            this.gbSearch.Controls.Add(this.label8);
+            this.gbSearch.Controls.Add(this.cbbReplaceText);
             this.gbSearch.Controls.Add(this.label1);
             this.gbSearch.Controls.Add(this.btnSearch);
             this.gbSearch.Controls.Add(this.cbbSearchFolder);
@@ -141,6 +147,25 @@
             resources.ApplyResources(this.gbSearch, "gbSearch");
             this.gbSearch.Name = "gbSearch";
             this.gbSearch.TabStop = false;
+            // 
+            // btnReplace
+            // 
+            resources.ApplyResources(this.btnReplace, "btnReplace");
+            this.btnReplace.Name = "btnReplace";
+            this.btnReplace.UseVisualStyleBackColor = true;
+            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // cbbReplaceText
+            // 
+            this.cbbReplaceText.AllowDrop = true;
+            resources.ApplyResources(this.cbbReplaceText, "cbbReplaceText");
+            this.cbbReplaceText.FormattingEnabled = true;
+            this.cbbReplaceText.Name = "cbbReplaceText";
             // 
             // btnSearch
             // 
@@ -380,7 +405,7 @@
             // 
             resources.ApplyResources(this.gbFilter, "gbFilter");
             this.gbFilter.Controls.Add(this.panel2);
-            this.gbFilter.Controls.Add(this.flowLayoutPanel1);
+            this.gbFilter.Controls.Add(this.panel1);
             this.gbFilter.Name = "gbFilter";
             this.gbFilter.TabStop = false;
             // 
@@ -441,18 +466,18 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // flowLayoutPanel1
+            // panel1
             // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Controls.Add(this.cbIncludeSubFolders);
-            this.flowLayoutPanel1.Controls.Add(this.cbIncludeHiddenFolder);
-            this.flowLayoutPanel1.Controls.Add(this.cbRegex);
-            this.flowLayoutPanel1.Controls.Add(this.cbSearchOnWords);
-            this.flowLayoutPanel1.Controls.Add(this.cbCaseSensitive);
-            this.flowLayoutPanel1.Controls.Add(this.cbMultiline);
-            this.flowLayoutPanel1.Controls.Add(this.label6);
-            this.flowLayoutPanel1.Controls.Add(this.cbbEncoding);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.cbIncludeSubFolders);
+            this.panel1.Controls.Add(this.cbIncludeHiddenFolder);
+            this.panel1.Controls.Add(this.cbRegex);
+            this.panel1.Controls.Add(this.cbSearchOnWords);
+            this.panel1.Controls.Add(this.cbCaseSensitive);
+            this.panel1.Controls.Add(this.cbMultiline);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.cbbEncoding);
+            this.panel1.Name = "panel1";
             // 
             // cbIncludeSubFolders
             // 
@@ -528,8 +553,8 @@
             this.gbFilter.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,7 +569,7 @@
         private System.Windows.Forms.Label label2;
         private GGrep.CollapsibleGroupBox gbFilter;
         private System.Windows.Forms.GroupBox gbSearch;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel panel1;
         private System.Windows.Forms.CheckBox cbSearchOnWords;
         private System.Windows.Forms.CheckBox cbIncludeSubFolders;
         private System.Windows.Forms.CheckBox cbRegex;
@@ -593,6 +618,9 @@
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem japaneseToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbbReplaceText;
+        private System.Windows.Forms.Button btnReplace;
     }
 }
 

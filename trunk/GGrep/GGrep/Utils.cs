@@ -89,7 +89,7 @@ namespace GGrep
                 throw new ArgumentNullException("path");
 
             Stream stream = File.Open(path, FileMode.Open, FileAccess.Read);
-
+ 
             // check stream parameter
             if (stream == null)
                 throw new ArgumentNullException("stream");

@@ -27,7 +27,8 @@ namespace GGrep.Pattern
         /// <param name="path">file path</param>
         /// <param name="rowNo">row No.</param>
         /// <param name="encoding">encoding</param>
-        public void AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding)
+        /// <returns>replaced string when replace mode, null for search mode</returns>
+        public string AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding)
         {
             // for fast search
             if (!parent.Option.IsRegex)
@@ -35,12 +36,12 @@ namespace GGrep.Pattern
                 if (parent.Option.IsCaseSensitive)
                 {
                     if (!line.Contains(parent.Option.SearchString))
-                        return;
+                        return line;
                 }
                 else
                 {
                     if (!line.ToLower().Contains(parent.Option.SearchString.ToLower()))
-                        return;
+                        return line;
                 }
             }
 
@@ -72,19 +73,39 @@ namespace GGrep.Pattern
             }
             Regex re = new Regex(input, ro);
 
-            foreach (Match m in re.Matches(line))
+            if (parent.IsReplace)
             {
-                ResultData data = new ResultData();
-                data.SelectedPath = parent.Option.SearchFolder;
-                data.No = (++parent.Status.Hit);
-                data.FullFileName = path;
-                data.RowNo = rowNo;
-                data.ColNo = m.Index + 1;
-                data.Line = line;
-                data.MatchedString = m.Value;
-                data.FileEncoding = encoding;
-                list.Add(data);
+                int cnt = re.Matches(line).Count;
+
+                if (parent.Status.MatchedFiles.ContainsKey(path))
+                {
+                    parent.Status.MatchedFiles[path] += cnt;
+                }
+                else
+                {
+                    parent.Status.MatchedFiles.Add(path, cnt);
+                }
+                parent.Status.Hit += cnt;
+                return re.Replace(line, parent.Option.ReplaceString);
             }
+            else
+            {
+                foreach (Match m in re.Matches(line))
+                {
+                    ResultData data = new ResultData();
+                    data.SelectedPath = parent.Option.SearchFolder;
+                    data.No = (++parent.Status.Hit);
+                    data.FullFileName = path;
+                    data.RowNo = rowNo;
+                    data.ColNo = m.Index + 1;
+                    data.Line = line;
+                    data.MatchedString = m.Value;
+                    data.FileEncoding = encoding;
+                    list.Add(data);
+                }
+            }
+ 
+            return line;
         }
 
         /// <summary>

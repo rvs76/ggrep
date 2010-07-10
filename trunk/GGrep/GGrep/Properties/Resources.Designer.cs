@@ -70,6 +70,15 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Replace.
+        /// </summary>
+        internal static string BTN_TEXT_REPLACE {
+            get {
+                return ResourceManager.GetString("BTN_TEXT_REPLACE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Search.
         /// </summary>
         internal static string BTN_TEXT_SEARCH {
@@ -167,20 +176,20 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancelled. Found {0} Places in {1} ms..
+        ///   Looks up a localized string similar to Cancelled. Replaced {0} Places in {1} Files..
         /// </summary>
-        internal static string MSG_STATUS_CANCELED {
+        internal static string MSG_STATUS_REPLACE_CANCELED {
             get {
-                return ResourceManager.GetString("MSG_STATUS_CANCELED", resourceCulture);
+                return ResourceManager.GetString("MSG_STATUS_REPLACE_CANCELED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done. Found {0} Places in {1} ms..
+        ///   Looks up a localized string similar to Done. Replaced {0} Places in {1} Files..
         /// </summary>
-        internal static string MSG_STATUS_FINISHED {
+        internal static string MSG_STATUS_REPLACE_FINISHED {
             get {
-                return ResourceManager.GetString("MSG_STATUS_FINISHED", resourceCulture);
+                return ResourceManager.GetString("MSG_STATUS_REPLACE_FINISHED", resourceCulture);
             }
         }
         
@@ -190,6 +199,24 @@ namespace GGrep.Properties {
         internal static string MSG_STATUS_RUNNING {
             get {
                 return ResourceManager.GetString("MSG_STATUS_RUNNING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled. Found {0} Places in {1} ms..
+        /// </summary>
+        internal static string MSG_STATUS_SEARCH_CANCELED {
+            get {
+                return ResourceManager.GetString("MSG_STATUS_SEARCH_CANCELED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done. Found {0} Places in {1} ms..
+        /// </summary>
+        internal static string MSG_STATUS_SEARCH_FINISHED {
+            get {
+                return ResourceManager.GetString("MSG_STATUS_SEARCH_FINISHED", resourceCulture);
             }
         }
         
@@ -235,6 +262,15 @@ namespace GGrep.Properties {
         internal static string MSG_WARN_01 {
             get {
                 return ResourceManager.GetString("MSG_WARN_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to replace with empty string ?.
+        /// </summary>
+        internal static string MSG_WARN_02 {
+            get {
+                return ResourceManager.GetString("MSG_WARN_02", resourceCulture);
             }
         }
         

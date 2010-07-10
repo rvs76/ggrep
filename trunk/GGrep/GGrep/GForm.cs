@@ -38,6 +38,9 @@ namespace GGrep
         private bool isRunning = false;
         public bool IsRunning { get { return isRunning; } }
 
+        private bool isReplace = false;
+        public bool IsReplace { get { return isReplace; } }
+
         public BackgroundWorker BGW { get { return backgroundWorker; } }
         
         private bool IsAutoEncoding { get { return GetControlText(cbbEncoding).Trim().ToLower() == "auto"; } }
@@ -51,6 +54,7 @@ namespace GGrep
             gbFilter.IsCollapsed = Properties.Settings.Default.FilterIsCollapsed;
             SetSearchOptions();
             btnSearch.Text = Properties.Resources.BTN_TEXT_SEARCH;
+            btnReplace.Text = Properties.Resources.BTN_TEXT_REPLACE;
             filterToolStripMenuItem.Checked = !Properties.Settings.Default.FilterIsCollapsed;
             tooltipsToolStripMenuItem.Checked = Properties.Settings.Default.TooltipsShown;
             if ("ja-JP".Equals(Utils.GetAppLang()))
@@ -119,8 +123,9 @@ namespace GGrep
         /// <summary>
         /// Check & Save Search Options
         /// </summary>
+        /// <param name="isReplace"></param>
         /// <returns></returns>
-        private bool CheckAndSaveSearchOptions()
+        private bool CheckAndSaveSearchOptions(bool isReplace)
         {
             #region check
             // string
@@ -135,6 +140,13 @@ namespace GGrep
             {
                 ShowMessage(0, Properties.Resources.MSG_ERROR_02);
                 return false;
+            }
+
+            // replace
+            if (isReplace && string.IsNullOrEmpty(cbbReplaceText.Text))
+            {
+                if (ShowMessage(2, Properties.Resources.MSG_WARN_02) != System.Windows.Forms.DialogResult.OK)
+                    return false;
             }
 
             // encoding
@@ -161,6 +173,18 @@ namespace GGrep
                 catch
                 {
                     ShowMessage(0, Properties.Resources.MSG_ERROR_04);
+                    cbbSearchText.Focus();
+                    return false;
+                }
+
+                try
+                {
+                    Regex.IsMatch("", cbbReplaceText.Text);
+                }
+                catch
+                {
+                    ShowMessage(0, Properties.Resources.MSG_ERROR_04);
+                    cbbReplaceText.Focus();
                     return false;
                 }
             }
@@ -175,6 +199,9 @@ namespace GGrep
 
             option.SearchFolder = cbbSearchFolder.Text;
             ManagerCombox(cbbSearchFolder, option.SearchFolder);
+
+            option.ReplaceString = cbbReplaceText.Text;
+            ManagerCombox(cbbReplaceText, option.ReplaceString);
 
             option.IncludeSubFolders = cbIncludeSubFolders.Checked;
             option.IncludeHiddenFolders = cbIncludeHiddenFolder.Checked;
@@ -252,6 +279,7 @@ namespace GGrep
         {
             Properties.Settings.Default.SearchString = AppendSearchOptions(cbbSearchText);
             Properties.Settings.Default.SearchFolder = AppendSearchOptions(cbbSearchFolder);
+            Properties.Settings.Default.ReplaceString = AppendSearchOptions(cbbReplaceText);
             Properties.Settings.Default.Regex = option.IsRegex;
             Properties.Settings.Default.CaseSensitive = option.IsCaseSensitive;
             Properties.Settings.Default.SearchOnWords = option.IsSearchOnWords;
@@ -288,6 +316,15 @@ namespace GGrep
                     cbbSearchFolder.Items.Add(s);
                 }
                 cbbSearchFolder.SelectedIndex = 0;
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.ReplaceString))
+            {
+                cbbReplaceText.Items.Clear();
+                foreach (string s in Properties.Settings.Default.ReplaceString.Split(SEPERATOR))
+                {
+                    cbbReplaceText.Items.Add(s);
+                }
+                cbbReplaceText.SelectedIndex = 0;
             }
             cbRegex.Checked = Properties.Settings.Default.Regex;
             cbCaseSensitive.Checked = Properties.Settings.Default.CaseSensitive;
@@ -607,14 +644,12 @@ namespace GGrep
             if (!isRunning && !backgroundWorker.IsBusy)
             {
                 // start
-                if (!CheckAndSaveSearchOptions())
+                if (!CheckAndSaveSearchOptions(false))
                     return;
 
                 SaveSearchOptions();
 
-                //DoGrep();
-                //Thread th = new Thread(new ThreadStart(DoGrep));
-                //th.Start();
+                isReplace = false;
                 backgroundWorker.RunWorkerAsync();
             }
             else
@@ -623,7 +658,28 @@ namespace GGrep
                 isRunning = false;
                 backgroundWorker.CancelAsync();
             }
+        }
 
+
+        private void btnReplace_Click(object sender, EventArgs e)
+        {
+            if (!isRunning && !backgroundWorker.IsBusy)
+            {
+                // start
+                if (!CheckAndSaveSearchOptions(true))
+                    return;
+
+                SaveSearchOptions();
+
+                isReplace = true;
+                backgroundWorker.RunWorkerAsync();
+            }
+            else
+            {
+                // stop
+                isRunning = false;
+                backgroundWorker.CancelAsync();
+            }
         }
 
         private void cbRegex_CheckedChanged(object sender, EventArgs e)
@@ -739,11 +795,21 @@ namespace GGrep
             ApplyLanguage();
             isRunning = true;
             status = new SearchStatus();
-            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_CANCEL);
+            if (isReplace)
+            {
+                SetControlText(btnReplace, Properties.Resources.BTN_TEXT_CANCEL);
+                SetControlActive(btnSearch, false);
+            }
+            else
+            {
+                SetControlText(btnSearch, Properties.Resources.BTN_TEXT_CANCEL);
+                SetControlActive(btnReplace, false);
+            }
             folvResult.ClearObjects();
             SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, false);
             SetControlActive(cbbSearchText, false);
             SetControlActive(cbbSearchFolder, false);
+            SetControlActive(cbbReplaceText, false);
             SetControlActive(btnBrowse, false);
             SetControlActive(gbFilter, false);
             SetControlActive(menuStripMain, false);
@@ -772,7 +838,6 @@ namespace GGrep
                     backgroundWorker.ReportProgress(status.Progress);
                 }
             }
-
         }
 
         private void GrepProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -791,19 +856,38 @@ namespace GGrep
             if (e.Error != null)
             {
                 ShowMessage(0, e.Error.Message);
+                SetToolStripLabel(statusLabel, e.Error.Message);
             }
             else
             {
-                SetToolStripLabel(statusLabel, string.Format((e.Cancelled ? Properties.Resources.MSG_STATUS_CANCELED : Properties.Resources.MSG_STATUS_FINISHED), status.Hit, sw.ElapsedMilliseconds));
+                if (isReplace)
+                {
+                    SetToolStripLabel(statusLabel, string.Format((e.Cancelled ? Properties.Resources.MSG_STATUS_REPLACE_CANCELED : Properties.Resources.MSG_STATUS_REPLACE_FINISHED), status.Hit, status.MatchedFiles.Keys.Count));
+                }
+                else
+                {
+                    SetToolStripLabel(statusLabel, string.Format((e.Cancelled ? Properties.Resources.MSG_STATUS_SEARCH_CANCELED : Properties.Resources.MSG_STATUS_SEARCH_FINISHED), status.Hit, sw.ElapsedMilliseconds));
+                }
             }
             SetControlActive(menuStripMain, true);
             SetControlActive(cbbSearchText, true);
             SetControlActive(cbbSearchFolder, true);
+            SetControlActive(cbbReplaceText, true);
             SetControlActive(btnBrowse, true);
             SetControlActive(gbFilter, true);
             if (status.Hit > 0)
                 SetToolStripMenuItemActive(saveAsCsvToolStripMenuItem, true);
-            SetControlText(btnSearch, Properties.Resources.BTN_TEXT_SEARCH);
+
+            if (isReplace)
+            {
+                SetControlText(btnReplace, Properties.Resources.BTN_TEXT_REPLACE);
+                SetControlActive(btnSearch, true);
+            }
+            else
+            {
+                SetControlText(btnSearch, Properties.Resources.BTN_TEXT_SEARCH);
+                SetControlActive(btnReplace, true);
+            }
             isRunning = false;
         }
         #endregion

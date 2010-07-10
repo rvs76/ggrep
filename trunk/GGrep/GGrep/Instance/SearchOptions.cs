@@ -15,6 +15,14 @@ namespace GGrep.Instance
             set { searchString = value; }
         }
 
+        private string replaceString;
+
+        public string ReplaceString
+        {
+            get { return replaceString; }
+            set { replaceString = value; }
+        }
+
         private string searchFolder;
 
         public string SearchFolder

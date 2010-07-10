@@ -129,7 +129,7 @@
   <data name="FILE_NEM_NAME" xml:space="preserve">
     <value>new.csv</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minus.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,7 +151,7 @@
   <data name="MSG_SAVED" xml:space="preserve">
     <value>CSVファイルを保存しました。</value>
   </data>
-  <data name="MSG_STATUS_FINISHED" xml:space="preserve">
+  <data name="MSG_STATUS_SEARCH_FINISHED" xml:space="preserve">
     <value>完了しました。{0}箇所を見つかりました。{1} ms掛りました。</value>
   </data>
   <data name="MSG_STATUS_RUNNING" xml:space="preserve">
@@ -175,7 +175,7 @@
   <data name="Search_files_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search files-128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MSG_STATUS_CANCELED" xml:space="preserve">
+  <data name="MSG_STATUS_SEARCH_CANCELED" xml:space="preserve">
     <value>キャンセルしました。{0}箇所を見つかりました。{1} ms掛りました。</value>
   </data>
   <data name="MSG_WARN_01" xml:space="preserve">
@@ -183,5 +183,17 @@
   </data>
   <data name="MSG_ERROR_06" xml:space="preserve">
     <value>このオプションを利用するにはAdministrator権限で実行する必要が有ります。</value>
+  </data>
+  <data name="BTN_TEXT_REPLACE" xml:space="preserve">
+    <value>置　換(&amp;R)</value>
+  </data>
+  <data name="MSG_WARN_02" xml:space="preserve">
+    <value>空文字に置換しますか？</value>
+  </data>
+  <data name="MSG_STATUS_REPLACE_CANCELED" xml:space="preserve">
+    <value>キャンセルしました。{1}ファイル中の{0}箇所を置換しました。</value>
+  </data>
+  <data name="MSG_STATUS_REPLACE_FINISHED" xml:space="preserve">
+    <value>{1}ファイル中の{0}箇所を置換しました。</value>
   </data>
 </root>

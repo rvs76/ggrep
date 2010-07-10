@@ -298,5 +298,17 @@ namespace GGrep.Properties {
                 this["ShowGrepInDirContextMenu"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ReplaceString {
+            get {
+                return ((string)(this["ReplaceString"]));
+            }
+            set {
+                this["ReplaceString"] = value;
+            }
+        }
     }
 }

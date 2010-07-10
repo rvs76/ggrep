@@ -25,7 +25,7 @@ namespace GGrep.Pattern
         /// <param name="path">file path</param>
         /// <param name="rowNo">row No.</param>
         /// <param name="encoding">encoding</param>
-        void AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding);
+        string AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding);
 
         /// <summary>
         /// Open File in Specific Editor

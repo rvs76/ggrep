@@ -27,30 +27,41 @@ namespace GGrep.Pattern
             {
                 long rowNo = 0;
                 string line;
+                StringBuilder sb = new StringBuilder();
 
-                try
+                Encoding encoding = null;
+                using (StreamReader sr = parent.Option.IsAutoEncoding ? Utils.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(parent.Option.Encoding)))
                 {
-                    using (StreamReader sr = parent.Option.IsAutoEncoding ? Utils.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(parent.Option.Encoding)))
+                    encoding = sr.CurrentEncoding;
+                    while (!sr.EndOfStream && parent.IsRunning)
                     {
-                        while (!sr.EndOfStream && parent.IsRunning)
+                        if (parent.BGW.CancellationPending)
                         {
-                            if (parent.BGW.CancellationPending)
-                            {
-                                e.Cancel = true;
-                                break;
-                            }
-                            line = sr.ReadLine();
-                            rowNo++;
-
-                            AnalyzeLine(line, list, path, rowNo, sr.CurrentEncoding.EncodingName);
+                            e.Cancel = true;
+                            break;
                         }
+                        line = sr.ReadLine();
+                        rowNo++;
 
-                        sr.Close();
+                        string s = AnalyzeLine(line, list, path, rowNo, sr.CurrentEncoding.EncodingName);
+                        if (parent.IsReplace)
+                        {
+                            sb.AppendLine(s);
+                        }
                     }
+
+                    sr.Close();
                 }
-                catch (Exception)
+
+                // save file when replace
+                if (parent.IsReplace)
                 {
-                    // ignore
+                    // TODO: save file
+                    using (StreamWriter sw = new StreamWriter(path, false, encoding))
+                    {
+                        sw.Write(sb.ToString());
+                        sw.Close();
+                    }
                 }
 
             }

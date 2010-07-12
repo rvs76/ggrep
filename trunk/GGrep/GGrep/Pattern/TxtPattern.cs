@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.IO;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace GGrep.Pattern
 {
@@ -27,26 +28,45 @@ namespace GGrep.Pattern
             {
                 long rowNo = 0;
                 string line;
-                StringBuilder sb = new StringBuilder();
+                string newLine = string.Empty;
 
                 Encoding encoding = null;
                 using (StreamReader sr = parent.Option.IsAutoEncoding ? Utils.OpenTextFile(path) : new StreamReader(File.OpenRead(path), Encoding.GetEncoding(parent.Option.Encoding)))
                 {
                     encoding = sr.CurrentEncoding;
-                    while (!sr.EndOfStream && parent.IsRunning)
-                    {
-                        if (parent.BGW.CancellationPending)
-                        {
-                            e.Cancel = true;
-                            break;
-                        }
-                        line = sr.ReadLine();
-                        rowNo++;
 
-                        string s = AnalyzeLine(line, list, path, rowNo, sr.CurrentEncoding.EncodingName);
-                        if (parent.IsReplace)
+                    if (!parent.IsReplace)
+                    {
+                        // Grep Mode
+
+                        while (!sr.EndOfStream && parent.IsRunning)
                         {
-                            sb.AppendLine(s);
+                            if (parent.BGW.CancellationPending)
+                            {
+                                e.Cancel = true;
+                                break;
+                            }
+                            line = sr.ReadLine();
+                            rowNo++;
+
+                            AnalyzeLine(line, list, path, rowNo, sr.CurrentEncoding.EncodingName, GetRegex());
+                        }
+                    }
+                    else
+                    {
+                        // Replace Mode
+
+                        line = sr.ReadToEnd();
+
+                        Regex regex = GetRegex();
+                        int cnt = 0;
+                        newLine = string.Empty;
+
+                        if ((cnt = regex.Matches(line).Count) > 0)
+                        {
+                            parent.Status.MatchedFiles++;
+                            parent.Status.Hit += cnt;
+                            newLine = regex.Replace(line, parent.Option.ReplaceString);
                         }
                     }
 
@@ -54,12 +74,12 @@ namespace GGrep.Pattern
                 }
 
                 // save file when replace
-                if (parent.IsReplace)
+                if (parent.IsReplace && !string.IsNullOrEmpty(newLine))
                 {
                     // TODO: save file
                     using (StreamWriter sw = new StreamWriter(path, false, encoding))
                     {
-                        sw.Write(sb.ToString());
+                        sw.Write(newLine);
                         sw.Close();
                     }
                 }

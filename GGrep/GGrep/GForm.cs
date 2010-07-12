@@ -862,7 +862,7 @@ namespace GGrep
             {
                 if (isReplace)
                 {
-                    SetToolStripLabel(statusLabel, string.Format((e.Cancelled ? Properties.Resources.MSG_STATUS_REPLACE_CANCELED : Properties.Resources.MSG_STATUS_REPLACE_FINISHED), status.Hit, status.MatchedFiles.Keys.Count));
+                    SetToolStripLabel(statusLabel, string.Format((e.Cancelled ? Properties.Resources.MSG_STATUS_REPLACE_CANCELED : Properties.Resources.MSG_STATUS_REPLACE_FINISHED), status.Hit, status.MatchedFiles));
                 }
                 else
                 {

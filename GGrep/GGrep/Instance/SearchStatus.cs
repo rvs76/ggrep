@@ -25,8 +25,8 @@ namespace GGrep.Instance
             set { finished = value; }
         }
 
-        private Dictionary<string, int> matchedFiles = new Dictionary<string, int>();
-        public Dictionary<string, int> MatchedFiles
+        private int matchedFiles = 0;
+        public int MatchedFiles
         {
             get { return matchedFiles; }
             set { matchedFiles = value; }

@@ -19,32 +19,8 @@ namespace GGrep.Pattern
             parent = _parent;
         }
 
-        /// <summary>
-        /// Search in line
-        /// </summary>
-        /// <param name="line">txt</param>
-        /// <param name="list">result data</param>
-        /// <param name="path">file path</param>
-        /// <param name="rowNo">row No.</param>
-        /// <param name="encoding">encoding</param>
-        /// <returns>replaced string when replace mode, null for search mode</returns>
-        public string AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding)
+        protected Regex GetRegex()
         {
-            // for fast search
-            if (!parent.Option.IsRegex)
-            {
-                if (parent.Option.IsCaseSensitive)
-                {
-                    if (!line.Contains(parent.Option.SearchString))
-                        return line;
-                }
-                else
-                {
-                    if (!line.ToLower().Contains(parent.Option.SearchString.ToLower()))
-                        return line;
-                }
-            }
-
             RegexOptions ro = RegexOptions.Singleline;
             string input = parent.Option.SearchString;
 
@@ -71,41 +47,51 @@ namespace GGrep.Pattern
                     input = @"\b" + input + @"\b";
                 }
             }
-            Regex re = new Regex(input, ro);
+            
+            return new Regex(input, ro);
+        }
 
-            if (parent.IsReplace)
+        /// <summary>
+        /// Search in line
+        /// </summary>
+        /// <param name="line">txt</param>
+        /// <param name="list">result data</param>
+        /// <param name="path">file path</param>
+        /// <param name="rowNo">row No.</param>
+        /// <param name="encoding">encoding</param>
+        /// <param name="regex">regex</param>
+        public void AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding, Regex regex)
+        {
+            // for fast search
+            if (!parent.Option.IsRegex)
             {
-                int cnt = re.Matches(line).Count;
-
-                if (parent.Status.MatchedFiles.ContainsKey(path))
+                if (parent.Option.IsCaseSensitive)
                 {
-                    parent.Status.MatchedFiles[path] += cnt;
+                    if (!line.Contains(parent.Option.SearchString))
+                        return;
                 }
                 else
                 {
-                    parent.Status.MatchedFiles.Add(path, cnt);
+                    if (!line.ToLower().Contains(parent.Option.SearchString.ToLower()))
+                        return;
                 }
-                parent.Status.Hit += cnt;
-                return re.Replace(line, parent.Option.ReplaceString);
             }
-            else
+
+            foreach (Match m in regex.Matches(line))
             {
-                foreach (Match m in re.Matches(line))
-                {
-                    ResultData data = new ResultData();
-                    data.SelectedPath = parent.Option.SearchFolder;
-                    data.No = (++parent.Status.Hit);
-                    data.FullFileName = path;
-                    data.RowNo = rowNo;
-                    data.ColNo = m.Index + 1;
-                    data.Line = line;
-                    data.MatchedString = m.Value;
-                    data.FileEncoding = encoding;
-                    list.Add(data);
-                }
+                ResultData data = new ResultData();
+                data.SelectedPath = parent.Option.SearchFolder;
+                data.No = (++parent.Status.Hit);
+                data.FullFileName = path;
+                data.RowNo = rowNo;
+                data.ColNo = m.Index + 1;
+                data.Line = line;
+                data.MatchedString = m.Value;
+                data.FileEncoding = encoding;
+                list.Add(data);
             }
- 
-            return line;
+
+            return;
         }
 
         /// <summary>

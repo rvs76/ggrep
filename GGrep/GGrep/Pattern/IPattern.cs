@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections;
 using System.ComponentModel;
 using GGrep.Instance;
+using System.Text.RegularExpressions;
 
 namespace GGrep.Pattern
 {
@@ -25,7 +26,8 @@ namespace GGrep.Pattern
         /// <param name="path">file path</param>
         /// <param name="rowNo">row No.</param>
         /// <param name="encoding">encoding</param>
-        string AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding);
+        /// <param name="regex">regex</param>
+        void AnalyzeLine(string line, ArrayList list, string path, long rowNo, string encoding, Regex regex);
 
         /// <summary>
         /// Open File in Specific Editor

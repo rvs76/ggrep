@@ -1213,7 +1213,7 @@
     <value>gbFilter</value>
   </data>
   <data name="&gt;&gt;gbFilter.Type" xml:space="preserve">
-    <value>GGrep.CollapsibleGroupBox, GGrep, Version=0.9.3843.37064, Culture=neutral, PublicKeyToken=null</value>
+    <value>GGrep.CollapsibleGroupBox, GGrep, Version=1.2.3845.38944, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gbFilter.Parent" xml:space="preserve">
     <value>$this</value>

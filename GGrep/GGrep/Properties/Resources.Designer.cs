@@ -281,9 +281,9 @@ namespace GGrep.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Search_files_128 {
+        internal static System.Drawing.Bitmap Search_128 {
             get {
-                object obj = ResourceManager.GetObject("Search_files_128", resourceCulture);
+                object obj = ResourceManager.GetObject("Search_128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -398,7 +398,7 @@ namespace GGrep
             {
                 case 0:
                     // failure
-                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 case 2:
                     // warning
                     return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_03, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);

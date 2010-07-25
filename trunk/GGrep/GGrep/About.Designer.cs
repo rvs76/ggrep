@@ -53,7 +53,7 @@
             // logoPictureBox
             // 
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
-            this.logoPictureBox.Image = global::GGrep.Properties.Resources.Search_files_128;
+            this.logoPictureBox.Image = global::GGrep.Properties.Resources.Search_128;
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 5);
             this.logoPictureBox.TabStop = false;

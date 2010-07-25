@@ -20,7 +20,7 @@
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
     <SccProvider>SubversionScc</SccProvider>
-    <ApplicationIcon>Search files.ico</ApplicationIcon>
+    <ApplicationIcon>Search.ico</ApplicationIcon>
     <ManifestCertificateThumbprint>578851A7A6FE95E1EF15EB24F0F37D3799832C8B</ManifestCertificateThumbprint>
     <ManifestKeyFile>GGrep_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
@@ -228,9 +228,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Search.ico" />
     <None Include="Resources\minus.bmp" />
     <None Include="Resources\plus.bmp" />
-    <None Include="Resources\Search files-128.png" />
+    <None Include="Resources\Search-128.png" />
     <Content Include="Search files.ico" />
   </ItemGroup>
   <ItemGroup>

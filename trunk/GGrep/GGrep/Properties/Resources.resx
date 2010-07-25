@@ -172,9 +172,6 @@
   <data name="MSG_STATUS_STARTED" xml:space="preserve">
     <value>Analyzing Directories ...</value>
   </data>
-  <data name="Search_files_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Search files-128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MSG_STATUS_SEARCH_CANCELED" xml:space="preserve">
     <value>Cancelled. Found {0} Places in {1} ms.</value>
   </data>
@@ -195,5 +192,9 @@
   </data>
   <data name="MSG_STATUS_REPLACE_FINISHED" xml:space="preserve">
     <value>Done. Replaced {0} Places in {1} Files.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Search_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Search-128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

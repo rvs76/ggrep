@@ -249,7 +249,6 @@
     <None Include="Resources\minus.bmp" />
     <None Include="Resources\plus.bmp" />
     <None Include="Resources\Search-128.png" />
-    <Content Include="Search files.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\demo\ObjectListViewDemo20\ObjectListView\ObjectListView2008.csproj">

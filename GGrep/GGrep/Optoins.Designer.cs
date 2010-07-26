@@ -52,6 +52,7 @@
             // 
             // gbEditor
             // 
+            resources.ApplyResources(this.gbEditor, "gbEditor");
             this.gbEditor.Controls.Add(this.label2);
             this.gbEditor.Controls.Add(this.tbArguments);
             this.gbEditor.Controls.Add(this.btnBrowse);
@@ -59,7 +60,6 @@
             this.gbEditor.Controls.Add(this.rbCustom);
             this.gbEditor.Controls.Add(this.rbDefault);
             this.gbEditor.Controls.Add(this.label1);
-            resources.ApplyResources(this.gbEditor, "gbEditor");
             this.gbEditor.Name = "gbEditor";
             this.gbEditor.TabStop = false;
             // 
@@ -109,15 +109,15 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // gbShell
             // 
-            this.gbShell.Controls.Add(this.cbShowInDirContextMenu);
             resources.ApplyResources(this.gbShell, "gbShell");
+            this.gbShell.Controls.Add(this.cbShowInDirContextMenu);
             this.gbShell.Name = "gbShell";
             this.gbShell.TabStop = false;
             // 
@@ -142,6 +142,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Optoins";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.gbEditor.ResumeLayout(false);
             this.gbEditor.PerformLayout();

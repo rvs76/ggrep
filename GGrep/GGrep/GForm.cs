@@ -61,11 +61,19 @@ namespace GGrep
             {
                 japaneseToolStripMenuItem.Checked = true;
                 englishToolStripMenuItem.Checked = false;
+                chineseToolStripMenuItem.Checked = false;
+            }
+            else if ("zh-CN".Equals(Utils.GetAppLang()))
+            {
+                japaneseToolStripMenuItem.Checked = false;
+                englishToolStripMenuItem.Checked = false;
+                chineseToolStripMenuItem.Checked = true;
             }
             else
             {
                 japaneseToolStripMenuItem.Checked = false;
                 englishToolStripMenuItem.Checked = true;
+                chineseToolStripMenuItem.Checked = false;
             }
 
             #region highlight render
@@ -774,6 +782,7 @@ namespace GGrep
             {
                 japaneseToolStripMenuItem.Checked = !japaneseToolStripMenuItem.Checked;
                 englishToolStripMenuItem.Checked = !englishToolStripMenuItem.Checked;
+                chineseToolStripMenuItem.Checked = !chineseToolStripMenuItem.Checked;
                 SetLanguage("ja-JP");
             }
         }
@@ -784,9 +793,22 @@ namespace GGrep
             {
                 japaneseToolStripMenuItem.Checked = !japaneseToolStripMenuItem.Checked;
                 englishToolStripMenuItem.Checked = !englishToolStripMenuItem.Checked;
+                chineseToolStripMenuItem.Checked = !chineseToolStripMenuItem.Checked;
                 SetLanguage("en-US");
             }
         }
+
+        private void chineseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!chineseToolStripMenuItem.Checked)
+            {
+                japaneseToolStripMenuItem.Checked = !japaneseToolStripMenuItem.Checked;
+                englishToolStripMenuItem.Checked = !englishToolStripMenuItem.Checked;
+                chineseToolStripMenuItem.Checked = !chineseToolStripMenuItem.Checked;
+                SetLanguage("zh-CN");
+            }
+        }
+
         #endregion
 
         #region backgroundworker

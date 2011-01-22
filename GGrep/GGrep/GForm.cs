@@ -966,33 +966,112 @@ namespace GGrep
     {
         public override void Render(Graphics g, Rectangle r)
         {
-            // if selected, draw by default
-            if (this.IsItemSelected && this.ListView.Focused)
+            ResultData data = (ResultData)this.RowObject;
+            int colNo = (int)data.ColNo;
+            string strLeft = data.Line.Substring(0, colNo - 1);
+            string strRight = data.Line.Substring(colNo - 1 + data.MatchedString.Length);
+
+            int leftWidth = CalculateTextWidth(g, strLeft);
+            int matchedWidth = CalculateTextWidth(g, data.MatchedString);
+            int totalWidth = CalculateTextWidth(g, data.Line);
+            int rightWidth = CalculateTextWidth(g, strRight);
+            int space = (leftWidth + matchedWidth + rightWidth - totalWidth) / 3;
+
+            string lineData = data.Line;
+            if (totalWidth > r.Width)
             {
-                base.Render(g, r);
+                if (matchedWidth >= r.Width)
+                {
+                    lineData = data.MatchedString;
+                    leftWidth = 0;
+                }
+                else
+                {
+                    int startIdx = 0;
+                    int length = 0;
+                    if (leftWidth + matchedWidth <= r.Width)
+                    {
+                        length = colNo + data.MatchedString.Length;
+                        while (true)
+                        {
+                            if (startIdx + length > data.Line.Length)
+                            {
+                                length--;
+                                break;
+                            }
+
+                            if (CalculateTextWidth(g, data.Line.Substring(startIdx, length)) > r.Width)
+                            {
+                                length--;
+                                break;
+                            }
+                            length++;
+                        }
+                        lineData = data.Line.Substring(startIdx, length);
+                    }
+                    else if (rightWidth + matchedWidth <= r.Width)
+                    {
+                        startIdx = colNo;
+                        while (true)
+                        {
+                            if (startIdx < 0)
+                            {
+                                startIdx = 0;
+                                break;
+                            }
+
+                            if (CalculateTextWidth(g, data.Line.Substring(startIdx)) > r.Width)
+                            {
+                                startIdx++;
+                                break;
+                            }
+                            startIdx--;
+                        }
+                        lineData = data.Line.Substring(startIdx);
+                        leftWidth = CalculateTextWidth(g, data.Line.Substring(startIdx, colNo - startIdx - 1));
+                    }
+                    else
+                    {
+                        startIdx = colNo - 1;
+                        length = data.MatchedString.Length;
+                        leftWidth = 0;
+                        if (colNo > 3)
+                        {
+                            leftWidth = CalculateTextWidth(g, "...");
+                        }
+                        while (true)
+                        {
+                            if (startIdx + length > data.Line.Length)
+                            {
+                                length--;
+                                break;
+                            }
+
+                            if (CalculateTextWidth(g, "..." + data.Line.Substring(startIdx, length)) > r.Width)
+                            {
+                                length--;
+                                break;
+                            }
+                            length++;
+                        }
+                        lineData = "..." + data.Line.Substring(startIdx, length);
+                    }
+                }
             }
-            else
+
+            this.DrawBackground(g, r);
+            if (!(this.IsItemSelected && this.ListView.Focused))
             {
-                ResultData data = (ResultData)this.RowObject;
-                string strLeft = data.Line.Substring(0, (int)data.ColNo - 1);
-
-                int leftWidth = CalculateTextWidth(g, strLeft);
-                int matchedWidth = CalculateTextWidth(g, data.MatchedString);
-                int rightWidth = CalculateTextWidth(g, data.Line.Substring((int)data.ColNo - 1 + data.MatchedString.Length));
-
-                int space = (leftWidth + matchedWidth + rightWidth - CalculateTextWidth(g, data.Line)) / 3;
                 leftWidth -= space;
                 matchedWidth -= space * 2;
 
                 Rectangle matchedRect = new Rectangle(r.X + leftWidth, r.Y, matchedWidth, r.Height);
-
-                this.DrawBackground(g, r);
                 using (Brush brush = new SolidBrush(Color.Yellow))
                 {
                     g.FillRectangle(brush, matchedRect);
                 }
-                this.DrawText(g, r, data.Line);
             }
+            this.DrawText(g, r, lineData);
         }
 
         protected override void DrawTextGdi(Graphics g, Rectangle r, String txt)

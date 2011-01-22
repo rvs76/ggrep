@@ -253,7 +253,6 @@
             // 
             // colResult
             // 
-            this.colResult.AspectName = "Line";
             this.colResult.FillsFreeSpace = true;
             resources.ApplyResources(this.colResult, "colResult");
             this.colResult.IsEditable = false;

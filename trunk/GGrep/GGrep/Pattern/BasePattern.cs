@@ -12,6 +12,8 @@ namespace GGrep.Pattern
     {
         protected GForm parent = null;
 
+        int MAX_WIDTH = 127;
+
         public BasePattern() { }
 
         public BasePattern(GForm _parent)
@@ -88,6 +90,43 @@ namespace GGrep.Pattern
                 data.Line = line;
                 data.MatchedString = m.Value;
                 data.FileEncoding = encoding;
+
+                if (line.Length > MAX_WIDTH)
+                {
+                    if (data.MatchedString.Length >= line.Length)
+                    {
+                        data.ShowLine = data.MatchedString;
+                        data.ShowColNo = 0;
+                    }
+                    else
+                    {
+                        data.ShowColNo = (MAX_WIDTH - data.MatchedString.Length) / 2;
+                        if (data.ColNo - data.ShowColNo - 1 < 0)
+                        {
+                            data.ShowColNo = data.ColNo;
+                            data.ShowLine = data.Line.Substring(0, MAX_WIDTH);
+                        }
+                        else
+                        {
+                            if (data.ColNo - data.ShowColNo - 1 + MAX_WIDTH > line.Length)
+                            {
+                                data.ShowColNo = line.Length - MAX_WIDTH;
+                                data.ShowLine = data.Line.Substring((int)data.ShowColNo);
+                                data.ShowColNo = data.ColNo - data.ShowColNo;
+                            }
+                            else
+                            {
+                                data.ShowLine = data.Line.Substring((int)(data.ColNo - data.ShowColNo), MAX_WIDTH);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    data.ShowColNo = data.ColNo;
+                    data.ShowLine = data.Line;
+                }
+
                 list.Add(data);
             }
 

@@ -152,6 +152,9 @@
       <DependentUpon>CollapsibleGroupBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="GForm.ja-JP.resx">
+      <DependentUpon>GForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GForm.ja.resx">
       <DependentUpon>GForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -251,9 +254,9 @@
     <None Include="Resources\Search-128.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\demo\ObjectListViewDemo20\ObjectListView\ObjectListView2008.csproj">
+    <ProjectReference Include="..\..\demo\ObjectListViewDemo20\ObjectListView\ObjectListView2010.csproj">
       <Project>{18FEDA0C-D147-4286-B39A-01204808106A}</Project>
-      <Name>ObjectListView2008</Name>
+      <Name>ObjectListView2010</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

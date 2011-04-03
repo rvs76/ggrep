@@ -65,6 +65,13 @@ namespace GGrep.Instance
             get { return colNo; }
             set { colNo = value; }
         }
+        private long showColNo;
+
+        public long ShowColNo
+        {
+            get { return showColNo; }
+            set { showColNo = value; }
+        }
 
         private string line;
 
@@ -72,6 +79,14 @@ namespace GGrep.Instance
         {
             get { return line; }
             set { line = value; }
+        }
+
+        private string showLine;
+
+        public string ShowLine
+        {
+            get { return showLine; }
+            set { showLine = value; }
         }
         private string matchedString;
 

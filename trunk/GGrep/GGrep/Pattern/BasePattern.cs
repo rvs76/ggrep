@@ -108,7 +108,7 @@ namespace GGrep.Pattern
                         }
                         else
                         {
-                            if (data.ColNo - data.ShowColNo - 1 + MAX_WIDTH > line.Length)
+                            if (data.ColNo - data.ShowColNo + MAX_WIDTH > line.Length)
                             {
                                 data.ShowColNo = line.Length - MAX_WIDTH;
                                 data.ShowLine = data.Line.Substring((int)data.ShowColNo);

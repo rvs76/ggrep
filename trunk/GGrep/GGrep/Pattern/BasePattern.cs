@@ -151,7 +151,7 @@ namespace GGrep.Pattern
                 {
                     // col, row, filename
                     p.StartInfo.FileName = string.Format("\"{0}\"", Properties.Settings.Default.CustomEditorPath);
-                    p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", string.Format("\"{0}\"", data.FullFileName)).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
+                    p.StartInfo.Arguments = Properties.Settings.Default.CustomEditorArguments.Replace("%file", data.FullFileName.Replace("\\", "\\\\")).Replace("%line", data.RowNo.ToString()).Replace("%column", data.ColNo.ToString());
                     p.Start();
                     if (p.HasExited)
                         p.Kill();

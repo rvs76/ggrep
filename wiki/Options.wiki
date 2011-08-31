@@ -8,6 +8,6 @@ Introduce how to set customer editor in options
   # Check Custom Editor
   # Select Editor Executable file with browser button, and the set Arguments.
 
-   Examples:
+      Examples:
     * SciTE: "-open:%file" -goto:%line,%column
     * Sakura Editor: -X=%column -Y=%line "%file"

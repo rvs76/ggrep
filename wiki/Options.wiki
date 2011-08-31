@@ -1,10 +1,11 @@
 #labels Phase-Deploy
-= Introduction =
-How to set customer editor in options
+== Introduction ==
+How to set custom editor in options
 
-= Details =
+== Details ==
   # Check Custom Editor
-  # Select Editor Executable file with browser button, and the set Arguments.
+  # Select Editor Executable file with browser button.
+  # Set Arguments.
     Examples:
     * SciTE: "-open:%file" -goto:%line,%column
     * Sakura Editor: -X=%column -Y=%line "%file"

@@ -7,12 +7,21 @@ using System.Text.RegularExpressions;
 using System.ComponentModel;
 using GGrep.Instance;
 using System.Security.Principal;
+using System.Reflection;
 
 namespace GGrep
 {
     class Utils
     {
         #region Methods
+
+        public static string AssemblyVersion
+        {
+            get
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+        }
 
         /// <summary>
         /// Get Language present

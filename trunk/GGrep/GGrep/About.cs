@@ -19,7 +19,7 @@ namespace GGrep
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Version {0}", Utils.AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.textBoxDescription.Text = AssemblyDescription;
         }
@@ -42,14 +42,6 @@ namespace GGrep
                     }
                 }
                 return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
-            }
-        }
-
-        public string AssemblyVersion
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
         }
 

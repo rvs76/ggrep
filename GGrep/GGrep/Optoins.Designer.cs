@@ -53,7 +53,6 @@
             // 
             // gbEditor
             // 
-            resources.ApplyResources(this.gbEditor, "gbEditor");
             this.gbEditor.Controls.Add(this.label2);
             this.gbEditor.Controls.Add(this.tbArguments);
             this.gbEditor.Controls.Add(this.btnBrowse);
@@ -61,6 +60,7 @@
             this.gbEditor.Controls.Add(this.rbCustom);
             this.gbEditor.Controls.Add(this.rbDefault);
             this.gbEditor.Controls.Add(this.label1);
+            resources.ApplyResources(this.gbEditor, "gbEditor");
             this.gbEditor.Name = "gbEditor";
             this.gbEditor.TabStop = false;
             // 
@@ -110,16 +110,16 @@
             // 
             // btnCancel
             // 
-            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // gbSystem
             // 
-            resources.ApplyResources(this.gbSystem, "gbSystem");
             this.gbSystem.Controls.Add(this.cbAutoCheckUpdates);
             this.gbSystem.Controls.Add(this.cbShowInDirContextMenu);
+            resources.ApplyResources(this.gbSystem, "gbSystem");
             this.gbSystem.Name = "gbSystem";
             this.gbSystem.TabStop = false;
             // 

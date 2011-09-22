@@ -205,11 +205,18 @@
   <data name="cbAutoCheckUpdates.Size" type="System.Drawing.Size, System.Drawing">
     <value>202, 16</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbAutoCheckUpdates.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="cbAutoCheckUpdates.Text" xml:space="preserve">
     <value>最新バージョンを自動でチェックする(&amp;A)</value>
   </data>
   <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>262, 16</value>
+  </data>
+  <data name="cbShowInDirContextMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="cbShowInDirContextMenu.Text" xml:space="preserve">
     <value>フォルダのコンテキストメニューに"G&amp;Grep"を表示する</value>

@@ -154,6 +154,22 @@
   <data name="label2.Text" xml:space="preserve">
     <value>フォルダ：</value>
   </data>
+  <data name="gbSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 29</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="gbSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="gbSearch.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="gbSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>482, 119</value>
+  </data>
+  <data name="gbSearch.Text" xml:space="preserve">
+    <value>検索</value>
+  </data>
   <data name="btnReplace.Location" type="System.Drawing.Point, System.Drawing">
     <value>395, 92</value>
   </data>
@@ -181,7 +197,6 @@
   <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
     <value>307, 92</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
@@ -191,20 +206,32 @@
   <data name="btnSearch.Text" xml:space="preserve">
     <value>キャンセル(&amp;C)</value>
   </data>
-  <data name="gbSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 29</value>
+  <data name="gbResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 294</value>
   </data>
-  <data name="gbSearch.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="gbSearch.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="gbResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
-  <data name="gbSearch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>482, 119</value>
+  <data name="gbResult.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
-  <data name="gbSearch.Text" xml:space="preserve">
-    <value>検索</value>
+  <data name="gbResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>482, 145</value>
+  </data>
+  <data name="gbResult.Text" xml:space="preserve">
+    <value>結果</value>
+  </data>
+  <data name="folvResult.EmptyListMsg" xml:space="preserve">
+    <value>該当データが存在しません。</value>
+  </data>
+  <data name="folvResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 14</value>
+  </data>
+  <data name="folvResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="folvResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 129</value>
   </data>
   <data name="colFileName.Text" xml:space="preserve">
     <value>ファイル</value>
@@ -224,32 +251,11 @@
   <data name="colResult.Text" xml:space="preserve">
     <value>該当行</value>
   </data>
-  <data name="folvResult.EmptyListMsg" xml:space="preserve">
-    <value>該当データが存在しません。</value>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 439</value>
   </data>
-  <data name="folvResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 14</value>
-  </data>
-  <data name="folvResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="folvResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 129</value>
-  </data>
-  <data name="gbResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 294</value>
-  </data>
-  <data name="gbResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="gbResult.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="gbResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>482, 145</value>
-  </data>
-  <data name="gbResult.Text" xml:space="preserve">
-    <value>結果</value>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>482, 22</value>
   </data>
   <data name="toolStripProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 16</value>
@@ -260,14 +266,23 @@
   <data name="statusLabel.Text" xml:space="preserve">
     <value>検索(S)ボタンを押下して始めて下さい。</value>
   </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 439</value>
-  </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>482, 22</value>
-  </data>
   <data name="menuStripMain.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS UI Gothic, 9pt</value>
+  </data>
+  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
+  <data name="menuStripMain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 2, 0, 2</value>
+  </data>
+  <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>482, 24</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ファイル(&amp;F)</value>
   </data>
   <data name="saveAsCsvToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 22</value>
@@ -284,11 +299,11 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>終了(X)</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 20</value>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>ファイル(&amp;F)</value>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>表示(&amp;V)</value>
   </data>
   <data name="filterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 22</value>
@@ -305,11 +320,17 @@
   <data name="tooltipsToolStripMenuItem.Text" xml:space="preserve">
     <value>ツールチップ(&amp;P)</value>
   </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
   </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>表示(&amp;V)</value>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>ツール(&amp;T)</value>
+  </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>言語(&amp;U)</value>
   </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 22</value>
@@ -329,12 +350,6 @@
   <data name="chineseToolStripMenuItem.Text" xml:space="preserve">
     <value>中国語(&amp;C)</value>
   </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>言語(&amp;U)</value>
-  </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 6</value>
   </data>
@@ -344,11 +359,17 @@
   <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>オプション(&amp;O)</value>
   </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
   </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>ツール(&amp;T)</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>ヘルプ(&amp;H)</value>
+  </data>
+  <data name="checkForUpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 22</value>
+  </data>
+  <data name="checkForUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>最新バージョンチェック(&amp;C)</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
@@ -356,20 +377,29 @@
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>GGrepのバージョン情報(&amp;A)</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
+  <data name="gbFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 148</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>ヘルプ(&amp;H)</value>
+  <data name="gbFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
-  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
+  <data name="gbFilter.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
-  <data name="menuStripMain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 2, 0, 2</value>
+  <data name="gbFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>482, 146</value>
   </data>
-  <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>482, 24</value>
+  <data name="gbFilter.Text" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 54</value>
+  </data>
+  <data name="panel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 90</value>
   </data>
   <data name="cbbFolderNotMatch.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 68</value>
@@ -443,14 +473,11 @@
   <data name="label4.Text" xml:space="preserve">
     <value>マッチするファイル：</value>
   </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 54</value>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 14</value>
   </data>
-  <data name="panel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 90</value>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 40</value>
   </data>
   <data name="cbIncludeSubFolders.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 2</value>
@@ -541,27 +568,6 @@
   </data>
   <data name="cbbEncoding.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 20</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 14</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 40</value>
-  </data>
-  <data name="gbFilter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 148</value>
-  </data>
-  <data name="gbFilter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="gbFilter.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="gbFilter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>482, 146</value>
-  </data>
-  <data name="gbFilter.Text" xml:space="preserve">
-    <value>オプション</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 12</value>
@@ -5524,9 +5530,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/4AAD/8AAA/+AAAPBBAADAAwAAgAcAAAAPAAAADwAAAAcAAAAH
         AAAABwAAAAcAAAAPAACADwAAgB8AAOA/AAAyOTcwODY=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>

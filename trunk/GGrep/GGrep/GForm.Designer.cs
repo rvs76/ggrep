@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GForm));
-            BrightIdeasSoftware.FilterMenuBuilder filterMenuBuilder1 = new BrightIdeasSoftware.FilterMenuBuilder();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.cbbSearchFolder = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -69,6 +68,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.gbFilter = new GGrep.CollapsibleGroupBox();
@@ -202,9 +202,6 @@
             this.colResult});
             this.folvResult.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.folvResult, "folvResult");
-            filterMenuBuilder1.MaxObjectsToConsider = 10000;
-            filterMenuBuilder1.TreatNullAsDataValue = true;
-            this.folvResult.ExcelFilterer = filterMenuBuilder1;
             this.folvResult.FullRowSelect = true;
             this.folvResult.GridLines = true;
             this.folvResult.Name = "folvResult";
@@ -221,14 +218,12 @@
             this.colNo.AspectName = "No";
             this.colNo.IsEditable = false;
             resources.ApplyResources(this.colNo, "colNo");
-            this.colNo.ValueBasedFilter = null;
             // 
             // colFileName
             // 
             this.colFileName.AspectName = "FileName";
             this.colFileName.IsEditable = false;
             resources.ApplyResources(this.colFileName, "colFileName");
-            this.colFileName.ValueBasedFilter = null;
             // 
             // colEncoding
             // 
@@ -236,7 +231,6 @@
             resources.ApplyResources(this.colEncoding, "colEncoding");
             this.colEncoding.IsEditable = false;
             this.colEncoding.IsVisible = false;
-            this.colEncoding.ValueBasedFilter = null;
             // 
             // colRowNo
             // 
@@ -245,7 +239,6 @@
             this.colRowNo.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colRowNo.IsEditable = false;
             resources.ApplyResources(this.colRowNo, "colRowNo");
-            this.colRowNo.ValueBasedFilter = null;
             // 
             // colColNo
             // 
@@ -254,14 +247,12 @@
             this.colColNo.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colColNo.IsEditable = false;
             resources.ApplyResources(this.colColNo, "colColNo");
-            this.colColNo.ValueBasedFilter = null;
             // 
             // colMatched
             // 
             this.colMatched.AspectName = "MatchedString";
             resources.ApplyResources(this.colMatched, "colMatched");
             this.colMatched.IsVisible = false;
-            this.colMatched.ValueBasedFilter = null;
             // 
             // colResult
             // 
@@ -269,7 +260,6 @@
             this.colResult.FillsFreeSpace = true;
             this.colResult.IsEditable = false;
             resources.ApplyResources(this.colResult, "colResult");
-            this.colResult.ValueBasedFilter = null;
             // 
             // statusStrip1
             // 
@@ -405,9 +395,16 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkForUpdateToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            // 
+            // checkForUpdateToolStripMenuItem
+            // 
+            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
+            resources.ApplyResources(this.checkForUpdateToolStripMenuItem, "checkForUpdateToolStripMenuItem");
+            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -644,6 +641,7 @@
         private System.Windows.Forms.ComboBox cbbReplaceText;
         private System.Windows.Forms.Button btnReplace;
         private System.Windows.Forms.ToolStripMenuItem chineseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdateToolStripMenuItem;
     }
 }
 

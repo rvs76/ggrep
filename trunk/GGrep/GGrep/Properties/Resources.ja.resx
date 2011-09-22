@@ -196,4 +196,16 @@
   <data name="MSG_STATUS_REPLACE_FINISHED" xml:space="preserve">
     <value>{1}ファイル中の{0}箇所を置換しました。</value>
   </data>
+  <data name="MSG_CONFIRM_01" xml:space="preserve">
+    <value>新しいバージョンのGGrep({0})が見つかりました。\r\nサイトにアクセスし、ダウンロードしますか？</value>
+  </data>
+  <data name="MSG_INFO_01" xml:space="preserve">
+    <value>最新バージョン({0})を利用しています。</value>
+  </data>
+  <data name="MSG_TITLE_04" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="MSG_TITLE_05" xml:space="preserve">
+    <value>確認</value>
+  </data>
 </root>

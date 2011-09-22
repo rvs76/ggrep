@@ -14,6 +14,7 @@ using System.Drawing.Drawing2D;
 using BrightIdeasSoftware;
 using GGrep.Instance;
 using GGrep.Pattern;
+using GGrep.Network;
 
 namespace GGrep
 {
@@ -49,6 +50,7 @@ namespace GGrep
         #region Constructor
         public GForm(string[] args)
         {
+            #region language
             ApplyLanguage();
             InitializeComponent();
             gbFilter.IsCollapsed = Properties.Settings.Default.FilterIsCollapsed;
@@ -75,6 +77,7 @@ namespace GGrep
                 englishToolStripMenuItem.Checked = true;
                 chineseToolStripMenuItem.Checked = false;
             }
+            #endregion
 
             #region highlight render
             this.colResult.Renderer = new HighlightRenderer();
@@ -121,6 +124,17 @@ namespace GGrep
                 cbbSearchFolder.Text = args[0];
             }
             #endregion
+
+            #region check for updates
+            if (Properties.Settings.Default.AutoCheckUpdates)
+            {
+                DateTime dt = Properties.Settings.Default.LastCheckUpdatesDate.AddDays(Properties.Settings.Default.CheckUpdatesInterval);
+                if (dt > DateTime.Now)
+                {
+                    new UpdateChecker(true).check();
+                }
+            }
+            #endregion
         }
         #endregion
 
@@ -139,21 +153,21 @@ namespace GGrep
             // string
             if (string.IsNullOrEmpty(cbbSearchText.Text))
             {
-                ShowMessage(0, Properties.Resources.MSG_ERROR_01);
+                Utils.ShowMessage(this, 0, Properties.Resources.MSG_ERROR_01);
                 return false;
             }
 
             // folder
             if (string.IsNullOrEmpty(cbbSearchFolder.Text) || !Directory.Exists(cbbSearchFolder.Text))
             {
-                ShowMessage(0, Properties.Resources.MSG_ERROR_02);
+                Utils.ShowMessage(this, 0, Properties.Resources.MSG_ERROR_02);
                 return false;
             }
 
             // replace
             if (isReplace && string.IsNullOrEmpty(cbbReplaceText.Text))
             {
-                if (ShowMessage(2, Properties.Resources.MSG_WARN_02) != System.Windows.Forms.DialogResult.OK)
+                if (Utils.ShowMessage(this, 2, Properties.Resources.MSG_WARN_02) != System.Windows.Forms.DialogResult.OK)
                     return false;
             }
 
@@ -167,7 +181,7 @@ namespace GGrep
             }
             catch
             {
-                ShowMessage(0, Properties.Resources.MSG_ERROR_03);
+                Utils.ShowMessage(this, 0, Properties.Resources.MSG_ERROR_03);
                 return false;
             }
 
@@ -180,7 +194,7 @@ namespace GGrep
                 }
                 catch
                 {
-                    ShowMessage(0, Properties.Resources.MSG_ERROR_04);
+                    Utils.ShowMessage(this, 0, Properties.Resources.MSG_ERROR_04);
                     cbbSearchText.Focus();
                     return false;
                 }
@@ -191,7 +205,7 @@ namespace GGrep
                 }
                 catch
                 {
-                    ShowMessage(0, Properties.Resources.MSG_ERROR_04);
+                    Utils.ShowMessage(this, 0, Properties.Resources.MSG_ERROR_04);
                     cbbReplaceText.Focus();
                     return false;
                 }
@@ -395,29 +409,6 @@ namespace GGrep
         }
 
         /// <summary>
-        /// Show Message
-        /// </summary>
-        /// <param name="pattern">0:failure/1:success/2:warning</param>
-        /// <param name="message">Message Contents</param>
-        /// <returns></returns>
-        private DialogResult ShowMessage(int pattern, string message)
-        {
-            switch (pattern)
-            {
-                case 0:
-                    // failure
-                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                case 2:
-                    // warning
-                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_03, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                case 1:
-                default:
-                    // success
-                    return MessageBox.Show(this, message, Properties.Resources.MSG_TITLE_02, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            }
-        }
-
-        /// <summary>
         /// Set language
         /// </summary>
         /// <param name="lang"></param>
@@ -565,13 +556,13 @@ namespace GGrep
                         }
                         sw.Close();
                     }
-                    ShowMessage(1, Properties.Resources.MSG_SAVED);
+                    Utils.ShowMessage(this, 1, Properties.Resources.MSG_SAVED);
                 }
 
             }
             catch (Exception e)
             {
-                ShowMessage(0, e.ToString());
+                Utils.ShowMessage(this, 0, e.ToString());
                 return false;
             }
             return true;
@@ -706,7 +697,7 @@ namespace GGrep
         {
             if (isRunning || backgroundWorker.IsBusy)
             {
-                if (ShowMessage(2, Properties.Resources.MSG_WARN_01) != DialogResult.OK)
+                if (Utils.ShowMessage(this, 2, Properties.Resources.MSG_WARN_01) != DialogResult.OK)
                 {
                     e.Cancel = true;
                     return;
@@ -746,7 +737,7 @@ namespace GGrep
         {
             if (folvResult.Items.Count <= 0)
             {
-                ShowMessage(0, Properties.Resources.MSG_ERROR_05);
+                Utils.ShowMessage(this, 0, Properties.Resources.MSG_ERROR_05);
                 return;
             }
 
@@ -774,6 +765,11 @@ namespace GGrep
         {
             About a = new About();
             a.ShowDialog(this);
+        }
+
+        private void checkForUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new UpdateChecker(false).check();
         }
 
         private void japaneseChangeToolStripMenuItem_Clicked(object sender, EventArgs e)
@@ -877,7 +873,7 @@ namespace GGrep
             toolStripProgressBar.Value = 0;
             if (e.Error != null)
             {
-                ShowMessage(0, e.Error.Message);
+                Utils.ShowMessage(this, 0, e.Error.Message);
                 SetToolStripLabel(statusLabel, e.Error.Message);
             }
             else

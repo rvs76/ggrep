@@ -127,6 +127,15 @@
   <data name="label1.Text" xml:space="preserve">
     <value>引数：</value>
   </data>
+  <data name="gbEditor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 93</value>
+  </data>
+  <data name="gbEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>472, 127</value>
+  </data>
+  <data name="gbEditor.Text" xml:space="preserve">
+    <value>エディタ</value>
+  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>136, 89</value>
   </data>
@@ -169,17 +178,8 @@
   <data name="rbDefault.Text" xml:space="preserve">
     <value>デフォルトファイルエディタ</value>
   </data>
-  <data name="gbEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 61</value>
-  </data>
-  <data name="gbEditor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>472, 152</value>
-  </data>
-  <data name="gbEditor.Text" xml:space="preserve">
-    <value>エディタ</value>
-  </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 219</value>
+    <value>155, 236</value>
   </data>
   <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
@@ -188,7 +188,7 @@
     <value>確定(&amp;O)</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>265, 219</value>
+    <value>265, 236</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
@@ -196,17 +196,23 @@
   <data name="btnCancel.Text" xml:space="preserve">
     <value>キャンセル(&amp;C)</value>
   </data>
+  <data name="gbSystem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="gbSystem.Text" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="cbAutoCheckUpdates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 16</value>
+  </data>
+  <data name="cbAutoCheckUpdates.Text" xml:space="preserve">
+    <value>最新バージョンを自動でチェックする(&amp;A)</value>
+  </data>
   <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>262, 16</value>
   </data>
   <data name="cbShowInDirContextMenu.Text" xml:space="preserve">
     <value>フォルダのコンテキストメニューに"G&amp;Grep"を表示する</value>
-  </data>
-  <data name="gbShell.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 8</value>
-  </data>
-  <data name="gbShell.Text" xml:space="preserve">
-    <value>シェル</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 12</value>

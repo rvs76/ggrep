@@ -142,10 +142,6 @@
   <data name="cbbSearchText.Location" type="System.Drawing.Point, System.Drawing">
     <value>54, 14</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cbbSearchText.MaxLength" type="System.Int32, mscorlib">
-    <value>255</value>
-  </data>
   <data name="cbbSearchText.Size" type="System.Drawing.Size, System.Drawing">
     <value>421, 20</value>
   </data>
@@ -351,8 +347,14 @@
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>帮助(&amp;H)</value>
   </data>
+  <data name="checkForUpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 22</value>
+  </data>
+  <data name="checkForUpdateToolStripMenuItem.Text" xml:space="preserve">
+    <value>检测最新版本（&amp;C)</value>
+  </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+    <value>164, 22</value>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>关于(&amp;A)</value>

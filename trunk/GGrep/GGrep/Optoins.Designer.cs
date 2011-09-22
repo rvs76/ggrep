@@ -39,10 +39,11 @@
             this.rbDefault = new System.Windows.Forms.RadioButton();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.gbShell = new System.Windows.Forms.GroupBox();
+            this.gbSystem = new System.Windows.Forms.GroupBox();
+            this.cbAutoCheckUpdates = new System.Windows.Forms.CheckBox();
             this.cbShowInDirContextMenu = new System.Windows.Forms.CheckBox();
             this.gbEditor.SuspendLayout();
-            this.gbShell.SuspendLayout();
+            this.gbSystem.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -114,12 +115,20 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // gbShell
+            // gbSystem
             // 
-            resources.ApplyResources(this.gbShell, "gbShell");
-            this.gbShell.Controls.Add(this.cbShowInDirContextMenu);
-            this.gbShell.Name = "gbShell";
-            this.gbShell.TabStop = false;
+            resources.ApplyResources(this.gbSystem, "gbSystem");
+            this.gbSystem.Controls.Add(this.cbAutoCheckUpdates);
+            this.gbSystem.Controls.Add(this.cbShowInDirContextMenu);
+            this.gbSystem.Name = "gbSystem";
+            this.gbSystem.TabStop = false;
+            // 
+            // cbAutoCheckUpdates
+            // 
+            resources.ApplyResources(this.cbAutoCheckUpdates, "cbAutoCheckUpdates");
+            this.cbAutoCheckUpdates.Name = "cbAutoCheckUpdates";
+            this.cbAutoCheckUpdates.UseVisualStyleBackColor = true;
+            this.cbAutoCheckUpdates.CheckedChanged += new System.EventHandler(this.cbAutoCheckUpdates_CheckedChanged);
             // 
             // cbShowInDirContextMenu
             // 
@@ -134,7 +143,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.Controls.Add(this.gbShell);
+            this.Controls.Add(this.gbSystem);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.gbEditor);
@@ -146,8 +155,8 @@
             this.ShowInTaskbar = false;
             this.gbEditor.ResumeLayout(false);
             this.gbEditor.PerformLayout();
-            this.gbShell.ResumeLayout(false);
-            this.gbShell.PerformLayout();
+            this.gbSystem.ResumeLayout(false);
+            this.gbSystem.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -164,7 +173,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.GroupBox gbShell;
+        private System.Windows.Forms.GroupBox gbSystem;
         private System.Windows.Forms.CheckBox cbShowInDirContextMenu;
+        private System.Windows.Forms.CheckBox cbAutoCheckUpdates;
     }
 }

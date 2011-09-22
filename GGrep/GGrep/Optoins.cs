@@ -55,6 +55,11 @@ namespace GGrep
             }
         }
 
+        private void cbAutoCheckUpdates_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoCheckUpdates = cbAutoCheckUpdates.Checked;
+        }
+
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();

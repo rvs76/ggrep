@@ -8,6 +8,7 @@ using System.ComponentModel;
 using GGrep.Instance;
 using System.Security.Principal;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace GGrep
 {
@@ -15,13 +16,45 @@ namespace GGrep
     {
         #region Methods
 
-        public static string AssemblyVersion
+        public static string Version
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
             }
         }
+
+
+        /// <summary>
+        /// Show Message
+        /// </summary>
+        /// <param name="pattern">0:failure/1:success/2:warning/3:info/4:confirm</param>
+        /// <param name="message">Message Contents</param>
+        /// <returns></returns>
+        public static DialogResult ShowMessage(Form parent, int pattern, string message)
+        {
+            switch (pattern)
+            {
+                case 0:
+                    // failure
+                    return MessageBox.Show(parent, message, Properties.Resources.MSG_TITLE_01, MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                case 1:
+                    // success
+                    return MessageBox.Show(parent, message, Properties.Resources.MSG_TITLE_02, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                case 2:
+                    // warning
+                    return MessageBox.Show(parent, message, Properties.Resources.MSG_TITLE_03, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                case 3:
+                    // info
+                    return MessageBox.Show(parent, message, Properties.Resources.MSG_TITLE_04, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                case 4:
+                    // confirm
+                    return MessageBox.Show(parent, message, Properties.Resources.MSG_TITLE_05, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                default:
+                    return DialogResult.Cancel;
+            }
+        }
+
 
         /// <summary>
         /// Get Language present

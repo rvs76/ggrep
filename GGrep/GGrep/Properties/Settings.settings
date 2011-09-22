@@ -74,5 +74,17 @@
     <Setting Name="ReplaceString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="HomeURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://code.google.com/p/ggrep/</Value>
+    </Setting>
+    <Setting Name="AutoCheckUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LastCheckUpdatesDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2011-09-22</Value>
+    </Setting>
+    <Setting Name="CheckUpdatesInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

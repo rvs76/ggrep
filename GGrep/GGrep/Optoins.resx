@@ -120,24 +120,18 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Arguments:</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 16</value>
-  </data>
   <data name="&gt;&gt;tbCustomEditor.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="rbDefault.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 23</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 213</value>
-  </data>
-  <data name="gbShell.Size" type="System.Drawing.Size, System.Drawing">
-    <value>470, 47</value>
+    <value>146, 239</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
@@ -148,6 +142,15 @@
   <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
     <value>422, 45</value>
   </data>
+  <data name="cbAutoCheckUpdates.Text" xml:space="preserve">
+    <value>&amp;Automatically check for updates</value>
+  </data>
+  <data name="cbAutoCheckUpdates.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 21</value>
+  </data>
+  <data name="&gt;&gt;cbAutoCheckUpdates.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;rbDefault.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -155,17 +158,14 @@
   <data name="gbEditor.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="gbShell.Text" xml:space="preserve">
-    <value>Shell</value>
-  </data>
   <data name="&gt;&gt;gbEditor.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="rbCustom.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="tbCustomEditor.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -173,27 +173,30 @@
   <data name="&gt;&gt;rbDefault.Name" xml:space="preserve">
     <value>rbDefault</value>
   </data>
-  <data name="&gt;&gt;cbShowInDirContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gbShell.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 11</value>
-  </data>
   <data name="tbArguments.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;tbArguments.Parent" xml:space="preserve">
-    <value>gbEditor</value>
+  <data name="&gt;&gt;rbDefault.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;cbAutoCheckUpdates.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="cbShowInDirContextMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="gbShell.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="gbSystem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>470, 75</value>
   </data>
-  <data name="&gt;&gt;gbShell.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gbSystem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 7</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 14</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
   </data>
   <data name="&gt;&gt;gbEditor.Parent" xml:space="preserve">
     <value>$this</value>
@@ -210,14 +213,14 @@
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gbShell.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;cbAutoCheckUpdates.Parent" xml:space="preserve">
+    <value>gbSystem</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="tbArguments.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 74</value>
+  <data name="cbShowInDirContextMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 45</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -231,8 +234,11 @@
   <data name="&gt;&gt;rbCustom.Name" xml:space="preserve">
     <value>rbCustom</value>
   </data>
-  <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 23</value>
+  <data name="gbSystem.Text" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;cbShowInDirContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -243,8 +249,8 @@
   <data name="btnBrowse.Text" xml:space="preserve">
     <value>...</value>
   </data>
-  <data name="&gt;&gt;gbShell.Name" xml:space="preserve">
-    <value>gbShell</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>494, 268</value>
   </data>
   <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
     <value>btnOk</value>
@@ -255,8 +261,14 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;rbCustom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>293, 33</value>
+  </data>
+  <data name="rbCustom.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="btnBrowse.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -268,7 +280,7 @@
     <value>tbCustomEditor</value>
   </data>
   <data name="gbEditor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 64</value>
+    <value>12, 90</value>
   </data>
   <data name="tbCustomEditor.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
@@ -282,8 +294,8 @@
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 9pt</value>
   </data>
-  <data name="&gt;&gt;rbDefault.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="gbSystem.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;tbArguments.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -297,26 +309,35 @@
   <data name="&gt;&gt;btnBrowse.Name" xml:space="preserve">
     <value>btnBrowse</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;gbSystem.Name" xml:space="preserve">
+    <value>gbSystem</value>
+  </data>
+  <data name="&gt;&gt;cbAutoCheckUpdates.Name" xml:space="preserve">
+    <value>cbAutoCheckUpdates</value>
+  </data>
+  <data name="&gt;&gt;tbArguments.Parent" xml:space="preserve">
+    <value>gbEditor</value>
   </data>
   <data name="&gt;&gt;rbCustom.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 213</value>
-  </data>
   <data name="&gt;&gt;rbCustom.Parent" xml:space="preserve">
     <value>gbEditor</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
-    <value>gbEditor</value>
+  <data name="tbArguments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 74</value>
   </data>
   <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>gbEditor</value>
+  </data>
+  <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;gbSystem.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -333,14 +354,17 @@
   <data name="cbShowInDirContextMenu.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Optoins</value>
+  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
+    <value>gbEditor</value>
   </data>
   <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="cbAutoCheckUpdates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 18</value>
+  </data>
+  <data name="&gt;&gt;gbSystem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="cbShowInDirContextMenu.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -348,8 +372,11 @@
   <data name="rbDefault.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tbCustomEditor.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="cbAutoCheckUpdates.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbAutoCheckUpdates.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 78</value>
@@ -363,14 +390,11 @@
   <data name="label2.Text" xml:space="preserve">
     <value>(Use %file, %line and %column keywords to specify file location, line number and column number)</value>
   </data>
-  <data name="cbShowInDirContextMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 21</value>
-  </data>
   <data name="rbDefault.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 99</value>
+  <data name="cbShowInDirContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 18</value>
   </data>
   <data name="btnBrowse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
@@ -378,17 +402,14 @@
   <data name="&gt;&gt;tbCustomEditor.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 14</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Optoins</value>
   </data>
   <data name="&gt;&gt;gbEditor.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>494, 246</value>
-  </data>
-  <data name="&gt;&gt;gbShell.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
   </data>
   <data name="rbCustom.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 16</value>
@@ -399,17 +420,20 @@
   <data name="rbDefault.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
   </data>
+  <data name="cbAutoCheckUpdates.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="cbShowInDirContextMenu.Text" xml:space="preserve">
     <value>Show G&amp;Grep in folder's context menu</value>
   </data>
-  <data name="rbCustom.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
   <data name="&gt;&gt;tbCustomEditor.Parent" xml:space="preserve">
     <value>gbEditor</value>
   </data>
   <data name="&gt;&gt;cbShowInDirContextMenu.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;cbShowInDirContextMenu.Name" xml:space="preserve">
     <value>cbShowInDirContextMenu</value>
@@ -417,8 +441,14 @@
   <data name="btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;gbSystem.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 99</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
   <data name="&gt;&gt;btnBrowse.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -433,13 +463,13 @@
     <value>214, 22</value>
   </data>
   <data name="&gt;&gt;cbShowInDirContextMenu.Parent" xml:space="preserve">
-    <value>gbShell</value>
+    <value>gbSystem</value>
   </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>274, 239</value>
   </data>
-  <data name="&gt;&gt;rbCustom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

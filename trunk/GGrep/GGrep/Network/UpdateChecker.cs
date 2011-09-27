@@ -42,8 +42,7 @@ namespace GGrep.Network
                 request.Timeout = 3000;//milli seconds
                 request.Method = "GET";
 
-                request.Proxy = WebRequest.DefaultWebProxy;
-                request.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                // FIXME: how about proxy ???
 
                 response = (HttpWebResponse)request.GetResponse();
                 st = response.GetResponseStream();
@@ -62,6 +61,10 @@ namespace GGrep.Network
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                e.Result = ex;
             }
             finally
             {
@@ -92,29 +95,40 @@ namespace GGrep.Network
 
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            string latest = e.Result.ToString();
-
-            if (latest == Utils.Version)
+            if (e.Result == null)
             {
-                if (!isAuto)
-                {
-                    Utils.ShowMessage(null, 3, string.Format(Properties.Resources.MSG_INFO_01, latest));
-                }
+                // do nothing
+            }
+            else if (e.Result is Exception)
+            {
+                Utils.ShowMessage(null, 0, (e.Result as Exception).Message);
             }
             else
             {
-                DialogResult dr = Utils.ShowMessage(null, 4, string.Format(Properties.Resources.MSG_CONFIRM_01, latest));
-                if (dr == DialogResult.Yes)
+                string latest = e.Result.ToString();
+
+                if (latest == Utils.Version)
                 {
-                    // open url
-                    try
+                    if (!isAuto)
                     {
-                        System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                        proc.EnableRaisingEvents = false;
-                        proc.StartInfo.FileName = Properties.Settings.Default.HomeURL;
-                        proc.Start();
+                        Utils.ShowMessage(null, 3, string.Format(Properties.Resources.MSG_INFO_01, latest));
                     }
-                    catch { }
+                }
+                else
+                {
+                    DialogResult dr = Utils.ShowMessage(null, 4, string.Format(Properties.Resources.MSG_CONFIRM_01, latest));
+                    if (dr == DialogResult.Yes)
+                    {
+                        // open url
+                        try
+                        {
+                            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                            proc.EnableRaisingEvents = false;
+                            proc.StartInfo.FileName = Properties.Settings.Default.HomeURL;
+                            proc.Start();
+                        }
+                        catch { }
+                    }
                 }
             }
         }

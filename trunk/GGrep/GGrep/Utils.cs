@@ -33,6 +33,8 @@ namespace GGrep
         /// <returns></returns>
         public static DialogResult ShowMessage(Form parent, int pattern, string message)
         {
+            message = message.Replace("\\r\\n", "\\n").Replace("\\n", System.Environment.NewLine);
+
             switch (pattern)
             {
                 case 0:

@@ -113,7 +113,7 @@ namespace GGrep.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new version of GGrep ({0}) is available for download.\r\nWould you like to visit the website to download it ?.
+        ///   Looks up a localized string similar to A new version of GGrep ({0}) is available for download.\nWould you like to visit the website to download it ?.
         /// </summary>
         internal static string MSG_CONFIRM_01 {
             get {

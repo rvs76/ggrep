@@ -197,7 +197,7 @@
     <value>在{1}个文件中替换了{0}个文字。</value>
   </data>
   <data name="MSG_CONFIRM_01" xml:space="preserve">
-    <value>发现了新版本的GGrep ({0})。\r\n要去下载么？</value>
+    <value>发现了新版本的GGrep ({0})。\n要去下载么？</value>
   </data>
   <data name="MSG_INFO_01" xml:space="preserve">
     <value>您所使用的是GGrep({0})最新版本。</value>
